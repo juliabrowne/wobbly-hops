@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css?family=Press+Start+2P');
+
+.root{
+      background-image: linear-gradient(white -5%, rgb(255, 197, 7) 100%);
+    width: 100vw;
+    height: 100vh;
+}
+h1{
+    margin: 0;
+}
+.header{
+    display: flex;
+    justify-content: center;
+    font-size: 6rem;
+    padding-top: 4rem;
+    font-family: 'Press Start 2P', cursive;
+}
+.start-button{
+    border-radius: 40px;
+    background: #fca728;
+    width: 30vw;
+    height: 10vh;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    font-size: 2rem;
+    font-weight: 600;
+    margin-top: 3rem;
+    outline: 0;
+}

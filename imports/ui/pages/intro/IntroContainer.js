@@ -1,12 +1,13 @@
 import React, { Component } from "react";
+import './styles.css'
 
 class IntroContainer extends Component {
     render() {
-        return (
-            <div>
-                <h1>This is the Intro Page</h1>
-            </div>
-        )
+        return <div className="root">
+            <h1 className="header">W🤪BBLY-H🤮PS🍻</h1>
+            <button className="start-button">START</button>
+            <button className="start-button">INSTRUCTIONS</button>
+          </div>;
     }
 }
 
