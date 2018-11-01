@@ -1,9 +1,12 @@
 import React from 'react';
+import IntroContainer from '../ui/pages/intro';
+import Layout from '../../routes/layout';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 const App = () => (
-  <div>
-    <h1>Welcome to Meteor!</h1>
-  </div>
+    <Router>
+        <Layout />
+    </Router>
 );
 
 export default App;
