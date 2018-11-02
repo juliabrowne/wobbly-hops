@@ -7,9 +7,11 @@ class IntroContainer extends Component {
     render() {
       return <div className="root">
           {/* Music taken from www.Bensound.com and is Non-Copyrighted*/}
-          <ReactAudioPlayer src="../../../music/bensound-funday.mp3" autoPlay loop />
-          <h1 className="header">W🤪BBLY-H🤮PS🍻</h1>
+          <ReactAudioPlayer src="../../../music/bensound-allthat.mp3" autoPlay loop />
+        <h1 className="header">W🤪BBLY-H🤮PS🍻</h1>
+        <Link to="/createCharacter">
           <button className="start-button">Start</button>
+        </Link>
           <Link to="/instructions">
             <button className="start-button" to="/instructions">
               The Rules
