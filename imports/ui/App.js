@@ -1,8 +1,22 @@
-import React from 'react';
-import IntroContainer from '../ui/pages/intro';
-import Layout from '../../routes/layout';
-import { BrowserRouter as Router } from 'react-router-dom';
+import React, { Component } from "react";
+import Game from "../ui/components/game";
+import Canvas from "../ui/components/canvas";
 
+<<<<<<< HEAD
+class App extends Component {
+  constructor() {
+    super();
+  }
+
+  render() {
+    return (
+      <div>
+        <Canvas />
+      </div>
+    );
+  }
+}
+=======
 import { Players } from '../api/players';
 import { Gameboard } from '../api/gameboard';
 
@@ -11,5 +25,6 @@ const App = () => (
         <Layout />
     </Router>
 );
+>>>>>>> 01abb2653e995995aa09c11cdd1ff5ba36629b4f
 
 export default App;
