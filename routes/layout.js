@@ -1,9 +1,9 @@
 import React, { Fragment } from "react";
 import { Redirect, Route, Switch } from "react-router";
-import { BrowserRouter } from 'react-router-dom';
 import IntroContainer from '../imports/ui/pages/intro'
 import InstructionContainer from "../imports/ui/pages/instructions/InstructionContainer";
 import createCharContainer from '../imports/ui/pages/createChar/createCharContainer'
+import Canvas from "../imports/ui/components/canvas";
 
 export default () => {
     return <Fragment>
@@ -11,6 +11,7 @@ export default () => {
           <Route exact path="/intro" component={IntroContainer} />
           <Route exact path="/instructions" component={InstructionContainer} />
           <Route exact path="/createCharacter" component={createCharContainer} />
+          <Route exact path="/game" component={Canvas} />
           <Redirect from="*" to="/intro" />
         </Switch>
       </Fragment>;
