@@ -5,6 +5,8 @@
     width: 100vw;
     height: 100vh;
     max-height: 100%;
+    flex-grow: 1;
+    flex-wrap: nowrap;
 }
 h1{
     margin: 0;
@@ -15,6 +17,7 @@ h1{
     font-size: 6rem;
     padding-top: 4rem;
     font-family: 'Press Start 2P', cursive;
+    flex-wrap: nowrap;
 }
 .start-button{
     border-radius: 40px;
@@ -29,6 +32,7 @@ h1{
     font-weight: 600;
     margin-top: 4.5rem;
     outline: 0;
+    box-shadow: 10px 10px 8px rgba(0, 0, 0, 0.678);
 }
 /* Concept taken from https://codepen.io/williamkunz/pen/kmGCl */
 .bubble {
