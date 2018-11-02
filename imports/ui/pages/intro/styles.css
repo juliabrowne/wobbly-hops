@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Press+Start+2P');
+@import url('https://fonts.googleapis.com/css?family=Gloria+Hallelujah');
 
 a{
     text-decoration: none
@@ -29,6 +30,7 @@ h1{
     width: 30vw;
     height: 10vh;
     display: flex;
+    font-family: 'Gloria Hallelujah', cursive;
     justify-content: center;
     margin: 0 auto;
     font-size: 2rem;
