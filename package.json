@@ -10,16 +10,10 @@
   "dependencies": {
     "@babel/runtime": "^7.1.2",
     "meteor-node-stubs": "^0.4.1",
-<<<<<<< HEAD
-    "phaser": "^3.15.1",
-    "react": "^16.5.0",
-    "react-dom": "^16.5.0"
-=======
     "react": "^16.6.0",
     "react-audio-player": "^0.11.0",
     "react-dom": "^16.6.0",
     "react-router-dom": "^4.3.1"
->>>>>>> 4b01a9f6d50e5b7ecaaab6c0de5b7b10c7c9a024
   },
   "meteor": {
     "mainModule": {

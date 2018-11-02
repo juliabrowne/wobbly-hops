@@ -7,13 +7,13 @@ class App extends Component {
     super();
   }
 
-  windowOnLoad() {}
-
   render() {
     return (
       <div>
-        <Game />
+        <Canvas />
       </div>
     );
   }
 }
+
+export default App;
