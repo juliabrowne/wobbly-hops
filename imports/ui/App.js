@@ -1,19 +1,12 @@
-import React, { Component } from "react";
-import Game from "../ui/components/game";
-import Canvas from "../ui/components/canvas";
+import React from "react";
+import {BrowserRouter as Router} from 'react-router-dom'
+import Layout from '../../routes/layout'
 
-class App extends Component {
-  constructor() {
-    super();
-  }
+const App = () => (
+    <Router>
+        <Layout />
+    </Router>
+);
 
-  render() {
-    return (
-      <div>
-        <Canvas />
-      </div>
-    );
-  }
-}
 
 export default App;
