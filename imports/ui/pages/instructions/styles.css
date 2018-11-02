@@ -1,19 +1,19 @@
 @import url('https://fonts.googleapis.com/css?family=Press+Start+2P');
+@import url('https://fonts.googleapis.com/css?family=Gloria+Hallelujah');
 
-a{
-    text-decoration: none
-}
+/* This document holds the CSS for the INSTRUCTIONS page */
+
 .root{
-      background-image: linear-gradient(white 10%, #F09000 90%);
+    background-image: linear-gradient(white 10%, #F09000 90%);
+    display: flex;
+    flex-direction: column;
     width: 100vw;
     height: 100vh;
     max-height: 100%;
     flex-grow: 1;
     flex-wrap: nowrap;
 }
-h1{
-    margin: 0;
-}
+
 .header{
     display: flex;
     justify-content: center;
@@ -22,21 +22,47 @@ h1{
     font-family: 'Press Start 2P', cursive;
     flex-wrap: nowrap;
 }
-.start-button{
-    border-radius: 40px;
-    background: #D87800;
-    color: white;
-    width: 30vw;
-    height: 10vh;
+
+.rundown{
     display: flex;
     justify-content: center;
-    margin: 0 auto;
-    font-size: 2rem;
-    font-weight: 600;
-    margin-top: 4.5rem;
-    outline: 0;
-    box-shadow: 10px 10px 8px rgba(0, 0, 0, 0.678);
+    text-decoration: underline;
+    font-family: 'Gloria Hallelujah', cursive;
 }
+
+.back-instruction {
+    width: 20%;
+}
+.back-instruction-div{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.instructions{
+    display: flex;
+    justify-content: center;
+    font-size: 1.3rem;
+    font-family: 'Gloria Hallelujah', cursive;
+    margin: 0 auto;
+    width: 80%
+}
+li{
+    padding-bottom: 1rem
+}
+
+.instructions-back{
+      display: flex;
+    justify-content: center;
+    font-size: 1.3rem;
+    font-family: 'Gloria Hallelujah', cursive;
+    margin: 0 auto;
+    width: 15%;
+    color: white;
+    background: black;
+    outline: 0;
+}
+
 /* Concept taken from https://codepen.io/williamkunz/pen/kmGCl */
 .bubble {
   width: 60px;
@@ -154,5 +180,3 @@ h1{
         margin-left:50px;
     }
 }
-
-

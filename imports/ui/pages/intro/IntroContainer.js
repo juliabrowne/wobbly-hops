@@ -1,19 +1,15 @@
 import React, { Component } from "react";
 import './styles.css'
+import { Link } from "react-router-dom";
 
 class IntroContainer extends Component {
     render() {
       return <div className="root">
           <h1 className="header">W🤪BBLY-H🤮PS🍻</h1>
-          <button className="start-button">Start</button>
-          <button className="start-button">The Rules</button>
-          <div id="bubbles">
-            <div className="bubble x1" />
-            <div className="bubble x2" />
-            <div className="bubble x3" />
-            <div className="bubble x4" />
-            <div className="bubble x5" />
-          </div>
+        <button className="start-button">Start</button>
+        <Link to="/instructions">
+          <button className="start-button" to="/instructions">The Rules</button>
+        </Link>
           <div id="bubbles">
             <div className="bubble x1" />
             <div className="bubble x2" />
