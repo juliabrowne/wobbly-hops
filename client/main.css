@@ -1,4 +1,14 @@
 body {
   padding: 10px;
   font-family: sans-serif;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  height: 100%;
+}
+
+#react-target {
+  height: 100%;
+  width: 100%;
+  background-color: red;
 }
