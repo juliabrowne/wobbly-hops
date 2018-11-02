@@ -10,6 +10,12 @@
   "dependencies": {
     "@babel/runtime": "^7.0.0",
     "babel-runtime": "^6.26.0",
+<<<<<<< HEAD
+=======
+=======
+    "@babel/runtime": "^7.1.2",
+>>>>>>> 9823bacc119a021335be48fd5f95d9f31287d655
+>>>>>>> 40f99d689be0c5c1c8991176c396ac8a662e9aee
     "meteor-node-stubs": "^0.4.1",
     "react": "^16.6.0",
     "react-audio-player": "^0.11.0",
