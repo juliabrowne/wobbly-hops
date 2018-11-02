@@ -5,13 +5,9 @@ import ReactAudioPlayer from "react-audio-player";
 
 class InstructionContainer extends Component {
     render() {
-        return (
-            <div className="root">
-            <ReactAudioPlayer
-                src="../../../../music/bensound-funnysong.mp3"
-                autoPlay
-                loop
-            />
+        return <div className="root">
+            {/* Music taken from www.Bensound.com and is Non-Copyrighted)*/}
+            <ReactAudioPlayer src="../../../music/bensound-allthat.mp3" autoPlay loop />
             <h1 className="header">W🤪BBLY-H🤮PS🍻</h1>
             <div id="bubbles">
               <div className="bubble x1" />
@@ -49,10 +45,9 @@ class InstructionContainer extends Component {
               </ul>
             </div>
             <Link to="/intro">
-                <button className="instructions-back">Back</button>
+              <button className="instructions-back">Back</button>
             </Link>
-            </div>
-        )
+          </div>;
     }
 }
 
