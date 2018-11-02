@@ -1,10 +1,17 @@
 import React, { Component } from "react";
 import "./styles.css";
 import { Link } from "react-router-dom";
+import ReactAudioPlayer from "react-audio-player";
 
 class InstructionContainer extends Component {
     render() {
-        return <div className="root">
+        return (
+            <div className="root">
+            <ReactAudioPlayer
+                src="../../../../music/bensound-funnysong.mp3"
+                autoPlay
+                loop
+            />
             <h1 className="header">W🤪BBLY-H🤮PS🍻</h1>
             <div id="bubbles">
               <div className="bubble x1" />
@@ -44,7 +51,8 @@ class InstructionContainer extends Component {
             <Link to="/intro">
                 <button className="instructions-back">Back</button>
             </Link>
-          </div>;
+            </div>
+        )
     }
 }
 
