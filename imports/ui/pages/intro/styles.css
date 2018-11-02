@@ -4,6 +4,7 @@
       background-image: linear-gradient(white 10%, #F09000 90%);
     width: 100vw;
     height: 100vh;
+    max-height: 100%;
 }
 h1{
     margin: 0;
@@ -26,13 +27,10 @@ h1{
     margin: 0 auto;
     font-size: 2rem;
     font-weight: 600;
-    margin-top: 3rem;
+    margin-top: 4.5rem;
     outline: 0;
 }
-
-
 /* Concept taken from https://codepen.io/williamkunz/pen/kmGCl */
-#bubbles { padding: 100px 0 }
 .bubble {
   width: 60px;
   height: 60px;
