@@ -1,12 +1,14 @@
 import React from "react";
 import "./styles.css";
 import Paddle from "../paddle";
+import Player from "../player";
 
 class Canvas extends React.Component {
   constructor(props) {
     super(props);
     this.canvasRef = React.createRef();
     this.paddles = [];
+    this.players = [];
   }
 
   componentDidMount() {
@@ -26,6 +28,7 @@ class Canvas extends React.Component {
     );
     this.renderPaddles();
     this.renderPlayers();
+    // this.checkCollision(this.paddles, this.players);
   }
 
   renderPaddles() {
@@ -36,16 +39,21 @@ class Canvas extends React.Component {
     this.generatePaddles();
   }
 
-  renderPlayers() {}
+  renderPlayers() {
+    this.players.forEach(p => {
+      p.render(this.ctx);
+    });
+    this.generatePlayers();
+  }
 
   generatePaddles() {
-    if (this.paddles.length < 50) {
-      for (let i = 0; i < 50 - this.paddles.length; i++) {
+    if (this.paddles.length < 5) {
+      for (let i = 0; i < 5 - this.paddles.length; i++) {
         this.paddles.push(
           new Paddle({
             position: {
               x: Math.random() * this.canvasRef.current.width + 1,
-              y: (Math.random() * 500 + 1) * -1
+              y: (Math.random() * this.canvasRef.current.height + 1) * -1
             },
             wh: window.innerHeight
           })
@@ -53,6 +61,33 @@ class Canvas extends React.Component {
       }
     }
   }
+
+  generatePlayers() {
+    this.players.push(
+      new Player({
+        position: {
+          x: this.canvasRef.current.width / 2,
+          y: this.canvasRef.current.height / 2
+        }
+      })
+    );
+  }
+
+  // checkCollision(paddles, players) {
+  //   // The objects are touching
+  //   this.players.forEach(player => {
+  //     this.paddles.forEach(paddle => {
+  //       if (
+  //         player.position.x < paddle.position.x + paddle.width &&
+  //         player.position.x + player.width > paddle.position.x &&
+  //         player.position.y < paddle.position.y + paddle.height &&
+  //         player.position.y + player.height > paddle.position.y
+  //       ) {
+  //         console.log("Touching");
+  //       }
+  //     });
+  //   });
+  // }
 
   render() {
     return (
