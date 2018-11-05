@@ -3,6 +3,7 @@ import "./styles.css";
 import ReactAudioPlayer from "react-audio-player";
 import { withTracker } from "meteor/react-meteor-data";
 import { Players } from "../../../api/players";
+import { Link } from "react-router-dom";
 
 class createCharContainer extends Component {
   addPlayer = (player) => {
@@ -10,8 +11,10 @@ class createCharContainer extends Component {
   }
     render() {
         return <div className="root">
-            <ReactAudioPlayer src="../../../music/bensound-allthat.mp3" autoPlay loop />
+          <ReactAudioPlayer src="../../../music/bensound-allthat.mp3" autoPlay loop />
+          <Link to="/intro">
             <h1 className="header">W🤪BBLY-H🤮PS🍻</h1>
+          </Link>
             <form className="inputDiv">
               <h2 className="name-header">What's ya' name?</h2>
               <input type="text" className="input" maxLength="12" />

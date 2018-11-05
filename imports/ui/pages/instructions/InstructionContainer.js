@@ -7,8 +7,10 @@ class InstructionContainer extends Component {
     render() {
         return <div className="root">
             {/* Music taken from www.Bensound.com and is Non-Copyrighted)*/}
-            <ReactAudioPlayer src="../../../music/bensound-allthat.mp3" autoPlay loop />
+          <ReactAudioPlayer src="../../../music/bensound-allthat.mp3" autoPlay loop />
+          <Link to="/intro">
             <h1 className="header">W🤪BBLY-H🤮PS🍻</h1>
+          </Link>
             <div id="bubbles">
               <div className="bubble x1" />
               <div className="bubble x2" />
