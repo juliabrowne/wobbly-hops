@@ -2,6 +2,7 @@ import React from "react";
 import "./styles.css";
 import Paddle from "../paddle";
 import Player from "../player";
+import ScoreboardContainer from '../scoreboard'
 
 class Canvas extends React.Component {
   constructor(props) {
@@ -138,15 +139,17 @@ class Canvas extends React.Component {
   }
 
   render() {
-    return (
-      <div className="flex-container">
-        <canvas
-          ref={this.canvasRef}
-          width={window.innerWidth - 275}
-          height={window.innerHeight}
-        />
-      </div>
-    );
+    return <div className="flex-container">
+        <div className="left score">
+          <ScoreboardContainer/>
+          <ScoreboardContainer/>
+        </div>
+        <canvas ref={this.canvasRef} width={window.innerWidth - 275} height={window.innerHeight} />
+        <div className="right score">
+          <ScoreboardContainer/>
+          <ScoreboardContainer/>
+        </div>
+      </div>;
   }
 }
 
