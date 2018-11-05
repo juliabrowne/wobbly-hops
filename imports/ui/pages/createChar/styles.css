@@ -25,6 +25,7 @@ form{
     justify-content: center;
     margin: 0 auto;
     height: 10vh;
+    outline: 0;
     font-size: 2rem;
     font-family: 'Gloria Hallelujah', cursive;
     margin-top: 2rem;
@@ -40,7 +41,7 @@ form{
 }
 .input{
     width: 50vw;
-    height: 15vh;
+    height: 12vh;
     font-size: 13vh;
     outline: 0;
     font-family: 'Gloria Hallelujah', cursive;
@@ -59,6 +60,49 @@ display: flex;
 justify-content: center;
 font-size: 3rem;
 }
+.radio-buttons{
+    display: flex;
+    justify-content: space-around;
+    font-family: 'Gloria Hallelujah', cursive;
+    position: relative;
+}
+.wrapper{
+    position: relative;
+}
+.red{
+    background-color: black;
+    color: red;
+    width: 6vw;
+    display: flex;
+    justify-content: space-around;
+}
+.blue{
+    background-color: black;
+    color: blue;
+    width: 6vw;
+    display: flex;
+    justify-content: space-around;
+}
+.green{
+    background-color: black;
+    color: green;
+    width: 6vw;
+    display: flex;
+    justify-content: space-around;
+}
+.yellow{
+    background-color: black;
+    color: yellow;
+    width: 6vw;
+    display: flex;
+    justify-content: space-around;
+}
+
+input[type=radio]{
+    position: absolute;
+    margin-top: 1vh
+}
+
 .x1 {
   transform: (scale(0.1));
   opacity: 0.2;
