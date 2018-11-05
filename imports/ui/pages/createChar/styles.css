@@ -28,6 +28,8 @@ form{
     font-size: 2rem;
     font-family: 'Gloria Hallelujah', cursive;
     margin-top: 2rem;
+    background-color:#D87800;
+    color: white;
 }
 .bubble {
   width: 60px;
