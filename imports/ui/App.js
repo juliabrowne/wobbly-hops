@@ -1,14 +1,13 @@
 import React, { Component } from "react";
 import Game from "../ui/components/game";
 import Canvas from "../ui/components/canvas";
-
-import { Players } from '../api/players';
-import { Gameboard } from '../api/gameboard';
+import { BrowserRouter as Router } from "react-router-dom";
+import Layout from "../../routes/layout";
 
 const App = () => (
-    <Router>
-        <Layout />
-    </Router>
+  <Router>
+    <Layout />
+  </Router>
 );
 
 export default App;
