@@ -1,7 +1,7 @@
 import { Mongo } from 'meteor/mongo';
 import { Meteor } from 'meteor/meteor';
 
-import SimpleSchema from 'simpl-schema';
+// import SimpleSchema from 'simpl-schema';
 // import { Gameboard } from './gameboard';
 
 export const Players = new Mongo.Collection('player');
@@ -52,9 +52,9 @@ Meteor.methods({
 // 	winner: Boolean
 // })
 
-// if (Meteor.isServer) {
-// 	AccountsGuest.enabled = true;
-// 	AccountsGuest.anonymous = true;
+if (Meteor.isServer) {
+	AccountsGuest.enabled = true;
+	AccountsGuest.anonymous = true;
 
 // 	Meteor.publish('players', () => {
 // 		return Players.find({})
@@ -63,6 +63,6 @@ Meteor.methods({
 // 		return Players.find({ player: Meteor.userId() })
 // 	})
 
-// }
+}
 
 // Accounts.removeOldGuests();
