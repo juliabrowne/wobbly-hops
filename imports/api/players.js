@@ -6,14 +6,17 @@ import SimpleSchema from 'simpl-schema';
 
 export const Players = new Mongo.Collection('player');
 
+
 Meteor.methods({
-	'add.player' (name, color) {
-		Players.insert({
+	'add.player'(name, color) {
+		if (checkPlayers() > 4) return Meteor.Error({ message: 'You\'ve hit the max number of players!' })
+		const newPlayer = {
 			name,
 			color,
 			x: 100,
 			y: 100
-		})
+		}
+		Players.insert(newPlayer)
 	},
 	'move.right'(player) {
 		Players.update(
