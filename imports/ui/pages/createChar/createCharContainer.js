@@ -30,4 +30,4 @@ class createCharContainer extends Component {
    }
 }
 
-export default createCharContainer
+export default createCharContainer;
