@@ -139,10 +139,10 @@ class Canvas extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="flex-container">
         <canvas
           ref={this.canvasRef}
-          width={window.innerWidth}
+          width={window.innerWidth - 275}
           height={window.innerHeight}
         />
       </div>
