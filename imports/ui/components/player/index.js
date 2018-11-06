@@ -1,6 +1,6 @@
 import React from "react";
 
-export default class Player extends React.Component {
+class Player extends React.Component {
   constructor(args) {
     super(args);
     this.velocityY = 6;
@@ -18,8 +18,7 @@ export default class Player extends React.Component {
   }
 
   // prettier-ignore
-  render(ctx) {
-    console.log("PlayerY:", this.positionY)
+  render(ctx, player) {
     this.jumpLength++;
     this.paddles.forEach(paddle => {
       if (
@@ -65,8 +64,10 @@ export default class Player extends React.Component {
     if (this.moveDirection === "left") {
       this.positionX = this.positionX - this.velocityX;
     }
-    ctx.fillStyle = "red";
+    ctx.fillStyle = player.color;
     ctx.fillRect(this.positionX, this.positionY, this.height, this.width);
     this.jumpHeight++;
   }
 }
+
+export default Player;
