@@ -8,7 +8,7 @@ export default class Paddle extends React.Component {
     this.ww = args.ww;
     this.width = 100;
     this.height = 25;
-    this.velocity = 1;
+    this.velocity = 3;
     this.destroy = false;
   }
   render(ctx) {
@@ -17,8 +17,8 @@ export default class Paddle extends React.Component {
     ctx.fillStyle = "black";
     if (this.position.y > this.wh) {
       console.log("Regenerate");
-      this.position.x = Math.random() * this.wh + 1;
-      this.position.y = (Math.random() * this.ww + 1) * -1;
+      this.position.x = Math.random() * this.ww + 1;
+      this.position.y = (Math.random() * this.wh + 1) * -1;
     }
   }
 }
