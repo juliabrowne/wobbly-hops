@@ -3,19 +3,77 @@ import "./styles.css";
 import ReactAudioPlayer from "react-audio-player";
 import { withTracker } from "meteor/react-meteor-data";
 import { Players } from "../../../api/players";
+import { Link } from "react-router-dom";
+
+const SubmitButton = ({ addPlayer }) => {
+  return <button onClick={() => addPlayer()}>Lets Play!</button>;
+};
 
 class createCharContainer extends Component {
-  addPlayer = (player) => {
-    Meteor.call("add.player", player);
+  constructor() {
+    super(); 
+    this.nameInput = React.createRef();
   }
+
+
+  addPlayer = () => {
+    event.preventDefault();
+    let nameInput = this.nameInput.current;
+    if (nameInput.value) {
+      Meteor.call('add.player', this.nameInput.current.value)
+    }
+  }
+
+
+
     render() {
         return <div className="root">
-            <ReactAudioPlayer src="../../../music/bensound-allthat.mp3" autoPlay loop />
+          <ReactAudioPlayer src="../../../music/bensound-allthat.mp3" autoPlay loop />
+          <Link to="/intro">
             <h1 className="header">W🤪BBLY-H🤮PS🍻</h1>
-            <form className="inputDiv">
+<<<<<<< HEAD
+            <form onSubmit = {this.addPlayer} className="inputDiv">
               <h2 className="name-header">Whats ya' name?</h2>
+              <input type="text" className="input" maxLength="12" ref={this.nameInput}/>
+              <SubmitButton className="submit" addPlayer={this.addPlayer} />
+=======
+          </Link>
+            <form className="inputDiv">
+              <h2 className="name-header">What's ya' name?</h2>
               <input type="text" className="input" maxLength="12" />
-              <button className="submit" onClick={() => add.player()}>Lets Play!</button>
+              <h2 className="name-header">
+                What's ya' favorite color?
+              </h2>
+              <div className="radio-buttons">
+                <div className="wrapper">
+                  <input type="radio" className="red" name="color" value="red" />
+                  <label className="red" for="red">
+                    Red
+                  </label>
+                </div>
+              <div className="wrapper">
+                  <input type="radio" className="blue" name="color" value="blue" />
+                  <label className="blue" for="blue">
+                    Blue
+                  </label>
+                </div>
+              <div className="wrapper">
+                  <input type="radio" className="green" name="color" value="green" />
+                  <label className="green" for="green">
+                    Green
+                  </label>
+                </div>
+              <div className="wrapper">
+                  <input type="radio" className="yellow" name="color" value="yellow" />
+                  <label className="yellow" for="yellow">
+                    Yellow
+                  </label>
+                </div>
+              </div>
+              <button className="submit" onClick={() => add.player()}>
+                Lets Play!
+              </button>
+>>>>>>> a051b14ea1846375cd589fc0119e442c2de950f1
             </form>
             <div id="bubbles">
               <div className="bubble x1" />
@@ -33,9 +91,16 @@ class createCharContainer extends Component {
           </div>;
    }
 }
+<<<<<<< HEAD
+
+
+=======
+>>>>>>> a051b14ea1846375cd589fc0119e442c2de950f1
 export default withTracker(() => {
   Meteor.subscribe("player");
   return {
+    currentUser: Meteor.user(),
+    currentUserId: Meteor.userId(),
     player: Players.find().fetch()
   };
 })(createCharContainer);

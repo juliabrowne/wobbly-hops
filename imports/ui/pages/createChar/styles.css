@@ -14,10 +14,12 @@
     padding-top: 4rem;
     font-family: 'Press Start 2P', cursive;
     flex-wrap: nowrap;
+    color: black;
 }
 form{
     display: flex;
     flex-direction: column;
+    padding-bottom: 5rem;
 }
 .submit{
     width: 20vw;
@@ -25,9 +27,12 @@ form{
     justify-content: center;
     margin: 0 auto;
     height: 10vh;
+    outline: 0;
     font-size: 2rem;
     font-family: 'Gloria Hallelujah', cursive;
-    margin-top: 2rem;
+    margin-top: 3rem;
+    background-color:#D87800;
+    color: white;
 }
 .bubble {
   width: 60px;
@@ -38,7 +43,7 @@ form{
 }
 .input{
     width: 50vw;
-    height: 15vh;
+    height: 12vh;
     font-size: 13vh;
     outline: 0;
     font-family: 'Gloria Hallelujah', cursive;
@@ -47,6 +52,7 @@ form{
     border-right: 0px;
     border-left: 0px;
     border-color: black;
+    margin-bottom: 2rem;
 }
 .inputDiv{
     margin: 0 auto;
@@ -56,7 +62,53 @@ font-family: 'Gloria Hallelujah', cursive;
 display: flex;
 justify-content: center;
 font-size: 3rem;
+margin: 0;
+padding-bottom: 1rem;
 }
+.radio-buttons{
+    display: flex;
+    justify-content: space-around;
+    font-family: 'Gloria Hallelujah', cursive;
+    position: relative;
+    font-size: 1.5rem
+}
+.wrapper{
+    position: relative;
+}
+.red{
+    background-color: black;
+    color: red;
+    width: 8vw;
+    display: flex;
+    justify-content: space-around;
+}
+.blue{
+    background-color: black;
+    color: blue;
+    width: 8vw;
+    display: flex;
+    justify-content: space-around;
+}
+.green{
+    background-color: black;
+    color: green;
+    width: 8vw;
+    display: flex;
+    justify-content: space-around;
+}
+.yellow{
+    background-color: black;
+    color: yellow;
+    width: 8vw;
+    display: flex;
+    justify-content: space-around;
+}
+
+input[type=radio]{
+    position: absolute;
+    margin-top: 2vh
+}
+
 .x1 {
   transform: (scale(0.1));
   opacity: 0.2;
