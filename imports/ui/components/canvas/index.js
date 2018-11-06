@@ -25,7 +25,6 @@ class Canvas extends React.Component {
       delete this.direction[e.key];
     };
     this.ctx = this.canvasRef.current.getContext("2d");
-    // this.generatePaddles();
     setInterval(() => requestAnimationFrame(() => this.gameLoop()), 16);
     console.log(this.canvasRef.current.width, this.canvasRef.current.height);
     for (let i = 0; i < 15 - this.paddles.length; i++) {
@@ -81,11 +80,9 @@ class Canvas extends React.Component {
   }
 
   renderPaddles = () => {
-    // this.paddles = this.paddles.filter(p => p.destroy === false);
     this.paddles.forEach(p => {
       p.render(this.ctx);
     });
-    // this.generatePaddles();
   };
 
   renderPlayers = () => {
