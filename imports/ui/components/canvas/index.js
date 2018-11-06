@@ -4,6 +4,8 @@ import Paddle from "../paddle";
 import Player from "../player";
 import ScoreboardContainer from "../scoreboard";
 import ReactAudioPlayer from "react-audio-player";
+import { withTracker } from "meteor/react-meteor-data";
+import { Players } from "../../../api/players";
 
 class Canvas extends React.Component {
   constructor(props) {
@@ -17,7 +19,7 @@ class Canvas extends React.Component {
     this.jumpLength = 0;
   }
 
-  componentDidMount() {
+  componentDidUpdate(prevProps) {
     window.onkeydown = e => {
       this.direction[e.key] = true;
     };
@@ -26,7 +28,6 @@ class Canvas extends React.Component {
     };
     this.ctx = this.canvasRef.current.getContext("2d");
     setInterval(() => requestAnimationFrame(() => this.gameLoop()), 16);
-    console.log(this.canvasRef.current.width, this.canvasRef.current.height);
     for (let i = 0; i < 100 - this.paddles.length; i++) {
       this.paddles.push(
         new Paddle({
@@ -39,26 +40,35 @@ class Canvas extends React.Component {
         })
       );
     }
-    this.players.push(
-      new Player({
-        position: {
-          x: this.canvasRef.current.width / 2,
-          y: this.canvasRef.current.height / 2
-        },
+
+    this.props.players.map(async p => {
+      await Meteor.call("init.Player", {
+        x: this.canvasRef.current.width / 2,
+        y: this.canvasRef.current.height / 2,
+        userId: p.userId
+      });
+      this.players.push(new Player({
+        userId: p.userId,
+        position: p.position,
         moveDirection: "",
         wh: window.innerHeight,
-        paddles: this.paddles
-      })
-    );
+        paddles: this.paddles,
+        color: p.color
+      }));
+    });
   }
-  move = () => {
+  move = userId => {
     if ("ArrowRight" in this.direction) {
+      // Meteor.call("move.right", userId);
+
       // if (this.positionX >= this.canvas.width) {
       //   this.positionX = 0;
       // }
       this.players[0].positionX += this.players[0].velocityX;
     }
     if ("ArrowLeft" in this.direction) {
+      // Meteor.call("move.left", userId);
+
       // if (this.positionX <= 0) {
       //   this.positionX = this.canvas.width;
       // }
@@ -86,7 +96,10 @@ class Canvas extends React.Component {
   };
 
   renderPlayers = () => {
-    this.players[0].render(this.ctx);
+    this.players.map(p => {
+      p.color = this.props.players[2].color
+      p.render(this.ctx, p);
+    });
   };
 
   render() {
@@ -110,5 +123,10 @@ class Canvas extends React.Component {
     );
   }
 }
-
-export default Canvas;
+export default withTracker(() => {
+  const handle = Meteor.subscribe("players");
+  return {
+    loading: handle.ready(),
+    players: Players.find().fetch()
+  };
+})(Canvas);
