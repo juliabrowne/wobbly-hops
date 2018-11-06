@@ -15,7 +15,6 @@ class createCharContainer extends Component {
     this.nameInput = React.createRef();
   }
 
-
   addPlayer = () => {
     event.preventDefault();
     let nameInput = this.nameInput.current;
@@ -24,23 +23,15 @@ class createCharContainer extends Component {
     }
   }
 
-
-
     render() {
         return <div className="root">
           <ReactAudioPlayer src="../../../music/bensound-allthat.mp3" autoPlay loop />
           <Link to="/intro">
             <h1 className="header">W🤪BBLY-H🤮PS🍻</h1>
-<<<<<<< HEAD
-            <form onSubmit = {this.addPlayer} className="inputDiv">
-              <h2 className="name-header">Whats ya' name?</h2>
-              <input type="text" className="input" maxLength="12" ref={this.nameInput}/>
-              <SubmitButton className="submit" addPlayer={this.addPlayer} />
-=======
           </Link>
-            <form className="inputDiv">
+          <form onSubmit = {this.addPlayer} className="inputDiv">
               <h2 className="name-header">What's ya' name?</h2>
-              <input type="text" className="input" maxLength="12" />
+              <input type="text" className="input" maxLength="12" ref={this.nameInput} />
               <h2 className="name-header">
                 What's ya' favorite color?
               </h2>
@@ -70,10 +61,7 @@ class createCharContainer extends Component {
                   </label>
                 </div>
               </div>
-              <button className="submit" onClick={() => add.player()}>
-                Lets Play!
-              </button>
->>>>>>> a051b14ea1846375cd589fc0119e442c2de950f1
+              <SubmitButton className="submit" addPlayer={this.addPlayer} />
             </form>
             <div id="bubbles">
               <div className="bubble x1" />
@@ -91,11 +79,7 @@ class createCharContainer extends Component {
           </div>;
    }
 }
-<<<<<<< HEAD
 
-
-=======
->>>>>>> a051b14ea1846375cd589fc0119e442c2de950f1
 export default withTracker(() => {
   Meteor.subscribe("player");
   return {
