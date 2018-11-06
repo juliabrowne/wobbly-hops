@@ -1,9 +1,7 @@
 .flex-container {
   background-color: black;
   display: flex;
-  flex-direction: row;
-  justify-content: end;
-  align-items: center;
+  justify-content: center;
   height: 100%;
   background-image: linear-gradient(white 10%, #F09000 90%);
 }
