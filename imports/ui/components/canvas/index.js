@@ -2,7 +2,7 @@ import React from "react";
 import "./styles.css";
 import Paddle from "../paddle";
 import Player from "../player";
-import ScoreboardContainer from '../scoreboard'
+import ScoreboardContainer from "../scoreboard";
 
 class Canvas extends React.Component {
   constructor(props) {
@@ -58,17 +58,19 @@ class Canvas extends React.Component {
   bounce = () => {
     if (
       this.players[0].positionY >=
-        this.canvasRef.current.height - this.players[0].radius ||
-      this.collision === true
+        this.canvasRef.current.height - this.players[0].height 
     ) {
+      //   // Bounce
       this.players[0].velocityY = this.players[0].velocityY * -1;
-
-      setTimeout(() => {
-        this.players[0].velocityY = this.players[0].velocityY * -1;
-      }, 750);
+      // setTimeout(() => {
+      //   this.players[0].velocityY = this.players[0].velocityY * -1;
+      // }, 750);
+    }
+    if (this.checkCollision(this.paddles)) {
+      console.log(this.checkCollision(this.paddles))
+      this.players[0].velocityY = this.players[0].velocityY * -1;
     }
     this.players[0].positionY += this.players[0].velocityY;
-    this.collision = false;
   };
 
   renderPaddles() {
@@ -85,6 +87,9 @@ class Canvas extends React.Component {
     // });
 
     this.generatePlayers();
+    // setTimeout(() => {
+    //   this.players[0].render(this.ctx);
+    // }, 50)
     this.players[0].render(this.ctx);
   }
 
@@ -117,39 +122,54 @@ class Canvas extends React.Component {
   }
 
   checkCollision(paddles) {
-    // The objects are touching
-
-    //   if (object1.x < object2.x + object2.width  && object1.x + object1.width  > object2.x &&
-    //     object1.y < object2.y + object2.height && object1.y + object1.height > object2.y) {
-    // // The objects are touching
-    // }
-
-    this.paddles.forEach(paddle => {
+    paddles.forEach(paddle => {
       if (
-        this.players[0].positionX < paddle.position.x + paddle.width &&
-        this.players[0].positionX + this.players[0].radius >
-          paddle.position.x &&
-        this.players[0].positionY < paddle.position.y + paddle.height &&
-        this.players[0].positionY + this.players[0].radius > paddle.position.y
+        paddle.position.x < this.players[0].positionX + this.players[0].width &&
+        paddle.position.x + paddle.width > this.players[0].positionX &&
+        paddle.position.y <
+          this.players[0].positionY + this.players[0].height &&
+        paddle.height + paddle.position.y > this.players[0].positionY
       ) {
-        console.log("Bounce");
-        this.collision = true;
+        // if (this.players[0].positionY <= paddle.position.y) {
+        //   this.collision = true;
+        //   console.log("bounce");
+        //   return;
+        // }
+        // if (
+        //   this.players[0].positionY + this.players[0].height >=
+        //   Math.round(paddle.position.y)
+        // ) {
+          console.log("here");
+          this.collision = true;
+          return true;
+        // }
+
+      }
+      else{
+        this.collision = false
+        return false
       }
     });
   }
 
   render() {
-    return <div className="flex-container">
+    return (
+      <div className="flex-container">
         <div className="left score">
-          <ScoreboardContainer/>
-          <ScoreboardContainer/>
+          <ScoreboardContainer />
+          <ScoreboardContainer />
         </div>
-        <canvas ref={this.canvasRef} width={window.innerWidth - 275} height={window.innerHeight} />
+        <canvas
+          ref={this.canvasRef}
+          width={window.innerWidth - 275}
+          height={window.innerHeight}
+        />
         <div className="right score">
-          <ScoreboardContainer/>
-          <ScoreboardContainer/>
+          <ScoreboardContainer />
+          <ScoreboardContainer />
         </div>
-      </div>;
+      </div>
+    );
   }
 }
 
