@@ -29,7 +29,7 @@ class createCharContainer extends Component {
           <Link to="/intro">
             <h1 className="header">W🤪BBLY-H🤮PS🍻</h1>
           </Link>
-          <form onSubmit = {this.addPlayer} className="inputDiv">
+          <form onSubmit= {this.addPlayer} className="inputDiv">
               <h2 className="name-header">What's ya' name?</h2>
               <input type="text" className="input" maxLength="12" ref={this.nameInput} />
               <h2 className="name-header">

@@ -24,13 +24,6 @@
     color: black;
 }
 
-.rundown{
-    display: flex;
-    justify-content: center;
-    text-decoration: underline;
-    font-family: 'Gloria Hallelujah', cursive;
-}
-
 .back-instruction {
     width: 20%;
 }

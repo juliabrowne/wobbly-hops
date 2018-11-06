@@ -3,7 +3,7 @@ import React from "react";
 export default class Player extends React.Component {
   constructor(args) {
     super(args);
-    this.velocityY = 3;
+    this.velocityY = 6;
     this.velocityX = 3;
     this.positionX = 100;
     this.positionY = 0;
@@ -19,6 +19,7 @@ export default class Player extends React.Component {
 
   // prettier-ignore
   render(ctx) {
+    console.log("PlayerY:", this.positionY)
     this.jumpLength++;
     this.paddles.forEach(paddle => {
       if (
@@ -35,7 +36,7 @@ export default class Player extends React.Component {
       }
     });
 
-    if (this.rising && this.jumpLength > 100) {
+    if (this.rising && this.jumpLength > 25) {
       this.jumpLength = 0;
       this.rising = false;
     }
@@ -44,6 +45,10 @@ export default class Player extends React.Component {
       if (this.collision) this.jumpLength = 0;
       this.rising = true;
       this.collision = false;
+    }
+
+    if(this.positionY <= 0 ) {
+      this.rising = false;
     }
 
     switch (true) {

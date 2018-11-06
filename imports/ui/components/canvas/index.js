@@ -27,7 +27,7 @@ class Canvas extends React.Component {
     this.ctx = this.canvasRef.current.getContext("2d");
     setInterval(() => requestAnimationFrame(() => this.gameLoop()), 16);
     console.log(this.canvasRef.current.width, this.canvasRef.current.height);
-    for (let i = 0; i < 15 - this.paddles.length; i++) {
+    for (let i = 0; i < 100 - this.paddles.length; i++) {
       this.paddles.push(
         new Paddle({
           position: {
