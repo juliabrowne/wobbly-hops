@@ -48,8 +48,10 @@ class createCharContainer extends Component {
           <div className="center">
             <CirclePicker className="color-select" ref={this.colorInput} />
           </div>
-          <div className="center">
+        <div className="center">
+          <Link to="/controller">
             <SubmitButton addPlayer={this.addPlayer} />
+          </Link>
           </div>
         </form>
         <div id="bubbles">
