@@ -5,6 +5,8 @@ import Player from "../player";
 import ScoreboardContainer from "../scoreboard";
 import ReactAudioPlayer from "react-audio-player";
 import Beer from "../beer";
+import { withTracker } from "meteor/react-meteor-data";
+import { Players } from "../../../api/players";
 
 class Canvas extends React.Component {
   constructor(props) {
@@ -18,7 +20,7 @@ class Canvas extends React.Component {
     this.jumpLength = 0;
   }
 
-  componentDidMount() {
+  componentDidUpdate(prevProps) {
     window.onkeydown = e => {
       this.direction[e.key] = true;
     };
@@ -26,7 +28,6 @@ class Canvas extends React.Component {
       delete this.direction[e.key];
     };
     this.ctx = this.canvasRef.current.getContext("2d");
-    // this.generatePaddles();
     setInterval(() => requestAnimationFrame(() => this.gameLoop()), 16);
     console.log(this.canvasRef.current.width, this.canvasRef.current.height);
     for (let i = 0; i < 50; i++) {
@@ -42,30 +43,42 @@ class Canvas extends React.Component {
         })
       );
     }
-    this.players.push(
-      new Player({
-        position: {
-          x: this.canvasRef.current.width / 2,
-          y: this.canvasRef.current.height / 2
-        },
-        moveDirection: "",
-        wh: window.innerHeight,
-        paddles: this.paddles
-      })
-    );
+
+    this.props.players.map(async p => {
+      await Meteor.call("init.Player", {
+        x: this.canvasRef.current.width / 2,
+        y: this.canvasRef.current.height / 2,
+        userId: p.userId
+      });
+      this.players.push(
+        new Player({
+          userId: p.userId,
+          position: p.position,
+          moveDirection: "",
+          wh: window.innerHeight,
+          paddles: this.paddles,
+          color: p.color
+        })
+      );
+    });
 
     this.beer = new Beer({
       wh: this.canvasRef.current.height
     });
   }
-  move = () => {
+
+  move = userId => {
     if ("ArrowRight" in this.direction) {
+      // Meteor.call("move.right", userId);
+
       // if (this.positionX >= this.canvas.width) {
       //   this.positionX = 0;
       // }
       this.players[0].positionX += this.players[0].velocityX;
     }
     if ("ArrowLeft" in this.direction) {
+      // Meteor.call("move.left", userId);
+
       // if (this.positionX <= 0) {
       //   this.positionX = this.canvas.width;
       // }
@@ -88,15 +101,16 @@ class Canvas extends React.Component {
   }
 
   renderPaddles = () => {
-    // this.paddles = this.paddles.filter(p => p.destroy === false);
     this.paddles.forEach(p => {
       p.render(this.ctx, this.paddles);
     });
-    // this.generatePaddles();
   };
 
   renderPlayers = () => {
-    this.players[0].render(this.ctx);
+    this.players.map(p => {
+      p.color = this.props.players[0].color;
+      p.render(this.ctx, p);
+    });
   };
 
   renderBeer = () => {
@@ -126,5 +140,10 @@ class Canvas extends React.Component {
     );
   }
 }
-
-export default Canvas;
+export default withTracker(() => {
+  const handle = Meteor.subscribe("players");
+  return {
+    loading: handle.ready(),
+    players: Players.find().fetch()
+  };
+})(Canvas);

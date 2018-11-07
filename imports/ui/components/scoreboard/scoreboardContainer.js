@@ -11,8 +11,8 @@ class ScoreboardContainer extends Component {
                     <h3>X</h3>
                 <h3>Lives Left:</h3>
                 <h3>X</h3>
-                <h3>Drink Timer:</h3>
-                <h3>XX:XX</h3>
+                <h3>Gulp Meter:</h3>
+                <h3>X</h3>
                 </div>
             </div>
         )

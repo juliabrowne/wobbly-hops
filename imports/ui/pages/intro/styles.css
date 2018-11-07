@@ -131,14 +131,7 @@ h1{
     -moz-animation: moveclouds 6s linear infinite, sideWays 1s ease-in-out infinite alternate;
     -o-animation: moveclouds 6s linear infinite, sideWays 1s ease-in-out infinite alternate;
 }
-.x11 {
-    left: 99vw;
-    transform: scale(0.1);
-    opacity: 0.3; 
-    -webkit-animation: moveclouds 1s linear infinite, sideWays 1s ease-in-out infinite alternate;
-    -moz-animation: moveclouds 1s linear infinite, sideWays 1s ease-in-out infinite alternate;
-    -o-animation: moveclouds 1s linear infinite, sideWays 1s ease-in-out infinite alternate;
-}
+
 @-webkit-keyframes moveclouds { 
     0% { 
         top: 500px;
@@ -157,4 +150,18 @@ h1{
     }
 }
 
+/* Mobile phone screen */
 
+@media only screen and (max-width: 1000px) {
+    .header{
+        margin-top: 5rem;
+        margin-bottom: 10rem;
+        color: black !important;
+        font-size: 4.5em !important;
+    }
+    .start-button{
+      font-size: 3rem;
+      width: 50vw;
+      height: 20vh;
+    }
+}

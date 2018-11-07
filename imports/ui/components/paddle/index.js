@@ -11,7 +11,7 @@ export default class Paddle extends React.Component {
     this.velocity = 1;
     this.destroy = false;
     this.paddles = args.paddles;
-    this.generateXandY();
+    // this.generateXandY();
   }
 
   // prettier-ignore
