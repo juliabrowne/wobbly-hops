@@ -7,10 +7,10 @@ class InstructionContainer extends Component {
     render() {
         return <div className="root">
             {/* Music taken from www.Bensound.com and is Non-Copyrighted)*/}
-          <ReactAudioPlayer src="../../../music/bensound-allthat.mp3" autoPlay loop />
-          <Link to="/intro">
-            <h1 className="header">W🤪BBLY-H🤮PS🍻</h1>
-          </Link>
+            <ReactAudioPlayer src="../../../music/bensound-allthat.mp3" autoPlay loop />
+            <Link to="/intro">
+              <h1 className="header">W🤪BBLY-H🤮PS🍻</h1>
+            </Link>
             <div id="bubbles">
               <div className="bubble x1" />
               <div className="bubble x2" />
@@ -22,10 +22,6 @@ class InstructionContainer extends Component {
               <div className="bubble x8" />
               <div className="bubble x9" />
               <div className="bubble x10" />
-              <div className="bubble x11" />
-            </div>
-            <div className="rundown">
-              <h2 className="rundown">The Run-down</h2>
             </div>
             <div className="instructions">
               <ul>
@@ -35,8 +31,9 @@ class InstructionContainer extends Component {
                   will lose a life!
                 </li>
                 <li>
-                  Every life lost will sentence you to the DRUNK TANK.
-                  Don't worry, we'll pause the game while you drink.
+                  Every life lost will add a point to your Gulp Meter.
+                  At the end of the game you will take that many gulps
+                  of your drink.
                 </li>
                 <li>
                   There will be platforms falling that you can jump
@@ -44,6 +41,7 @@ class InstructionContainer extends Component {
                   beware! Players can push eachother.
                 </li>
                 <li>Losing all 3 lives will result in ELIMINATION.</li>
+                <li>The last remaining player will be able to give away his remaining gulps to any player(s) of his choice at the end of the game.</li>
               </ul>
             </div>
             <Link to="/intro">

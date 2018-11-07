@@ -75,6 +75,11 @@ padding-bottom: 1rem;
 .wrapper{
     position: relative;
 }
+.color-select{
+    height: 200px;
+    width: 200px;
+}
+/* 
 .red{
     background-color: black;
     color: red;
@@ -107,7 +112,7 @@ padding-bottom: 1rem;
 input[type=radio]{
     position: absolute;
     margin-top: 2vh
-}
+} */
 
 .x1 {
   transform: (scale(0.1));
@@ -192,14 +197,7 @@ input[type=radio]{
     -moz-animation: moveclouds 6s linear infinite, sideWays 1s ease-in-out infinite alternate;
     -o-animation: moveclouds 6s linear infinite, sideWays 1s ease-in-out infinite alternate;
 }
-.x11 {
-    left: 99vw;
-    transform: scale(0.1);
-    opacity: 0.3; 
-    -webkit-animation: moveclouds 1s linear infinite, sideWays 1s ease-in-out infinite alternate;
-    -moz-animation: moveclouds 1s linear infinite, sideWays 1s ease-in-out infinite alternate;
-    -o-animation: moveclouds 1s linear infinite, sideWays 1s ease-in-out infinite alternate;
-}
+
 @-webkit-keyframes moveclouds { 
     0% { 
         top: 500px;

@@ -27,8 +27,8 @@ class IntroContainer extends Component {
             <div className="bubble x7" />
             <div className="bubble x8" />
             <div className="bubble x9" />
-            <div className="bubble x10" />
-            <div className="bubble x11" />
+            <div className="bubble x10" /> 
+            
           </div>
         </div>;
     }

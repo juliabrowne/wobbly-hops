@@ -24,13 +24,6 @@
     color: black;
 }
 
-.rundown{
-    display: flex;
-    justify-content: center;
-    text-decoration: underline;
-    font-family: 'Gloria Hallelujah', cursive;
-}
-
 .back-instruction {
     width: 20%;
 }
@@ -157,14 +150,7 @@ li{
     -moz-animation: moveclouds 6s linear infinite, sideWays 1s ease-in-out infinite alternate;
     -o-animation: moveclouds 6s linear infinite, sideWays 1s ease-in-out infinite alternate;
 }
-.x11 {
-    left: 99vw;
-    transform: scale(0.1);
-    opacity: 0.3; 
-    -webkit-animation: moveclouds 1s linear infinite, sideWays 1s ease-in-out infinite alternate;
-    -moz-animation: moveclouds 1s linear infinite, sideWays 1s ease-in-out infinite alternate;
-    -o-animation: moveclouds 1s linear infinite, sideWays 1s ease-in-out infinite alternate;
-}
+
 @-webkit-keyframes moveclouds { 
     0% { 
         top: 500px;
@@ -181,4 +167,10 @@ li{
     100% { 
         margin-left:50px;
     }
+}
+
+@media only screen and (max-width: 1000px) {
+ .instructions{
+     font-size: 2rem;
+ }
 }

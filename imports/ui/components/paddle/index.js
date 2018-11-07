@@ -16,7 +16,6 @@ export default class Paddle extends React.Component {
     ctx.fillRect(this.position.x, this.position.y, 100, 25);
     ctx.fillStyle = "black";
     if (this.position.y > this.wh) {
-      console.log("Regenerate");
       this.position.x = Math.random() * this.wh + 1;
       this.position.y = (Math.random() * this.ww + 1) * -1;
     }
