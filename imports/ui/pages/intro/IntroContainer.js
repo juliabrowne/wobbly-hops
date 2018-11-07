@@ -8,7 +8,10 @@ class IntroContainer extends Component {
       return <div className="root">
           {/* Music taken from www.Bensound.com and is Non-Copyrighted*/}
           <ReactAudioPlayer src="../../../music/bensound-allthat.mp3" autoPlay loop />
-        <h1 className="header">W🤪BBLY-H🤮PS🍻</h1>
+        <h1 className="header">
+          W<span className="span">🤪</span>
+          BBLY-H<span className="span">🤮</span>PS🍻
+          </h1>
         <Link to="/createCharacter">
           <button className="start-button">Start</button>
         </Link>

@@ -38,7 +38,10 @@ class createCharContainer extends Component {
     return <div className="root">
         <ReactAudioPlayer src="../../../music/bensound-allthat.mp3" autoPlay loop />
         <Link to="/intro">
-          <h1 className="header">W🤪BBLY-H🤮PS🍻</h1>
+          <h1 className="header">
+            W<span className="span">🤪</span>
+            BBLY-H<span className="span">🤮</span>PS🍻
+          </h1>
         </Link>
         <form onSubmit={this.addPlayer} className="inputDiv">
           <h2 className="name-header">What's ya' name?</h2>
@@ -48,10 +51,10 @@ class createCharContainer extends Component {
           <div className="center">
             <CirclePicker className="color-select" ref={this.colorInput} />
           </div>
-        <div className="center">
-          <Link to="/controller">
-            <SubmitButton addPlayer={this.addPlayer} />
-          </Link>
+          <div className="center">
+            <Link to="/controller">
+              <SubmitButton addPlayer={this.addPlayer} />
+            </Link>
           </div>
         </form>
         <div id="bubbles">
