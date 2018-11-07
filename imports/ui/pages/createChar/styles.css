@@ -1,21 +1,4 @@
 
-.root{
-      background-image: linear-gradient(white 10%, #F09000 90%);
-    width: 100vw;
-    height: 100vh;
-    max-height: 100%;
-    flex-grow: 1;
-    flex-wrap: nowrap;
-}
-.header{
-    display: flex;
-    justify-content: center;
-    font-size: 6rem;
-    padding-top: 4rem;
-    font-family: 'Press Start 2P', cursive;
-    flex-wrap: nowrap;
-    color: black;
-}
 form{
     display: flex;
     flex-direction: column;
@@ -34,13 +17,6 @@ form{
     background-color:#D87800;
     color: white;
 }
-.bubble {
-  width: 60px;
-  height: 60px;
-  background: #ffb200;
-  border-radius: 50%;
-  position: absolute;
-}
 .input{
     width: 50vw;
     height: 12vh;
@@ -53,10 +29,12 @@ form{
     border-left: 0px;
     border-color: black;
     margin-bottom: 2rem;
+    margin: 0 auto;
 }
 .inputDiv{
     margin: 0 auto;
 }
+
 .name-header {
 font-family: 'Gloria Hallelujah', cursive;
 display: flex;
@@ -65,162 +43,38 @@ font-size: 3rem;
 margin: 0;
 padding-bottom: 1rem;
 }
-.radio-buttons{
-    display: flex;
-    justify-content: space-around;
-    font-family: 'Gloria Hallelujah', cursive;
-    position: relative;
-    font-size: 1.5rem
-}
 .wrapper{
     position: relative;
 }
 .color-select{
-    height: 200px;
-    width: 200px;
+    width: 50%;
+    height: 5rem;
+    padding: 0;
+    margin: 0 auto 3rem;
+    outline: 0;
 }
-/* 
-.red{
-    background-color: black;
-    color: red;
-    width: 8vw;
-    display: flex;
-    justify-content: space-around;
-}
-.blue{
-    background-color: black;
-    color: blue;
-    width: 8vw;
-    display: flex;
-    justify-content: space-around;
-}
-.green{
-    background-color: black;
-    color: green;
-    width: 8vw;
-    display: flex;
-    justify-content: space-around;
-}
-.yellow{
-    background-color: black;
-    color: yellow;
-    width: 8vw;
-    display: flex;
-    justify-content: space-around;
+.center{
+    margin: 0 auto 1rem;
+    font-family: 'Gloria Hallelujah', cursive;
+
 }
 
-input[type=radio]{
-    position: absolute;
-    margin-top: 2vh
-} */
-
-.x1 {
-  transform: (scale(0.1));
-  opacity: 0.2;
-  -webkit-animation: moveclouds 5s linear infinite, sideWays 4s ease-in-out infinite alternate;
-  -moz-animation: moveclouds 5s linear infinite, sideWays 4s ease-in-out infinite alternate;
-  -o-animation: moveclouds 5s linear infinite, sideWays 4s ease-in-out infinite alternate;
-  animation: moveclouds 5s linear infinite, sideWays 4s ease-in-out infinite alternate;
+@media only screen and (max-width: 1000px) {
+ .name-header{
+     font-size: 4rem;
+ }
+ .input{
+     width: 90%;
+     font-size: 10vh;
+     padding-bottom: 3vh
+ }
+ .submit{
+     width: 700px;
+     margin-top: 10rem;
+ }
+.root{
+    height: 2150px;
 }
-
-.x2 {
-  left: 20vw;
-  transform: (scale(0.1));
-  opacity: 0.5;
-  -webkit-animation: moveclouds 7s linear infinite, sideWays 5s ease-in-out infinite alternate;
-  -moz-animation: moveclouds 7s linear infinite, sideWays 5s ease-in-out infinite alternate;
-  -o-animation: moveclouds 7s linear infinite, sideWays 5s ease-in-out infinite alternate;
-  animation: moveclouds 7s linear infinite, sideWays 5s ease-in-out infinite alternate;
-}
-.x3 {
-  left: 80vw;
-  transform: (scale (0.1));
-  opacity: 0.3;
-  -webkit-animation: moveclouds 3s linear infinite, sideWays 4s ease-in-out infinite alternate;
-  -moz-animation: moveclouds 3s linear infinite, sideWays 4s ease-in-out infinite alternate;
-  -o-animation: moveclouds 3s linear infinite, sideWays 4s ease-in-out infinite alternate;
-  animation: moveclouds 3s linear infinite, sideWays 4s ease-in-out infinite alternate;
-}
-.x4 {
-    left: 40vw;
-    transform: scale(0.1);
-    opacity: 0.35;
-    -webkit-animation: moveclouds 4s linear infinite, sideWays 2s ease-in-out infinite alternate;
-    -moz-animation: moveclouds 4s linear infinite, sideWays 2s ease-in-out infinite alternate;
-    -o-animation: moveclouds 4s linear infinite, sideWays 2s ease-in-out infinite alternate;
-}
-.x5 {
-    left: 60vw;
-    transform: scale(0.1);
-    opacity: 0.3; 
-    -webkit-animation: moveclouds 6s linear infinite, sideWays 1s ease-in-out infinite alternate;
-    -moz-animation: moveclouds 6s linear infinite, sideWays 1s ease-in-out infinite alternate;
-    -o-animation: moveclouds 6s linear infinite, sideWays 1s ease-in-out infinite alternate;
-}
-.x6 {
-    left: 64vw;
-    transform: scale(0.1);
-    opacity: 0.3; 
-    -webkit-animation: moveclouds 7s linear infinite, sideWays 1s ease-in-out infinite alternate;
-    -moz-animation: moveclouds 7s linear infinite, sideWays 1s ease-in-out infinite alternate;
-    -o-animation: moveclouds 7s linear infinite, sideWays 1s ease-in-out infinite alternate;
-}
-.x7 {
-    left: 25vw;
-    transform: scale(0.1);
-    opacity: 0.3; 
-    -webkit-animation: moveclouds 2s linear infinite, sideWays 1s ease-in-out infinite alternate;
-    -moz-animation: moveclouds 2s linear infinite, sideWays 1s ease-in-out infinite alternate;
-    -o-animation: moveclouds 2s linear infinite, sideWays 1s ease-in-out infinite alternate;
-}
-.x8 {
-    left: 87vw;
-    transform: scale(0.1);
-    opacity: 0.3; 
-    -webkit-animation: moveclouds 10s linear infinite, sideWays 1s ease-in-out infinite alternate;
-    -moz-animation: moveclouds 10s linear infinite, sideWays 1s ease-in-out infinite alternate;
-    -o-animation: moveclouds 10s linear infinite, sideWays 1s ease-in-out infinite alternate;
-}
-.x9 {
-    left: 75vw;
-    transform: scale(0.1);
-    opacity: 0.3; 
-    -webkit-animation: moveclouds 1s linear infinite, sideWays 1s ease-in-out infinite alternate;
-    -moz-animation: moveclouds 1s linear infinite, sideWays 1s ease-in-out infinite alternate;
-    -o-animation: moveclouds 1s linear infinite, sideWays 1s ease-in-out infinite alternate;
-}
-.x10 {
-    left: 3vw;
-    transform: scale(0.1);
-    opacity: 0.3; 
-    -webkit-animation: moveclouds 6s linear infinite, sideWays 1s ease-in-out infinite alternate;
-    -moz-animation: moveclouds 6s linear infinite, sideWays 1s ease-in-out infinite alternate;
-    -o-animation: moveclouds 6s linear infinite, sideWays 1s ease-in-out infinite alternate;
-}
-.x11 {
-    left: 99vw;
-    transform: scale(0.1);
-    opacity: 0.3; 
-    -webkit-animation: moveclouds 1s linear infinite, sideWays 1s ease-in-out infinite alternate;
-    -moz-animation: moveclouds 1s linear infinite, sideWays 1s ease-in-out infinite alternate;
-    -o-animation: moveclouds 1s linear infinite, sideWays 1s ease-in-out infinite alternate;
-}
-@-webkit-keyframes moveclouds { 
-    0% { 
-        top: 500px;
-    }
-    100% { 
-        top: -500px;
-    }
-}
-
-@-webkit-keyframes sideWays { 
-    0% { 
-        margin-left:0px;
-    }
-    100% { 
-        margin-left:50px;
-    }
 }
 
 

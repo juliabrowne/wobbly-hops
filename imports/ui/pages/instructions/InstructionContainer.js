@@ -22,7 +22,6 @@ class InstructionContainer extends Component {
               <div className="bubble x8" />
               <div className="bubble x9" />
               <div className="bubble x10" />
-              <div className="bubble x11" />
             </div>
             <div className="instructions">
               <ul>
@@ -42,7 +41,7 @@ class InstructionContainer extends Component {
                   beware! Players can push eachother.
                 </li>
                 <li>Losing all 3 lives will result in ELIMINATION.</li>
-                <li>The last remaining player will be able to give away his remaining gulps to any player of his choice at the end of the game.</li>
+                <li>The last remaining player will be able to give away his remaining gulps to any player(s) of his choice at the end of the game.</li>
               </ul>
             </div>
             <Link to="/intro">

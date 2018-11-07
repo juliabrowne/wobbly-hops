@@ -12,8 +12,11 @@ class IntroContainer extends Component {
         <Link to="/createCharacter">
           <button className="start-button">Start</button>
         </Link>
+        <Link to="/setup">
+          <button className="setup-button">Set-Up</button>
+        </Link>
           <Link to="/instructions">
-            <button className="start-button" to="/instructions">
+            <button className="instruction-button" to="/instructions">
               The Rules
             </button>
           </Link>
@@ -27,8 +30,8 @@ class IntroContainer extends Component {
             <div className="bubble x7" />
             <div className="bubble x8" />
             <div className="bubble x9" />
-            <div className="bubble x10" />
-            <div className="bubble x11" />
+            <div className="bubble x10" /> 
+            
           </div>
         </div>;
     }

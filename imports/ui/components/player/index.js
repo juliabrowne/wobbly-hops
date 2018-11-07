@@ -27,10 +27,6 @@ class Player extends React.Component {
     this.jumpHeight++;
     paddles.forEach(paddle => {
       if (
-        // (this.positionX > (paddle.position.x - (this.height / 2) - paddle.width / 2)) &&
-        // (this.positionX < (paddle.position.x + (this.height / 2) + paddle.width / 2)) &&
-        // (this.positionY < paddle.position.y) &&
-        // (this.positionY > (paddle.position.y - (this.height / 2) - paddle.height / 2))
         this.positionX < paddle.position.x + paddle.width  && this.positionX + this.width  > paddle.position.x &&
 		this.positionY < paddle.position.y + paddle.height && this.positionY + this.height > paddle.position.y
       ) {

@@ -4,6 +4,7 @@ import Paddle from "../paddle";
 import Player from "../player";
 import ScoreboardContainer from "../scoreboard";
 import ReactAudioPlayer from "react-audio-player";
+import Beer from "../beer";
 import { withTracker } from "meteor/react-meteor-data";
 import { Players } from "../../../api/players";
 
@@ -38,7 +39,8 @@ class Canvas extends React.Component {
             y: (Math.random() * this.canvasRef.current.height + 1) * -1
           },
           wh: this.canvasRef.current.height,
-          ww: this.canvasRef.current.width
+          ww: this.canvasRef.current.width,
+          paddles: this.paddles
         })
       );
     }
@@ -83,12 +85,13 @@ class Canvas extends React.Component {
     );
     this.renderPaddles();
     this.renderPlayers(this.ctx);
+    this.renderBeer();
     this.move(this.props.players[0]);
   }
 
   renderPaddles = () => {
     this.paddles.forEach(p => {
-      p.render(this.ctx);
+      p.render(this.ctx, this.paddles);
     });
   };
 
@@ -98,6 +101,10 @@ class Canvas extends React.Component {
       console.log(update)
       p.render(this.ctx, this.paddles, update.x);
     });
+  };
+
+  renderBeer = () => {
+    this.beer.render(this.ctx);
   };
 
   render() {

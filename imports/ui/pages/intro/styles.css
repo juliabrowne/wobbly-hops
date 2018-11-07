@@ -22,6 +22,7 @@ h1{
     padding-top: 4rem;
     font-family: 'Press Start 2P', cursive;
     flex-wrap: nowrap;
+    cursor: pointer;
 }
 .start-button{
     border-radius: 40px;
@@ -38,6 +39,44 @@ h1{
     margin-top: 4.5rem;
     outline: 0;
     box-shadow: 10px 10px 8px rgba(0, 0, 0, 0.678);
+    display: none;
+    cursor: pointer;
+}
+.setup-button{
+    border-radius: 40px;
+    background: #D87800;
+    color: white;
+    width: 30vw;
+    height: 10vh;
+    display: flex;
+    font-family: 'Gloria Hallelujah', cursive;
+    justify-content: center;
+    margin: 0 auto;
+    font-size: 2rem;
+    font-weight: 600;
+    margin-top: 4.5rem;
+    outline: 0;
+    box-shadow: 10px 10px 8px rgba(0, 0, 0, 0.678);
+    display: block;
+    cursor: pointer;
+}
+.instruction-button{
+    border-radius: 40px;
+    background: #D87800;
+    color: white;
+    width: 30vw;
+    height: 10vh;
+    display: flex;
+    font-family: 'Gloria Hallelujah', cursive;
+    justify-content: center;
+    margin: 0 auto;
+    font-size: 2rem;
+    font-weight: 600;
+    margin-top: 4.5rem;
+    outline: 0;
+    box-shadow: 10px 10px 8px rgba(0, 0, 0, 0.678);
+    cursor: pointer;
+   
 }
 /* Concept taken from https://codepen.io/williamkunz/pen/kmGCl */
 .bubble {
@@ -131,14 +170,7 @@ h1{
     -moz-animation: moveclouds 6s linear infinite, sideWays 1s ease-in-out infinite alternate;
     -o-animation: moveclouds 6s linear infinite, sideWays 1s ease-in-out infinite alternate;
 }
-.x11 {
-    left: 99vw;
-    transform: scale(0.1);
-    opacity: 0.3; 
-    -webkit-animation: moveclouds 1s linear infinite, sideWays 1s ease-in-out infinite alternate;
-    -moz-animation: moveclouds 1s linear infinite, sideWays 1s ease-in-out infinite alternate;
-    -o-animation: moveclouds 1s linear infinite, sideWays 1s ease-in-out infinite alternate;
-}
+
 @-webkit-keyframes moveclouds { 
     0% { 
         top: 500px;
@@ -157,4 +189,22 @@ h1{
     }
 }
 
+/* Mobile phone screen */
 
+@media only screen and (max-width: 1000px) {
+    .header{
+        margin-top: 5rem;
+        margin-bottom: 10rem;
+        color: black !important;
+        font-size: 4.5em !important;
+    }
+    .start-button{
+      font-size: 3rem;
+      width: 50vw;
+      height: 20vh;
+      display: block;
+    }
+    .setup-button{
+        display: none;
+    }
+}
