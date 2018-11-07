@@ -22,10 +22,7 @@ const rowStyle = {
     display: 'flex',
     justifyContent: 'space-around',
     flexDirection: 'row',
-    position: 'fixed',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)'
+    height: '100vh'
 }
 
 class Controller extends Component {
