@@ -11,9 +11,11 @@ import {
 import { Meteor } from "meteor/meteor";
 import Player from '../player';
 import Paddle from '../paddle';
+import { faArrowCircleRight } from '@fortawesome/fontawesome-free';
+
 
 const MoveRightButton = ({ moveRight }) => {
-    return <button className='rightButton' onClick={() => moveRight()}><img src='./../../../controllerImages/rightArrow.png' /></button>;
+    return <button className='rightButton' onClick={() => moveRight()}><FontAwesomeIcon icon={faArrowCircleRight} /></button>;
 };
 const MoveLeftButton = ({ moveLeft }) => {
     return <button className='leftButton' onClick={() => moveLeft()}><img src='./../../../controllerImages/leftArrow.png' /></button>;
