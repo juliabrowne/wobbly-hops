@@ -1,11 +1,4 @@
 img {
-    width: 400px;
-    height: 400px;
+    width: 300px;
+    height: 300px;
 };
-
-.buttonRow {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
