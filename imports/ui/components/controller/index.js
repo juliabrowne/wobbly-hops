@@ -25,6 +25,7 @@ class Controller extends Component {
 
 
             <button onClick={this.moveLeft} className='leftButton'> </button>
+            </div>
       }
 
 
