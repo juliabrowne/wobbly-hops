@@ -4,7 +4,7 @@ import ReactAudioPlayer from "react-audio-player";
 import { withTracker } from "meteor/react-meteor-data";
 import { Players } from "../../../api/players";
 import { Link } from "react-router-dom";
-import { CompactPicker } from 'react-color';
+import { CirclePicker } from 'react-color';
 
 const SubmitButton = ({ addPlayer }) => {
   return <button className="submit" onClick={() => addPlayer()}>Lets Play!</button>;
@@ -46,7 +46,7 @@ class createCharContainer extends Component {
           <h2 className="name-header">What's ya' favorite color?</h2>
           <h4 className="center">(Click to Change)</h4>
           <div className="center">
-            <CompactPicker className="color-select" ref={this.colorInput} />
+            <CirclePicker className="color-select" ref={this.colorInput} />
           </div>
           <div className="center">
             <SubmitButton addPlayer={this.addPlayer} />
