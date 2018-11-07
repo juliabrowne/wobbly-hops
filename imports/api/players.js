@@ -7,21 +7,19 @@ import {
 
 // import SimpleSchema from 'simpl-schema';
 // import { Gameboard } from './gameboard';
-export const Players = new Mongo.Collection('player');
+export const Players = new Mongo.Collection('players');
 
 
 Meteor.methods({
-	'add.player'(name) {
+	'add.player'(name, color, x, y) {
 		// if (checkPlayers() > 4) return Meteor.Error({ message: 'You\'ve hit the max number of players!' })
 		const newPlayer = {
 			name,
-			color: "blue",
-			user: 10,
-			// user: this.userId(),
-			x: 100,
-			y: 100
+			color: "green",
+			x: 10,
+			y: 10
 		}
-		Players.insert(newPlayer, (error, data) =>{
+		Players.insert(newPlayer, (error, data) => {
 			console.log(Players.find().fetch())
 
 		})
@@ -74,13 +72,9 @@ if (Meteor.isServer) {
 	AccountsGuest.enabled = true;
 	AccountsGuest.anonymous = true;
 
-	// 	Meteor.publish('players', () => {
-	// 		return Players.find({})
-	// 	})
-	// 	Meteor.publish('player', () => {
-	// 		return Players.find({ player: Meteor.userId() })
-	// 	})
-
+	Meteor.publish('players', function playersPublication() {
+		return Players.find(Meteor.userId);
+	})
 }
 
 // Accounts.removeOldGuests();

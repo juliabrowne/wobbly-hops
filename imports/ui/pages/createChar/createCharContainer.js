@@ -15,11 +15,14 @@ class createCharContainer extends Component {
     this.nameInput = React.createRef();
   }
 
+
+
   addPlayer = () => {
     event.preventDefault();
     let nameInput = this.nameInput.current;
     if (nameInput.value) {
-      Meteor.call('add.player', this.nameInput.current.value)
+      Meteor.call('add.player', 
+      this.nameInput.current.value)
     }
   }
 
@@ -37,26 +40,26 @@ class createCharContainer extends Component {
               </h2>
               <div className="radio-buttons">
                 <div className="wrapper">
-                  <input type="radio" className="red" name="color" value="red" />
-                  <label className="red" for="red">
+                  <input type="radio" className="red" name="red" value="red" />
+                  <label className="red" htmlFor="red">
                     Red
                   </label>
                 </div>
               <div className="wrapper">
-                  <input type="radio" className="blue" name="color" value="blue" />
-                  <label className="blue" for="blue">
+                  <input type="radio" className="blue" name="blue" value="blue" />
+                  <label className="blue" htmlFor="blue">
                     Blue
                   </label>
                 </div>
               <div className="wrapper">
-                  <input type="radio" className="green" name="color" value="green" />
-                  <label className="green" for="green">
+                  <input type="radio" className="green" name="green" value="green" />
+                  <label className="green" htmlFor="green">
                     Green
                   </label>
                 </div>
               <div className="wrapper">
-                  <input type="radio" className="yellow" name="color" value="yellow" />
-                  <label className="yellow" for="yellow">
+                  <input type="radio" className="yellow" name="yellow" value="yellow" />
+                  <label className="yellow" htmlFor="yellow">
                     Yellow
                   </label>
                 </div>
