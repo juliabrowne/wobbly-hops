@@ -4,6 +4,7 @@ import Paddle from "../paddle";
 import Player from "../player";
 import ScoreboardContainer from "../scoreboard";
 import ReactAudioPlayer from "react-audio-player";
+import Beer from "../beer";
 
 class Canvas extends React.Component {
   constructor(props) {
@@ -28,7 +29,7 @@ class Canvas extends React.Component {
     // this.generatePaddles();
     setInterval(() => requestAnimationFrame(() => this.gameLoop()), 16);
     console.log(this.canvasRef.current.width, this.canvasRef.current.height);
-    for (let i = 0; i < 100 - this.paddles.length; i++) {
+    for (let i = 0; i < 50; i++) {
       this.paddles.push(
         new Paddle({
           position: {
@@ -36,7 +37,8 @@ class Canvas extends React.Component {
             y: (Math.random() * this.canvasRef.current.height + 1) * -1
           },
           wh: this.canvasRef.current.height,
-          ww: this.canvasRef.current.width
+          ww: this.canvasRef.current.width,
+          paddles: this.paddles
         })
       );
     }
@@ -51,6 +53,10 @@ class Canvas extends React.Component {
         paddles: this.paddles
       })
     );
+
+    this.beer = new Beer({
+      wh: this.canvasRef.current.height
+    });
   }
   move = () => {
     if ("ArrowRight" in this.direction) {
@@ -77,13 +83,14 @@ class Canvas extends React.Component {
     );
     this.renderPaddles();
     this.renderPlayers();
+    this.renderBeer();
     this.move();
   }
 
   renderPaddles = () => {
     // this.paddles = this.paddles.filter(p => p.destroy === false);
     this.paddles.forEach(p => {
-      p.render(this.ctx);
+      p.render(this.ctx, this.paddles);
     });
     // this.generatePaddles();
   };
@@ -91,6 +98,12 @@ class Canvas extends React.Component {
   renderPlayers = () => {
     this.players[0].render(this.ctx);
   };
+
+  renderBeer = () => {
+    this.beer.render(this.ctx);
+  };
+
+  generateBeer() {}
 
   render() {
     return (
