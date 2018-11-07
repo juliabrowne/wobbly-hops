@@ -1,7 +1,7 @@
 import React, {
     Component
 } from "react";
-import './styles';
+import './styles.css';
 import {
     withTracker
 } from "meteor/react-meteor-data";
