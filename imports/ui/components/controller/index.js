@@ -49,19 +49,9 @@ class Controller extends Component {
             <Link to='/intro'>
               <p className="return">Return to front page!</p>
             </Link>
-<<<<<<< HEAD
-
-            <button onClick={this.moveRight} className='rightButton'></button>
-
-
-            <button onClick={this.moveLeft} className='leftButton'> </button>
-            </div>
-      }
-=======
         </div>
     }
 }
->>>>>>> 5730a558fd519bbbdd4a36a6dceb45d0dadbf5f2
 
 
 export default Controller;
