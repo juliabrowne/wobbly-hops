@@ -4,9 +4,10 @@ import ReactAudioPlayer from "react-audio-player";
 import { withTracker } from "meteor/react-meteor-data";
 import { Players } from "../../../api/players";
 import { Link } from "react-router-dom";
+import jscolor from './jscolor'
 
 const SubmitButton = ({ addPlayer }) => {
-  return <button onClick={() => addPlayer()}>Lets Play!</button>;
+  return <button className="submit" onClick={() => addPlayer()}>Lets Play!</button>;
 };
 
 class createCharContainer extends Component {
@@ -31,33 +32,23 @@ class createCharContainer extends Component {
   };
 
   render() {
-    return (
-      <div className="root">
-        <ReactAudioPlayer
-          src="../../../music/bensound-allthat.mp3"
-          autoPlay
-          loop
-        />
+    return <div className="root">
+        <ReactAudioPlayer src="../../../music/bensound-allthat.mp3" autoPlay loop />
         <Link to="/intro">
           <h1 className="header">W🤪BBLY-H🤮PS🍻</h1>
         </Link>
         <form onSubmit={this.addPlayer} className="inputDiv">
           <h2 className="name-header">What's ya' name?</h2>
-          <input
-            type="text"
-            className="input"
-            maxLength="12"
-            ref={this.nameInput}
-          />
-          <h2 className="name-header">What's ya' favorite color?</h2>
-          <input
-            className="color-select"
-            type="color"
-            defaultValue="#ff0000"
-            ref={this.colorInput}
-          />
-
-          <SubmitButton className="submit" addPlayer={this.addPlayer} />
+          <input type="text" className="input" maxLength="12" ref={this.nameInput} />
+        <h2 className="name-header">What's ya' favorite color?</h2>
+        <h4 className="center">(Click to Change)</h4>
+        <div className="center">
+          <script src="jscolor.js" />
+          <input className='color-select' ref={this.colorInput} class="jscolor" />
+        </div>
+          <div className="center">
+            <SubmitButton addPlayer={this.addPlayer} />
+          </div>
         </form>
         <div id="bubbles">
           <div className="bubble x1" />
@@ -70,10 +61,8 @@ class createCharContainer extends Component {
           <div className="bubble x8" />
           <div className="bubble x9" />
           <div className="bubble x10" />
-          <div className="bubble x11" />
         </div>
-      </div>
-    );
+      </div>;
   }
 }
 
