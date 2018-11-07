@@ -8,8 +8,9 @@ import {
 import {
     Players
 } from "../../../api/players";
-import { Link } from "react-router-dom";
 import { Meteor } from "meteor/meteor";
+import Player from '../player';
+import Paddle from '../paddle';
 
 const MoveRightButton = ({ moveRight }) => {
     return <button className='rightButton' onClick={() => moveRight()}><img src='./../../../controllerImages/rightArrow.png' /></button>;
@@ -22,7 +23,7 @@ const rowStyle = {
     display: 'flex',
     justifyContent: 'space-around',
     flexDirection: 'row',
-    height: '100vh'
+    minHeight: '100vh'
 }
 
 class Controller extends Component {
@@ -34,7 +35,7 @@ class Controller extends Component {
         event.preventDefault();
         Meteor.call(
             'move.right',
-            Meteor.userId()
+            player._id
         );
     };
 
@@ -42,7 +43,7 @@ class Controller extends Component {
         event.preventDefault();
         Meteor.call(
             'move.left',
-            Meteor.userId()
+            player._id
         );
     };
 
@@ -55,6 +56,5 @@ class Controller extends Component {
         </div>
     }
 }
-
 
 export default Controller;
