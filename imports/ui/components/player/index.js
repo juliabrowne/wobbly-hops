@@ -5,22 +5,27 @@ class Player extends React.Component {
     super(args);
     this.velocityY = 6;
     this.velocityX = 3;
-    this.positionX = 100;
+    this.positionX = args.positionX || 200;
     this.positionY = 0;
     this.height = 25;
     this.width = 25;
-    this.ball;
+    // this.ball;
     this.wh = args.wh;
-    this.paddles = args.paddles;
-    this.jumpLength = 0;
+    this.jumpHeight = 0;
     this.rising = false;
     this.collision = false;
+    this.color = args.color;
+  }
+
+  componentDidMount() {
+    this.render()
   }
 
   // prettier-ignore
-  render(ctx, p) {
-    this.jumpLength++;
-    this.paddles.forEach(paddle => {
+  render(ctx, paddles, pX) {
+    this.positionX = pX;
+    this.jumpHeight++;
+    paddles.forEach(paddle => {
       if (
         this.positionX < paddle.position.x + paddle.width  && this.positionX + this.width  > paddle.position.x &&
 		this.positionY < paddle.position.y + paddle.height && this.positionY + this.height > paddle.position.y
@@ -31,13 +36,13 @@ class Player extends React.Component {
       }
     });
 
-    if (this.rising && this.jumpLength > 25) {
-      this.jumpLength = 0;
+    if (this.rising && this.jumpHeight > 50) {
+      this.jumpHeight = 0;
       this.rising = false;
     }
 
     if (this.positionY >= this.wh - this.height || this.collision) {
-      if (this.collision) this.jumpLength = 0;
+      if (this.collision) this.jumpHeight = 0;
       this.rising = true;
       this.collision = false;
     }
@@ -53,17 +58,11 @@ class Player extends React.Component {
       default:
         this.positionY += this.velocityY;
     }
-
-    if (this.moveDirection === "right") {
-      this.positionX = this.positionX + this.velocityX;
-    }
-    if (this.moveDirection === "left") {
-      this.positionX = this.positionX - this.velocityX;
-    }
-    ctx.fillStyle = p.color;
+    ctx.fillStyle = this.color;
     ctx.fillRect(this.positionX, this.positionY, this.height, this.width);
     this.jumpHeight++;
   }
+ 
 }
 
 export default Player;
