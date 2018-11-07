@@ -18,6 +18,16 @@ const MoveLeftButton = ({ moveLeft }) => {
     return <button className='leftButton' onClick={() => moveLeft()}><img src='./../../../controllerImages/leftArrow.png' /></button>;
 };
 
+const rowStyle = {
+    display: 'flex',
+    justifyContent: 'space-around',
+    flexDirection: 'row',
+    position: 'fixed',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)'
+}
+
 class Controller extends Component {
     constructor() {
         super();
@@ -41,14 +51,10 @@ class Controller extends Component {
 
     render() {
         return <div className='root'>
-            <div className='buttonRow'>
+            <div className='buttonRow' style={rowStyle}>
                 <MoveLeftButton moveLeft={this.moveLeft} />
                 <MoveRightButton moveRight={this.moveRight} />
             </div>
-
-            <Link to='/intro'>
-              <p className="return">Return to front page!</p>
-            </Link>
         </div>
     }
 }
