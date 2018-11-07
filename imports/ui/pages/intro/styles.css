@@ -86,6 +86,11 @@ h1{
   border-radius: 50%;
   position: absolute;
 }
+.span{
+    position: relative;
+    right: 2px;
+    bottom: 20px;
+}
 
 .x1 {
   transform: (scale(0.1));
