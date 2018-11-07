@@ -18,14 +18,10 @@ class Player extends React.Component {
   }
 
   // prettier-ignore
-  render(ctx, player) {
+  render(ctx, p) {
     this.jumpLength++;
     this.paddles.forEach(paddle => {
       if (
-        // (this.positionX > (paddle.position.x - (this.height / 2) - paddle.width / 2)) &&
-        // (this.positionX < (paddle.position.x + (this.height / 2) + paddle.width / 2)) &&
-        // (this.positionY < paddle.position.y) &&
-        // (this.positionY > (paddle.position.y - (this.height / 2) - paddle.height / 2))
         this.positionX < paddle.position.x + paddle.width  && this.positionX + this.width  > paddle.position.x &&
 		this.positionY < paddle.position.y + paddle.height && this.positionY + this.height > paddle.position.y
       ) {
@@ -64,7 +60,7 @@ class Player extends React.Component {
     if (this.moveDirection === "left") {
       this.positionX = this.positionX - this.velocityX;
     }
-    ctx.fillStyle = player.color;
+    ctx.fillStyle = p.color;
     ctx.fillRect(this.positionX, this.positionY, this.height, this.width);
     this.jumpHeight++;
   }

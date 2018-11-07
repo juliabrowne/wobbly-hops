@@ -4,6 +4,7 @@ import Paddle from "../paddle";
 import Player from "../player";
 import ScoreboardContainer from "../scoreboard";
 import ReactAudioPlayer from "react-audio-player";
+import Beer from "../beer";
 import { withTracker } from "meteor/react-meteor-data";
 import { Players } from "../../../api/players";
 
@@ -28,7 +29,8 @@ class Canvas extends React.Component {
     };
     this.ctx = this.canvasRef.current.getContext("2d");
     setInterval(() => requestAnimationFrame(() => this.gameLoop()), 16);
-    for (let i = 0; i < 100 - this.paddles.length; i++) {
+    console.log(this.canvasRef.current.width, this.canvasRef.current.height);
+    for (let i = 0; i < 50; i++) {
       this.paddles.push(
         new Paddle({
           position: {
@@ -36,7 +38,8 @@ class Canvas extends React.Component {
             y: (Math.random() * this.canvasRef.current.height + 1) * -1
           },
           wh: this.canvasRef.current.height,
-          ww: this.canvasRef.current.width
+          ww: this.canvasRef.current.width,
+          paddles: this.paddles
         })
       );
     }
@@ -47,16 +50,23 @@ class Canvas extends React.Component {
         y: this.canvasRef.current.height / 2,
         userId: p.userId
       });
-      this.players.push(new Player({
-        userId: p.userId,
-        position: p.position,
-        moveDirection: "",
-        wh: window.innerHeight,
-        paddles: this.paddles,
-        color: p.color
-      }));
+      this.players.push(
+        new Player({
+          userId: p.userId,
+          position: p.position,
+          moveDirection: "",
+          wh: window.innerHeight,
+          paddles: this.paddles,
+          color: p.color
+        })
+      );
+    });
+
+    this.beer = new Beer({
+      wh: this.canvasRef.current.height
     });
   }
+
   move = userId => {
     if ("ArrowRight" in this.direction) {
       // Meteor.call("move.right", userId);
@@ -86,21 +96,28 @@ class Canvas extends React.Component {
     );
     this.renderPaddles();
     this.renderPlayers();
+    this.renderBeer();
     this.move();
   }
 
   renderPaddles = () => {
     this.paddles.forEach(p => {
-      p.render(this.ctx);
+      p.render(this.ctx, this.paddles);
     });
   };
 
   renderPlayers = () => {
     this.players.map(p => {
-      p.color = this.props.players[2].color
+      p.color = this.props.players[0].color;
       p.render(this.ctx, p);
     });
   };
+
+  renderBeer = () => {
+    this.beer.render(this.ctx);
+  };
+
+  generateBeer() {}
 
   render() {
     return (
