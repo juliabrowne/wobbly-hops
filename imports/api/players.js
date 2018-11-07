@@ -1,7 +1,6 @@
 import { Mongo } from "meteor/mongo";
 import { Meteor } from "meteor/meteor";
 // import SimpleSchema from 'simpl-schema';
-// import { Gameboard } from './gameboard';
 
 if (Meteor.isServer) {
   AccountsGuest.enabled = true;
@@ -19,13 +18,15 @@ const getPlayer = playerId => {
 };
 
 Meteor.methods({
-  "add.player"(name, color, id, x, y) {
+  "add.player"(name, color, playerId, x, y) {
     const newPlayer = {
       name,
       color,
+      playerId,
       x: 100,
-      y: 100
+      y: 0
     };
+    console.log(newPlayer)
     Players.insert(newPlayer);
   },
   "init.Player"({ playerId, x, y }) {
@@ -37,7 +38,7 @@ Meteor.methods({
   },
   "move.left"(playerId) {
     const p = getPlayer(playerId);
-    Players.update({ _id: playerId }, { $set: { x: p.x - 3} });
+    Players.update({ _id: playerId }, { $set: { x: p.x - 3 } });
   }
 });
 

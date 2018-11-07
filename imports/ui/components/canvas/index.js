@@ -18,8 +18,8 @@ class Canvas extends React.Component {
     this.jumping = false;
     this.jumpLength = 0;
     this.started = false;
-    this.startGameLoop = this.startGameLoop.bind(this)
-    this.players = []
+    this.startGameLoop = this.startGameLoop.bind(this);
+    this.players = [];
   }
 
   componentDidMount() {
@@ -54,22 +54,27 @@ class Canvas extends React.Component {
     }
   };
 
-  startGameLoop(){
+  startGameLoop() {
     this.started = true;
     this.props.players.forEach(async p => {
-      
-      await Meteor.call("init.Player", {
-        x: this.canvasRef.current.width / 2,
-        y: this.canvasRef.current.height / 2,
-        playerId: p._id
-      }, () => {
-        this.players.push(new Player({
-          playerId: p._id,
-          wh: window.innerHeight,
-          color: p.color,
-          positionX: this.canvasRef.current.width / 2,
-        }))
-      });
+      await Meteor.call(
+        "init.Player",
+        {
+          x: this.canvasRef.current.width / 2,
+          y: this.canvasRef.current.height / 2,
+          playerId: p._id
+        },
+        () => {
+          this.players.push(
+            new Player({
+              playerId: p._id,
+              wh: window.innerHeight,
+              color: p.color,
+              positionX: this.canvasRef.current.width / 2
+            })
+          );
+        }
+      );
     });
 
     setInterval(() => requestAnimationFrame(() => this.gameLoop()), 16);
@@ -85,7 +90,7 @@ class Canvas extends React.Component {
     );
     this.renderPaddles();
     this.renderPlayers(this.ctx);
-    this.renderBeer();
+    // this.renderBeer();
     this.move(this.props.players[0]);
   }
 
@@ -97,8 +102,9 @@ class Canvas extends React.Component {
 
   renderPlayers = () => {
     this.players.forEach(p => {
-      const update = this.props.players.find(player => player._id === p.props.playerId)
-      console.log(update)
+      const update = this.props.players.find(
+        player => player._id === p.props.playerId
+      );
       p.render(this.ctx, this.paddles, update.x);
     });
   };
@@ -108,36 +114,33 @@ class Canvas extends React.Component {
   };
 
   render() {
-      if(!this.started && !this.props.loading && this.props.players.length) this.startGameLoop()
-      return (
-        <div className="flex-container">
-          <ReactAudioPlayer
-            src="../../../music/Racing-Menu.mp3"
-            autoPlay
-            loop
-          />
-          <div className="left score">
-            <ScoreboardContainer />
-            <ScoreboardContainer />
-          </div>
-          <canvas
-            ref={this.canvasRef}
-            width={window.innerWidth - 275}
-            height={window.innerHeight}
-          />
-          <div className="right score">
-            <ScoreboardContainer />
-            <ScoreboardContainer />
-          </div>
+    if (!this.started && !this.props.loading && this.props.players.length)
+      this.startGameLoop();
+    return (
+      <div className="flex-container">
+        <ReactAudioPlayer src="../../../music/Racing-Menu.mp3" autoPlay loop />
+        <div className="left score">
+          <ScoreboardContainer />
+          <ScoreboardContainer />
         </div>
-      );
+        <canvas
+          ref={this.canvasRef}
+          width={window.innerWidth - 275}
+          height={window.innerHeight}
+        />
+        <div className="right score">
+          <ScoreboardContainer />
+          <ScoreboardContainer />
+        </div>
+      </div>
+    );
   }
 }
 export default withTracker(() => {
   const handle = Meteor.subscribe("players");
-  const players = Players.find().fetch()
+  const players = Players.find().fetch();
   return {
-    loading:!handle.ready(),
+    loading: !handle.ready(),
     players: players
   };
 })(Canvas);

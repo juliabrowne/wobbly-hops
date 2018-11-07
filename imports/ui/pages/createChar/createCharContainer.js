@@ -4,10 +4,14 @@ import ReactAudioPlayer from "react-audio-player";
 import { withTracker } from "meteor/react-meteor-data";
 import { Players } from "../../../api/players";
 import { Link } from "react-router-dom";
-import { CirclePicker } from 'react-color';
+import { CirclePicker } from "react-color";
 
 const SubmitButton = ({ addPlayer }) => {
-  return <button className="submit" onClick={() => addPlayer()}>Lets Play!</button>;
+  return (
+    <button className="submit" onClick={() => addPlayer()}>
+      Lets Play!
+    </button>
+  );
 };
 
 class createCharContainer extends Component {
@@ -17,26 +21,29 @@ class createCharContainer extends Component {
     this.colorInput = React.createRef();
   }
 
-
-
   addPlayer = () => {
     event.preventDefault();
     let nameInput = this.nameInput.current;
     let colorInput = this.colorInput.current;
-    if (nameInput.value && colorInput.value) {
+    console.log(colorInput)
+    if (nameInput.value && colorInput.state.hex) {
       Meteor.call(
         "add.player",
         this.nameInput.current.value,
-        this.colorInput.current.value,
-        Meteor.userId()
+        colorInput.state.hex,
+        Meteor.userId(),
       );
     }
   };
 
-
   render() {
-    return <div className="root">
-        <ReactAudioPlayer src="../../../music/bensound-allthat.mp3" autoPlay loop />
+    return (
+      <div className="root">
+        <ReactAudioPlayer
+          src="../../../music/bensound-allthat.mp3"
+          autoPlay
+          loop
+        />
         <Link to="/intro">
           <h1 className="header">
             W<span className="span">🤪</span>
@@ -45,7 +52,12 @@ class createCharContainer extends Component {
         </Link>
         <form onSubmit={this.addPlayer} className="inputDiv">
           <h2 className="name-header">What's ya' name?</h2>
-          <input type="text" className="input" maxLength="12" ref={this.nameInput} />
+          <input
+            type="text"
+            className="input"
+            maxLength="12"
+            ref={this.nameInput}
+          />
           <h2 className="name-header">What's ya' favorite color?</h2>
           <h4 className="center">(Click to Change)</h4>
           <div className="center">
@@ -53,7 +65,7 @@ class createCharContainer extends Component {
           </div>
           <div className="center">
             <Link to="/controller">
-              <SubmitButton addPlayer={this.addPlayer} />
+              <SubmitButton addPlayer={() => this.addPlayer()} />
             </Link>
           </div>
         </form>
@@ -69,10 +81,10 @@ class createCharContainer extends Component {
           <div className="bubble x9" />
           <div className="bubble x10" />
         </div>
-      </div>;
+      </div>
+    );
   }
 }
-
 
 export default withTracker(() => {
   const handle = Meteor.subscribe("players");
