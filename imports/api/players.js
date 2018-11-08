@@ -26,7 +26,7 @@ Meteor.methods({
       playerId,
       x,
       y,
-      frozen
+      frozen: false
     };
     Players.insert(newPlayer);
   },

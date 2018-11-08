@@ -3,14 +3,13 @@ import React from "react";
 export default class BeerPaddle extends React.Component {
   constructor(args) {
     super(args);
-
     this.position = args.position;
     this.wh = args.wh;
     this.ww = args.ww;
     this.width = 100;
     this.height = 25;
     this.velocity = 1;
-    this.beerPaddles = args.beerPaddles;
+    // this.beerPaddles = args.beerPaddles;
     this.paddles = args.paddles;
     this.name = "beerPaddle";
   }
@@ -42,7 +41,9 @@ export default class BeerPaddle extends React.Component {
   render(ctx, paddles) {
     this.position.y = this.position.y + this.velocity;
     ctx.fillRect(this.position.x, this.position.y, 100, 25);
+
     ctx.fillStyle = "red";
+
     if (this.position.y > this.wh) {
       this.generateXandY(paddles);
     }

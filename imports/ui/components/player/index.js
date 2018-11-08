@@ -23,6 +23,7 @@ class Player extends React.Component {
     this.controls = false;
     this.color = args.color;
     this.player = args.playerId;
+    this.beer = args.beer;
   }
 
   componentDidMount() {
@@ -57,6 +58,11 @@ class Player extends React.Component {
         }
       }
     });
+
+    //JULIA, END GAME GO'S HERE!!!!
+    if (this.positionY > this.beer.positionY) {
+      console.log("DEATH TO YOU SIR");
+    }
 
     if (!this.freeze) {
       if (this.rising && this.jumpLength > 25) {
