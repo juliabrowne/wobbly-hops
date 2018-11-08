@@ -25,13 +25,13 @@ class createCharContainer extends Component {
     event.preventDefault();
     let nameInput = this.nameInput.current;
     let colorInput = this.colorInput.current;
-    console.log(colorInput)
+    console.log(colorInput);
     if (nameInput.value && colorInput.state.hex) {
       Meteor.call(
         "add.player",
         this.nameInput.current.value,
         colorInput.state.hex,
-        Meteor.userId(),
+        Meteor.userId()
       );
     }
   };
