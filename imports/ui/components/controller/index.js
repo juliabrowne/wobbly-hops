@@ -9,15 +9,15 @@ import Paddle from '../paddle';
 
 const MoveRightButton = ({ moveRight }) => {
   return (
-    <button className="rightButton" onClick={() => moveRight()}>
-      <img src="./../../../controllerImages/rightArrow.png" />
+    <button className="rightButton" onMouseDown={() => moveRight()}>
+      RIGHT
     </button>
   );
 };
 const MoveLeftButton = ({ moveLeft }) => {
   return (
-    <button className="leftButton" onClick={() => moveLeft()}>
-      <img src="./../../../controllerImages/leftArrow.png" />
+    <button className="leftButton" onMouseDown={() => moveLeft()}>
+      LEFT
     </button>
   );
 };
