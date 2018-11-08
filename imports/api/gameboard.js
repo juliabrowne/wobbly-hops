@@ -8,7 +8,7 @@
 // if (Meteor.isServer) {
 // 	AccountsGuest.enabled = true;
 // 	AccountsGuest.anonymous = true;
-	
+
 // 	Meteor.publish('gameboard', () => {
 // 		return Gameboard.find({})
 // 	})

@@ -18,7 +18,7 @@ class Player extends React.Component {
   }
 
   componentDidMount() {
-    this.render()
+    this.render();
   }
 
   // prettier-ignore
@@ -62,7 +62,6 @@ class Player extends React.Component {
     ctx.fillRect(this.positionX, this.positionY, this.height, this.width);
     this.jumpHeight++;
   }
- 
 }
 
 export default Player;
