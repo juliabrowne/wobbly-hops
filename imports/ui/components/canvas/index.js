@@ -67,9 +67,13 @@ class Canvas extends React.Component {
     this.beerPaddles.forEach(p => {
       p.generateXandY(this.beerPaddles);
     });
+<<<<<<< HEAD
     this.beer = new Beer({
       wh: this.canvasRef.current.height
     });
+=======
+    this.beer = new Beer({});
+>>>>>>> 126f7dfab283620bc45d693c7124b678a46a63dc
   }
 
   move = player => {
@@ -117,7 +121,8 @@ class Canvas extends React.Component {
   }
 
   gameLoop() {
-    this.ctx.fillStyle = "white";
+    
+    this.ctx.fillStyle = "rgb(255,222,173)";
     this.ctx.fillRect(
       0,
       0,
@@ -130,7 +135,6 @@ class Canvas extends React.Component {
     this.renderBeerPaddles();
     this.renderBeer();
   }
-
   renderPaddles = () => {
     this.paddles.forEach(p => {
       p.render(this.ctx, this.paddles);
@@ -157,24 +161,18 @@ class Canvas extends React.Component {
   render() {
     if (!this.started && !this.props.loading && this.props.players.length)
       this.startGameLoop();
-    return (
-      <div className="flex-container">
+    return <div className="flex-container">
         <ReactAudioPlayer src="../../../music/Racing-Menu.mp3" autoPlay loop />
         <div className="left score">
           <ScoreboardContainer />
           <ScoreboardContainer />
         </div>
-        <canvas
-          ref={this.canvasRef}
-          width={window.innerWidth - 275}
-          height={window.innerHeight}
-        />
+          <canvas ref={this.canvasRef} width={window.innerWidth - 275} height={window.innerHeight} />
         <div className="right score">
           <ScoreboardContainer />
           <ScoreboardContainer />
         </div>
-      </div>
-    );
+      </div>;
   }
 }
 export default withTracker(() => {

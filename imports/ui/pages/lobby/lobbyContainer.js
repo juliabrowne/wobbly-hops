@@ -3,10 +3,12 @@ import "./styles.css";
 import { Link } from "react-router-dom";
 import { withTracker } from "meteor/react-meteor-data";
 import ReactAudioPlayer from "react-audio-player";
+import { Players} from "../../../api/players"
 
 class lobbyContainer extends Component {
-  printPlayers(players) {
-    console.log(players);
+  constructor(){
+    super()
+    // this.players = Players.find().fetch();
   }
   render() {
     return (
@@ -45,14 +47,14 @@ class lobbyContainer extends Component {
   }
 }
 
-// export default withTracker(() => {
-//   const handle = Meteor.subscribe("players");
-//   const players = Players.find().fetch();
-//   console.log(players)
-//   return {
-//     loading: !handle.ready(),
-//     players: players
-//   };
-// })(lobbyContainer);
+export default withTracker(() => {
+  const handle = Meteor.subscribe("players");
+  const players = Players.find().fetch();
+  console.log(players)
+  return {
+    loading: !handle.ready(),
+    players: players
+  };
+})(lobbyContainer);
 
-export default lobbyContainer;
+// export default lobbyContainer;
