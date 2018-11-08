@@ -4,8 +4,8 @@ import { withTracker } from "meteor/react-meteor-data";
 import { Players } from "../../../api/players";
 import { Link } from "react-router-dom";
 import { Meteor } from "meteor/meteor";
-import Player from '../player';
-import Paddle from '../paddle';
+import Player from "../player";
+import Paddle from "../paddle";
 
 const MoveRightButton = ({ moveRight }) => {
   return (
@@ -23,11 +23,11 @@ const MoveLeftButton = ({ moveLeft }) => {
 };
 
 const rowStyle = {
-    display: 'flex',
-    justifyContent: 'space-around',
-    flexDirection: 'row',
-    minHeight: '100vh'
-}
+  display: "flex",
+  justifyContent: "space-around",
+  flexDirection: "row",
+  minHeight: "100vh"
+};
 
 class Controller extends Component {
   constructor() {
@@ -61,8 +61,8 @@ class Controller extends Component {
 export default withTracker(() => {
   const handle = Meteor.subscribe("players");
   const userId = Meteor.userId();
-  const currentPlayer = Players.find({playerId: userId}).fetch();
-   return {
+  const currentPlayer = Players.find({ playerId: userId }).fetch();
+  return {
     loading: !handle.ready(),
     currentPlayer
   };
