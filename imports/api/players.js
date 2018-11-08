@@ -1,6 +1,5 @@
 import { Mongo } from "meteor/mongo";
 import { Meteor } from "meteor/meteor";
-// import SimpleSchema from 'simpl-schema';
 
 if (Meteor.isServer) {
   AccountsGuest.enabled = true;
@@ -33,10 +32,16 @@ Meteor.methods({
   },
   "move.right"(playerId) {
     const p = getPlayer(playerId);
+    if (p.x <= 1000) {
+      Players.update({ _id: playerId }, { $set: { x: (p.x = 0) } });
+    }
     Players.update({ _id: playerId }, { $set: { x: p.x + 3 } });
   },
   "move.left"(playerId) {
     const p = getPlayer(playerId);
+    if (p.x <= 0) {
+      Players.update({ _id: playerId }, { $set: { x: (p.x = 0) } });
+    }
     Players.update({ _id: playerId }, { $set: { x: p.x - 3 } });
   }
 });
