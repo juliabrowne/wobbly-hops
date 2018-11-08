@@ -23,10 +23,9 @@ Meteor.methods({
       name,
       color,
       playerId,
-      x: 100,
-      y: 0
+      x,
+      y
     };
-    console.log(newPlayer)
     Players.insert(newPlayer);
   },
   "init.Player"({ playerId, x, y }) {

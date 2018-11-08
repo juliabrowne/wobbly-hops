@@ -89,7 +89,7 @@ class createCharContainer extends Component {
 export default withTracker(() => {
   const handle = Meteor.subscribe("players");
   return {
-    loading: handle.ready(),
+    loading: !handle.ready(),
     player: Players.find().fetch()
   };
 })(createCharContainer);

@@ -5,11 +5,10 @@ class Player extends React.Component {
     super(args);
     this.velocityY = 6;
     this.velocityX = 3;
-    this.positionX = args.positionX || 200;
+    this.positionX = args.positionX || Math.random();
     this.positionY = 0;
     this.height = 25;
     this.width = 25;
-    // this.ball;
     this.wh = args.wh;
     this.jumpHeight = 0;
     this.rising = false;
@@ -18,7 +17,7 @@ class Player extends React.Component {
   }
 
   componentDidMount() {
-    this.render()
+    this.render();
   }
 
   // prettier-ignore
@@ -62,7 +61,6 @@ class Player extends React.Component {
     ctx.fillRect(this.positionX, this.positionY, this.height, this.width);
     this.jumpHeight++;
   }
- 
 }
 
 export default Player;
