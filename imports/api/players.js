@@ -23,10 +23,9 @@ Meteor.methods({
       name,
       color,
       playerId,
-      x: 100,
-      y: 0
+      x,
+      y
     };
-    console.log(newPlayer);
     Players.insert(newPlayer);
   },
   "init.Player"({ playerId, x, y }) {
@@ -34,11 +33,11 @@ Meteor.methods({
   },
   "move.right"(playerId) {
     const p = getPlayer(playerId);
-    Players.update({ _id: playerId }, { $set: { x: p.x + 100 } });
+    Players.update({ _id: playerId }, { $set: { x: p.x + 3 } });
   },
   "move.left"(playerId) {
     const p = getPlayer(playerId);
-    Players.update({ _id: playerId }, { $set: { x: p.x - 100 } });
+    Players.update({ _id: playerId }, { $set: { x: p.x - 3 } });
   }
 });
 

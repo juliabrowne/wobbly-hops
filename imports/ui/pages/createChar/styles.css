@@ -59,7 +59,9 @@ padding-bottom: 1rem;
     font-family: 'Gloria Hallelujah', cursive;
 
 }
-
+.span{
+    padding-right: 10px;
+}
 @media only screen and (max-width: 1000px) {
  .name-header{
      font-size: 4rem;
