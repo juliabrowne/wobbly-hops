@@ -8,7 +8,7 @@ Meteor.startup(() => {
       color: "blue",
       x: 100,
       y: 0,
-      frozen
+      frozen: false
     });
   }
 });
