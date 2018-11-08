@@ -2,36 +2,25 @@ import React, { Component } from "react";
 import "./styles";
 import { withTracker } from "meteor/react-meteor-data";
 import { Players } from "../../../api/players";
-import { Link } from "react-router-dom";
 import { Meteor } from "meteor/meteor";
-import Player from "../player";
-import Paddle from "../paddle";
-import MetaTags from "react-meta-tags";
+import MetaTags from 'react-meta-tags';
 
-const MoveRightButton = ({ moveRight }) => {
-  return (
-    <button className="rightButton" onClick={() => moveRight()}>
-      <img src="./../../../controllerImages/rightArrow.png" />
-    </button>
-  );
-};
-const MoveLeftButton = ({ moveLeft }) => {
-  return (
-    <button className="leftButton" onClick={() => moveLeft()}>
-      <img src="./../../../controllerImages/leftArrow.png" />
-    </button>
-  );
-};
+// const MoveRightButton = ({ moveRight }) => {
+//   return (
+//     <button className='rightButton' onTouchStart={() => moveRight()}>
+//       <img src='./../../../controllerImages/rightArrow.png' />
+//     </button>
+//   );
+// };
+// const MoveLeftButton = ({ moveLeft }) => {
+//   return (
+//     <button className='leftButton' onTouchStart={() => moveLeft()}>
+//       <img src='./../../../controllerImages/leftArrow.png' />
+//     </button>
+//   );
+// };
 
 const rowStyle = {
-  display: "flex",
-  justifyContent: "space-around",
-  flexDirection: "row",
-  height: "100vh",
-  //   position: 'fixed',
-  //   top: '50%',
-  //   left: '50%',
-  //   transform: 'translate(-50%, 50%)'
   display: "flex",
   justifyContent: "space-around",
   minHeight: "100vh"
@@ -40,46 +29,49 @@ const rowStyle = {
 class Controller extends Component {
   constructor() {
     super();
-    this.direction = {};
+    this.direction = {
+        left: false,
+        right: false
+    };
   }
-
-  moveRight = player => {
-    Meteor.call("move.right", player._id);
-  };
-
-  moveLeft = player => {
-    Meteor.call("move.left", player._id);
-  };
 
   componentDidMount() {
-    MoveRightButton.onkeydown = e => {
-      this.direction[e.key] = true;
-    };
-    MoveRightButton.onkeyup = e => {
-      delete this.direction[e.key];
-    };
-    MoveLeftButton.onkeydown = e => {
-      this.direction[e.key] = true;
-    };
-    MoveLeftButton.onkeyup = e => {
-      delete this.direction[e.key];
-    };
+    setInterval(() => {
+       if(this.direction.left) {
+        Meteor.call('move.left', this.props.currentPlayer[0]._id);
+       }
+       if(this.direction.right){
+        Meteor.call('move.right', this.props.currentPlayer[0]._id);
+       }
+    }, 60)
   }
 
-  render() {
-    console.log(this.props);
-    const { currentPlayer } = this.props;
-    return (
-      <div className="root">
-        <MetaTags>
-          <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"
-          />
-        </MetaTags>
-        <div className="buttonRow" style={rowStyle}>
-          <MoveLeftButton moveLeft={() => this.moveLeft(currentPlayer[0])} />
-          <MoveRightButton moveRight={() => this.moveRight(currentPlayer[0])} />
+  go = (direction) => {
+    this.direction[direction] = true;
+  }
+
+  stopGoing = (direction) => {
+    this.direction[direction] = false;
+  }
+
+  render() { 
+    return (<div className='root'>
+    <MetaTags>
+        <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0'/>
+    </MetaTags>
+        <div className='buttonRow' style={rowStyle}>
+
+    <button className='leftButton' 
+        onMouseDown={(event) => {this.go('left')}} 
+        onMouseUp={(event) => {this.stopGoing('left')}} >
+      <img src='./../../../controllerImages/leftArrow.png' />
+    </button>
+
+    <button className='rightButton'  
+        onMouseDown={(event) => {this.go('right')}} 
+        onMouseUp={(event) => {this.stopGoing('right')}} >
+      <img src='./../../../controllerImages/rightArrow.png' />
+    </button>
         </div>
       </div>
     );
