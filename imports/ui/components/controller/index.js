@@ -2,7 +2,10 @@ import React, { Component } from "react";
 import "./styles";
 import { withTracker } from "meteor/react-meteor-data";
 import { Players } from "../../../api/players";
+import { Link } from "react-router-dom";
 import { Meteor } from "meteor/meteor";
+import Player from "../player";
+import Paddle from "../paddle";
 import MetaTags from 'react-meta-tags';
 
 const MoveRightButton = ({ moveRight }) => {
@@ -24,7 +27,11 @@ const rowStyle = {
   display: 'flex',
   justifyContent: 'space-around',
   flexDirection: 'row',
-  height: '100vh', 
+  height: '100vh',
+//   position: 'fixed',
+//   top: '50%',
+//   left: '50%',
+//   transform: 'translate(-50%, 50%)' 
 };
 
 class Controller extends Component {
