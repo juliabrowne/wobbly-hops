@@ -15,6 +15,9 @@ if (Meteor.isServer) {
 const getPlayer = playerId => {
   return Players.findOne(playerId);
 };
+const getPlayers = () => {
+  return Players.find().fetch();
+};
 
 Meteor.methods({
   "add.player"(name, color, playerId, x, y) {
@@ -32,8 +35,8 @@ Meteor.methods({
   },
   "move.right"(playerId) {
     const p = getPlayer(playerId);
-    if (p.x >= 1000) {
-      Players.update({ _id: playerId }, { $set: { x: (p.x = 1000) } });
+    if (p.x >= 1290) {
+      Players.update({ _id: playerId }, { $set: { x: (p.x = 1290) } });
     }
     Players.update({ _id: playerId }, { $set: { x: p.x + 3 } });
   },

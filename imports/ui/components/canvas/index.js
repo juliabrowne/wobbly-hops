@@ -66,20 +66,15 @@ class Canvas extends React.Component {
     this.beerPaddles.forEach(p => {
       p.generateXandY(this.beerPaddles);
     });
+    this.beer = new Beer({});
   }
 
   move = player => {
     if ("ArrowRight" in this.direction) {
       Meteor.call("move.right", player._id);
-      // if (this.positionX >= this.canvas.width) {
-      //   this.positionX = 0;
-      // }
     }
     if ("ArrowLeft" in this.direction) {
       Meteor.call("move.left", player._id);
-      // if (this.positionX <= 0) {
-      //   this.positionX = this.canvas.width;
-      // }
     }
   };
 
@@ -124,13 +119,12 @@ class Canvas extends React.Component {
       this.canvasRef.current.width,
       this.canvasRef.current.height
     );
+    this.move(this.props.players[0]);
     this.renderPaddles();
     this.renderPlayers(this.ctx);
     this.renderBeerPaddles();
-    // this.renderBeer();
-    this.move(this.props.players[0]);
+    this.renderBeer();
   }
-
   renderPaddles = () => {
     this.paddles.forEach(p => {
       p.render(this.ctx, this.paddles);
