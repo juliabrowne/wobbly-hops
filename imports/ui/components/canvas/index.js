@@ -5,6 +5,7 @@ import Player from "../player";
 import ScoreboardContainer from "../scoreboard";
 import ReactAudioPlayer from "react-audio-player";
 import Beer from "../beer";
+import BeerPaddle from "../beerPaddle";
 import { withTracker } from "meteor/react-meteor-data";
 import { Players } from "../../../api/players";
 
@@ -13,6 +14,7 @@ class Canvas extends React.Component {
     super(props);
     this.canvasRef = React.createRef();
     this.paddles = [];
+    this.beerPaddles = [];
     this.direction = {};
     this.collision = false;
     this.jumping = false;
@@ -40,11 +42,32 @@ class Canvas extends React.Component {
           },
           wh: this.canvasRef.current.height,
           ww: this.canvasRef.current.width,
+          beerPaddles: this.beerPaddles
+        })
+      );
+    }
+    this.paddles.forEach(p => {
+      p.generateXandY(this.paddles);
+    });
+    for (let i = 0; i <= 10; i++) {
+      this.beerPaddles.push(
+        new BeerPaddle({
+          position: {
+            x: Math.random() * this.canvasRef.current.width + 1,
+            y: (Math.random() * this.canvasRef.current.height + 1) * -1
+          },
+          // beerPaddle: Math.floor(Math.random() * 5 + 1),
+          wh: this.canvasRef.current.height,
+          ww: this.canvasRef.current.width,
           paddles: this.paddles
         })
       );
     }
+    this.beerPaddles.forEach(p => {
+      p.generateXandY(this.beerPaddles);
+    });
   }
+
   move = player => {
     if ("ArrowRight" in this.direction) {
       Meteor.call("move.right", player._id);
@@ -79,14 +102,17 @@ class Canvas extends React.Component {
             new Player({
               playerId: p._id,
               wh: window.innerHeight,
+              position: p.position,
+              moveDirection: "",
               color: p.color,
+              paddles: this.paddles,
+              beerPaddles: this.beerPaddles,
               positionX: this.canvasRef.current.width / 2
             })
           );
         }
       );
     });
-
     setInterval(() => requestAnimationFrame(() => this.gameLoop()), 16);
   }
 
@@ -100,6 +126,7 @@ class Canvas extends React.Component {
     );
     this.renderPaddles();
     this.renderPlayers(this.ctx);
+    this.renderBeerPaddles();
     // this.renderBeer();
     this.move(this.props.players[0]);
   }
@@ -109,7 +136,11 @@ class Canvas extends React.Component {
       p.render(this.ctx, this.paddles);
     });
   };
-
+  renderBeerPaddles = () => {
+    this.beerPaddles.forEach(p => {
+      p.render(this.ctx, this.beerPaddles);
+    });
+  };
   renderPlayers = () => {
     this.players.forEach(p => {
       const update = this.props.players.find(
