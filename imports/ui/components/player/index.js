@@ -1,4 +1,7 @@
 import React from "react";
+import { Players } from "../../../api/players";
+import { Meteor } from "meteor/meteor";
+import { withTracker } from "meteor/react-meteor-data";
 
 class Player extends React.Component {
   constructor(args) {
@@ -19,6 +22,7 @@ class Player extends React.Component {
     this.arr = this.paddles.concat(this.beerPaddles);
     this.controls = false;
     this.color = args.color;
+    this.player = args.playerId;
   }
 
   componentDidMount() {
@@ -26,28 +30,35 @@ class Player extends React.Component {
   }
 
   render(ctx, paddles, pX) {
+    console.log("render");
     this.positionX = pX;
     this.jumpLength++;
     this.arr.forEach(paddle => {
       if (
-        this.positionX < paddle.position.x + paddle.width  && this.positionX + this.width  > paddle.position.x &&
-		this.positionY < paddle.position.y + paddle.height && this.positionY + this.height > paddle.position.y
+        this.positionX < paddle.position.x + paddle.width &&
+        this.positionX + this.width > paddle.position.x &&
+        this.positionY < paddle.position.y + paddle.height &&
+        this.positionY + this.height > paddle.position.y
       ) {
         if (!this.collision && !this.rising) {
           this.collision = true;
         }
-        if(paddle.name === "beerPaddle") {
+        if (paddle.name === "beerPaddle") {
+          this.positionY = paddle.position.y - this.height - 1;
           this.freeze = true;
+          Meteor.call("freeze.player", this.player);
           this.rising = false;
           setTimeout(() => {
+            this.jumpLength = 0;
             this.freeze = false;
-          this.rising = true;
-          }, 3000)
+            Meteor.call("unFreeze.player", this.player);
+            this.rising = true;
+          }, 3000);
         }
       }
     });
 
-    if(!this.freeze) {
+    if (!this.freeze) {
       if (this.rising && this.jumpLength > 25) {
         this.rising = false;
         this.jumpLength = 0;
@@ -57,7 +68,7 @@ class Player extends React.Component {
         this.rising = true;
         this.collision = false;
       }
-      if(this.positionY <= 0 ) {
+      if (this.positionY <= 0) {
         this.rising = false;
       }
     }
