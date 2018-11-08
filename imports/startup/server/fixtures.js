@@ -7,7 +7,8 @@ Meteor.startup(() => {
       name: "Admin",
       color: "blue",
       x: 100,
-      y: 0
+      y: 0,
+      frozen: false
     });
   }
 });

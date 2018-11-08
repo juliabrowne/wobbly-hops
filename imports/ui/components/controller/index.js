@@ -2,25 +2,36 @@ import React, { Component } from "react";
 import "./styles";
 import { withTracker } from "meteor/react-meteor-data";
 import { Players } from "../../../api/players";
+import { Link } from "react-router-dom";
 import { Meteor } from "meteor/meteor";
-import MetaTags from 'react-meta-tags';
+import Player from "../player";
+import Paddle from "../paddle";
+import MetaTags from "react-meta-tags";
 
 const MoveRightButton = ({ moveRight }) => {
   return (
-    <button className='rightButton' onClick={() => moveRight()}>
-      <img src='./../../../controllerImages/rightArrow.png' />
+    <button className="rightButton" onClick={() => moveRight()}>
+      <img src="./../../../controllerImages/rightArrow.png" />
     </button>
   );
 };
 const MoveLeftButton = ({ moveLeft }) => {
   return (
-    <button className='leftButton' onClick={() => moveLeft()}>
-      <img src='./../../../controllerImages/leftArrow.png' />
+    <button className="leftButton" onClick={() => moveLeft()}>
+      <img src="./../../../controllerImages/leftArrow.png" />
     </button>
   );
 };
 
 const rowStyle = {
+  display: "flex",
+  justifyContent: "space-around",
+  flexDirection: "row",
+  height: "100vh",
+  //   position: 'fixed',
+  //   top: '50%',
+  //   left: '50%',
+  //   transform: 'translate(-50%, 50%)'
   display: "flex",
   justifyContent: "space-around",
   minHeight: "100vh"
@@ -42,26 +53,30 @@ class Controller extends Component {
 
   componentDidMount() {
     MoveRightButton.onkeydown = e => {
-        this.direction[e.key] = true;
+      this.direction[e.key] = true;
     };
     MoveRightButton.onkeyup = e => {
-        delete this.direction[e.key];
+      delete this.direction[e.key];
     };
     MoveLeftButton.onkeydown = e => {
-        this.direction[e.key] = true;
+      this.direction[e.key] = true;
     };
     MoveLeftButton.onkeyup = e => {
-        delete this.direction[e.key];
+      delete this.direction[e.key];
     };
-  };
+  }
 
   render() {
     console.log(this.props);
-    const {currentPlayer} = this.props;
-    return (<div className="root">
-    <MetaTags>
-        <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0'/>
-    </MetaTags>
+    const { currentPlayer } = this.props;
+    return (
+      <div className="root">
+        <MetaTags>
+          <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"
+          />
+        </MetaTags>
         <div className="buttonRow" style={rowStyle}>
           <MoveLeftButton moveLeft={() => this.moveLeft(currentPlayer[0])} />
           <MoveRightButton moveRight={() => this.moveRight(currentPlayer[0])} />

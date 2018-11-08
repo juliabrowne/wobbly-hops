@@ -22,6 +22,7 @@ class Canvas extends React.Component {
     this.started = false;
     this.startGameLoop = this.startGameLoop.bind(this);
     this.players = [];
+    this.userId = Meteor.userId();
   }
 
   componentDidMount() {
@@ -71,15 +72,9 @@ class Canvas extends React.Component {
   move = player => {
     if ("ArrowRight" in this.direction) {
       Meteor.call("move.right", player._id);
-      // if (this.positionX >= this.canvas.width) {
-      //   this.positionX = 0;
-      // }
     }
     if ("ArrowLeft" in this.direction) {
       Meteor.call("move.left", player._id);
-      // if (this.positionX <= 0) {
-      //   this.positionX = this.canvas.width;
-      // }
     }
   };
 
@@ -93,7 +88,7 @@ class Canvas extends React.Component {
       await Meteor.call(
         "init.Player",
         {
-          x: this.getRandomInt(this.canvasRef.current.width),
+          x: this.getRandomInt(1500),
           y: this.canvasRef.current.height / 2,
           playerId: p._id
         },
@@ -101,13 +96,14 @@ class Canvas extends React.Component {
           this.players.push(
             new Player({
               playerId: p._id,
-              wh: this.canvasRef.current.height,
+              wh: window.innerHeight,
               position: p.position,
               moveDirection: "",
               color: p.color,
               paddles: this.paddles,
               beerPaddles: this.beerPaddles,
-              positionX: this.canvasRef.current.width / 2
+              positionX: this.canvasRef.current.width / 2,
+              currentPlayer: Players.find({ playerId: this.userId }).fetch()
             })
           );
         }
