@@ -20,8 +20,8 @@ class IntroContainer extends Component {
         <Link to="/createCharacter">
           <button className="start-button">Start</button>
         </Link>
-        <Link to="/setup">
-          <button className="setup-button">Set-Up</button>
+        <Link to="/lobby">
+          <button className="setup-button">Lobby</button>
         </Link>
         <Link to="/instructions">
           <button className="instruction-button" to="/instructions">

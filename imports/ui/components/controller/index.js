@@ -24,6 +24,7 @@ const MoveLeftButton = ({ moveLeft }) => {
 };
 
 const rowStyle = {
+<<<<<<< HEAD
   display: 'flex',
   justifyContent: 'space-around',
   flexDirection: 'row',
@@ -32,6 +33,11 @@ const rowStyle = {
 //   top: '50%',
 //   left: '50%',
 //   transform: 'translate(-50%, 50%)' 
+=======
+  display: "flex",
+  justifyContent: "space-around",
+  minHeight: "100vh"
+>>>>>>> f4a75573979de0fada8239ba88ece15b0facfa6a
 };
 
 class Controller extends Component {
@@ -41,13 +47,11 @@ class Controller extends Component {
   }
 
   moveRight = player => {
-    console.log(player);
-    Meteor.call('move.right', player._id);
+    Meteor.call("move.right", player._id);
   };
 
   moveLeft = player => {
-    console.log(player);
-    Meteor.call('move.left', player._id);
+    Meteor.call("move.left", player._id);
   };
 
   componentDidMount() {
