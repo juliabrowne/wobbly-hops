@@ -22,6 +22,7 @@ class Canvas extends React.Component {
     this.started = false;
     this.startGameLoop = this.startGameLoop.bind(this);
     this.players = [];
+    this.userId = Meteor.userId();
   }
 
   componentDidMount() {
@@ -88,7 +89,7 @@ class Canvas extends React.Component {
       await Meteor.call(
         "init.Player",
         {
-          x: this.getRandomInt(this.canvasRef.current.width),
+          x: this.getRandomInt(1500),
           y: this.canvasRef.current.height / 2,
           playerId: p._id
         },
@@ -96,13 +97,14 @@ class Canvas extends React.Component {
           this.players.push(
             new Player({
               playerId: p._id,
-              wh: this.canvasRef.current.height,
+              wh: window.innerHeight,
               position: p.position,
               moveDirection: "",
               color: p.color,
               paddles: this.paddles,
               beerPaddles: this.beerPaddles,
-              positionX: this.canvasRef.current.width / 2
+              positionX: this.canvasRef.current.width / 2,
+              currentPlayer: Players.find({ playerId: this.userId }).fetch()
             })
           );
         }
@@ -112,7 +114,8 @@ class Canvas extends React.Component {
   }
 
   gameLoop() {
-    this.ctx.fillStyle = "white";
+    
+    this.ctx.fillStyle = "rgb(255,222,173)";
     this.ctx.fillRect(
       0,
       0,
@@ -151,24 +154,18 @@ class Canvas extends React.Component {
   render() {
     if (!this.started && !this.props.loading && this.props.players.length)
       this.startGameLoop();
-    return (
-      <div className="flex-container">
+    return <div className="flex-container">
         <ReactAudioPlayer src="../../../music/Racing-Menu.mp3" autoPlay loop />
         <div className="left score">
           <ScoreboardContainer />
           <ScoreboardContainer />
         </div>
-        <canvas
-          ref={this.canvasRef}
-          width={window.innerWidth - 275}
-          height={window.innerHeight}
-        />
+          <canvas ref={this.canvasRef} width={window.innerWidth - 275} height={window.innerHeight} />
         <div className="right score">
           <ScoreboardContainer />
           <ScoreboardContainer />
         </div>
-      </div>
-    );
+      </div>;
   }
 }
 export default withTracker(() => {
