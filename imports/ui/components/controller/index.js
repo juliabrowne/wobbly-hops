@@ -9,15 +9,15 @@ import Paddle from "../paddle";
 
 const MoveRightButton = ({ moveRight }) => {
   return (
-    <button className="rightButton" onMouseDown={() => moveRight()}>
-      RIGHT
+    <button className='rightButton' onMouseDown={() => moveRight()}>
+      <img src='./../../../controllerImages/rightArrow.png' />
     </button>
   );
 };
 const MoveLeftButton = ({ moveLeft }) => {
   return (
-    <button className="leftButton" onMouseDown={() => moveLeft()}>
-      LEFT
+    <button className='leftButton' onMouseDown={() => moveLeft()}>
+      <img src='./../../../controllerImages/leftArrow.png' />
     </button>
   );
 };
@@ -36,20 +36,20 @@ class Controller extends Component {
 
   moveRight = player => {
     console.log(player);
-    Meteor.call("move.right", player._id);
+    Meteor.call('move.right', player._id);
   };
 
   moveLeft = player => {
     console.log(player);
-    Meteor.call("move.left", player._id);
+    Meteor.call('move.left', player._id);
   };
 
   render() {
     console.log(this.props);
-    const { currentPlayer } = this.props;
+    const {currentPlayer} = this.props;
     return (
       <div className="root">
-        <div className="buttonRow">
+        <div className="buttonRow" style={rowStyle}>
           <MoveLeftButton moveLeft={() => this.moveLeft(currentPlayer[0])} />
           <MoveRightButton moveRight={() => this.moveRight(currentPlayer[0])} />
         </div>
