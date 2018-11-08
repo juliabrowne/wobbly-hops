@@ -1,5 +1,7 @@
 import { Mongo } from "meteor/mongo";
 import { Meteor } from "meteor/meteor";
+import Player from "../ui/components/player";
+// import SimpleSchema from 'simpl-schema';
 
 if (Meteor.isServer) {
   AccountsGuest.enabled = true;
@@ -23,25 +25,33 @@ Meteor.methods({
       color,
       playerId,
       x,
-      y
+      y,
+      frozen
     };
     Players.insert(newPlayer);
   },
   "init.Player"({ playerId, x, y }) {
     Players.update({ _id: playerId }, { $set: { x, y } });
   },
-  "move.right"(playerId) {    const p = getPlayer(playerId);
-    if (p.x >= 1000) {
-      Players.update({ _id: playerId }, { $set: { x: (p.x = 1000) } });
+  "move.right"(playerId) {
+    const p = getPlayer(playerId);
+    if (!p.frozen) {
+      Players.update({ _id: playerId }, { $set: { x: p.x + 3 } });
     }
-    Players.update({ _id: playerId }, { $set: { x: p.x + 3 } });
   },
   "move.left"(playerId) {
     const p = getPlayer(playerId);
-    if (p.x <= 0) {
-      Players.update({ _id: playerId }, { $set: { x: (p.x = 0) } });
+    if (!p.frozen) {
+      Players.update({ _id: playerId }, { $set: { x: p.x - 3 } });
     }
-    Players.update({ _id: playerId }, { $set: { x: p.x - 3 } });
+  },
+  "freeze.player"(playerId) {
+    const p = getPlayer(playerId);
+    Players.update({ _id: playerId }, { $set: { frozen: true } });
+  },
+  "unFreeze.player"(playerId) {
+    const p = getPlayer(playerId);
+    Players.update({ _id: playerId }, { $set: { frozen: false } });
   }
 });
 
