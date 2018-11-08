@@ -71,15 +71,15 @@ class Canvas extends React.Component {
   move = player => {
     if ("ArrowRight" in this.direction) {
       Meteor.call("move.right", player._id);
-      if (this.positionX >= this.canvas.width) {
-        this.positionX = 0;
-      }
+      // if (this.positionX >= this.canvas.width) {
+      //   this.positionX = 0;
+      // }
     }
     if ("ArrowLeft" in this.direction) {
       Meteor.call("move.left", player._id);
-      if (this.positionX <= 0) {
-        this.positionX = this.canvas.width;
-      }
+      // if (this.positionX <= 0) {
+      //   this.positionX = this.canvas.width;
+      // }
     }
   };
 
@@ -93,7 +93,7 @@ class Canvas extends React.Component {
       await Meteor.call(
         "init.Player",
         {
-          x: this.getRandomInt(1500),
+          x: this.getRandomInt(this.canvasRef.current.width),
           y: this.canvasRef.current.height / 2,
           playerId: p._id
         },
@@ -101,7 +101,7 @@ class Canvas extends React.Component {
           this.players.push(
             new Player({
               playerId: p._id,
-              wh: window.innerHeight,
+              wh: this.canvasRef.current.height,
               position: p.position,
               moveDirection: "",
               color: p.color,
