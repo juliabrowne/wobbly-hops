@@ -34,11 +34,11 @@ Meteor.methods({
   },
   "move.right"(playerId) {
     const p = getPlayer(playerId);
-    Players.update({ _id: playerId }, { $set: { x: p.x + 3 } });
+    Players.update({ _id: playerId }, { $set: { x: p.x + 100 } });
   },
   "move.left"(playerId) {
     const p = getPlayer(playerId);
-    Players.update({ _id: playerId }, { $set: { x: p.x - 3 } });
+    Players.update({ _id: playerId }, { $set: { x: p.x - 100 } });
   }
 });
 

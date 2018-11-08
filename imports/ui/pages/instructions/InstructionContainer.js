@@ -34,17 +34,15 @@ class InstructionContainer extends Component {
                   will lose a life!
                 </li>
                 <li>
-                  Every life lost will add a point to your Gulp Meter.
-                  At the end of the game you will take that many gulps
-                  of your drink.
+                  Every time you lose a life, you will need to drink. Your character will respawn shortly after.
                 </li>
                 <li>
                   There will be platforms falling that you can jump
-                  between to avoid falling into the Beer Pit.. but
-                  beware! Players can push eachother.
+                between to avoid falling into the Beer Pit.. but
+                beware! Players can push eachother.
                 </li>
+              <li>DON'T step on the red paddles! Your character will be frozen in place for a short time.</li>
                 <li>Losing all 3 lives will result in ELIMINATION.</li>
-                <li>The last remaining player will be able to give away his remaining gulps to any player(s) of his choice at the end of the game.</li>
               </ul>
             </div>
             <Link to="/intro">
