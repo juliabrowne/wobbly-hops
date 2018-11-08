@@ -8,10 +8,18 @@ import Player from "../player";
 import Paddle from "../paddle";
 
 const MoveRightButton = ({ moveRight }) => {
-  return <button className="rightButton" onMouseDown={() => moveRight()} />;
+  return (
+    <button className="rightButton" onMouseDown={() => moveRight()}>
+      RIGHT
+    </button>
+  );
 };
 const MoveLeftButton = ({ moveLeft }) => {
-  return <button className="leftButton" onMouseDown={() => moveLeft()} />;
+  return (
+    <button className="leftButton" onMouseDown={() => moveLeft()}>
+      LEFT
+    </button>
+  );
 };
 
 const rowStyle = {

@@ -4,7 +4,9 @@
     background-color: transparent;
 } */
 
-button {
-    height: 500px;
-    width: 500px;
+.rightButton {
+    font-size: 40px;
+}
+.leftButton {
+    font-size: 40px;
 }
