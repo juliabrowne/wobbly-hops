@@ -32,8 +32,8 @@ Meteor.methods({
   },
   "move.right"(playerId) {
     const p = getPlayer(playerId);
-    if (p.x <= 1000) {
-      Players.update({ _id: playerId }, { $set: { x: (p.x = 0) } });
+    if (p.x >= 1000) {
+      Players.update({ _id: playerId }, { $set: { x: (p.x = 1000) } });
     }
     Players.update({ _id: playerId }, { $set: { x: p.x + 3 } });
   },

@@ -2,22 +2,19 @@ import React, { Component } from "react";
 import "./styles";
 import { withTracker } from "meteor/react-meteor-data";
 import { Players } from "../../../api/players";
-import { Link } from "react-router-dom";
 import { Meteor } from "meteor/meteor";
-import Player from "../player";
-import Paddle from "../paddle";
 
 const MoveRightButton = ({ moveRight }) => {
   return (
-    <button className='rightButton' onMouseDown={() => moveRight()}>
-      <img src='./../../../controllerImages/rightArrow.png' />
+    <button className="rightButton" onMouseDown={() => moveRight()}>
+      <img src="./../../../controllerImages/rightArrow.png" />
     </button>
   );
 };
 const MoveLeftButton = ({ moveLeft }) => {
   return (
-    <button className='leftButton' onMouseDown={() => moveLeft()}>
-      <img src='./../../../controllerImages/leftArrow.png' />
+    <button className="leftButton" onMouseDown={() => moveLeft()}>
+      <img src="./../../../controllerImages/leftArrow.png" />
     </button>
   );
 };
@@ -25,7 +22,6 @@ const MoveLeftButton = ({ moveLeft }) => {
 const rowStyle = {
   display: "flex",
   justifyContent: "space-around",
-  flexDirection: "row",
   minHeight: "100vh"
 };
 
@@ -35,18 +31,16 @@ class Controller extends Component {
   }
 
   moveRight = player => {
-    console.log(player);
-    Meteor.call('move.right', player._id);
+    Meteor.call("move.right", player._id);
   };
 
   moveLeft = player => {
-    console.log(player);
-    Meteor.call('move.left', player._id);
+    Meteor.call("move.left", player._id);
   };
 
   render() {
     console.log(this.props);
-    const {currentPlayer} = this.props;
+    const { currentPlayer } = this.props;
     return (
       <div className="root">
         <div className="buttonRow" style={rowStyle}>

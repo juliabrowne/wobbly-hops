@@ -1,9 +1,13 @@
 import React, { Component } from "react";
 import "./styles.css";
 import { Link } from "react-router-dom";
+import { withTracker } from "meteor/react-meteor-data";
 import ReactAudioPlayer from "react-audio-player";
 
-class setupContainer extends Component {
+class lobbyContainer extends Component {
+  printPlayers(players) {
+    console.log(players);
+  }
   render() {
     return (
       <div className="root">
@@ -23,14 +27,7 @@ class setupContainer extends Component {
           <button className="setup-button">START GAME</button>
         </Link>
         <h2 className="players-header">Players in Lobby:</h2>
-        <div className="players-list">
-          <ul>
-            <li>One</li>
-            <li>Two</li>
-            <li>Three</li>
-            <li>Four</li>
-          </ul>
-        </div>
+        <div className="players-list"></div>
         <div id="bubbles">
           <div className="bubble x1" />
           <div className="bubble x2" />
@@ -48,4 +45,14 @@ class setupContainer extends Component {
   }
 }
 
-export default setupContainer;
+// export default withTracker(() => {
+//   const handle = Meteor.subscribe("players");
+//   const players = Players.find().fetch();
+//   console.log(players)
+//   return {
+//     loading: !handle.ready(),
+//     players: players
+//   };
+// })(lobbyContainer);
+
+export default lobbyContainer;
