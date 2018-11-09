@@ -32,19 +32,6 @@ class Player extends React.Component {
   }
 
   render(ctx, paddles, pX) {
-<<<<<<< HEAD
-    this.positionX = pX;
-    this.jumpLength++;
-    this.arr.forEach(paddle => {
-      if (
-        this.positionX < paddle.position.x + paddle.width &&
-        this.positionX + this.width > paddle.position.x &&
-        this.positionY < paddle.position.y + paddle.height &&
-        this.positionY + this.height > paddle.position.y
-      ) {
-        if (!this.collision && !this.rising) {
-          this.collision = true;
-=======
     if (this.lives !== 0) {
       console.log("render");
       this.positionX = pX;
@@ -71,7 +58,6 @@ class Player extends React.Component {
               this.rising = true;
             }, 3000);
           }
->>>>>>> 2b162ff135f6f0808d9e0a9ac74d59948df699be
         }
       });
 
