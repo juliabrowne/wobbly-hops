@@ -61,6 +61,11 @@ class Player extends React.Component {
         }
       });
 
+<<<<<<< HEAD
+=======
+      //JULIA, END GAME GO'S HERE!!!!
+
+>>>>>>> 68e34449be08c68e7def786ed25bf7f09d850bdb
       if (this.positionY > this.beer.positionY) {
         console.log("DEATH TO YOU SIR");
         Meteor.call("loseLife.player", this.player);

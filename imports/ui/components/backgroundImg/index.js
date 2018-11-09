@@ -14,9 +14,6 @@ export default class BackgroundImg extends React.Component {
   }
 
   render(ctx) {
-    console.log(this.imgUrl);
-    console.log(ctx);
-
     if (this.positionY > 0) this.positionY -= this.velocityY;
       this.beerImage.src = this.imgUrl;
     ctx.drawImage(
