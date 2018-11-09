@@ -123,11 +123,7 @@ class Canvas extends React.Component {
   }
 
   gameLoop() {
-<<<<<<< HEAD
     this.ctx.fillStyle = "black";
-=======
-    this.ctx.fillStyle = "rgb(255,222,173)";
->>>>>>> 2b162ff135f6f0808d9e0a9ac74d59948df699be
     this.ctx.fillRect(
       0,
       0,
@@ -193,14 +189,10 @@ class Canvas extends React.Component {
           width={window.innerWidth - 275}
           height={window.innerHeight}
         />
-<<<<<<< HEAD
         <div className="right score">
           <ScoreboardContainer />
           <ScoreboardContainer />
         </div>
-=======
-        <div className="score" />
->>>>>>> 2b162ff135f6f0808d9e0a9ac74d59948df699be
       </div>
     );
   }
