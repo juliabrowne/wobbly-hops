@@ -29,12 +29,18 @@ Meteor.methods({
       playerId,
       x,
       y,
-      frozen: false
+      frozen: false,
+      lives: 3
     };
     Players.insert(newPlayer);
   },
   "init.Player"({ playerId, x, y }) {
+    const p = getPlayer(playerId);
     Players.update({ _id: playerId }, { $set: { x, y } });
+    Players.update({ _id: playerId }, { $set: { frozen: false } });
+    Players.update({ _id: playerId }, { $set: { lives: 3 } });
+
+    console.log(p.frozen);
   },
   "move.right"(playerId) {
     const p = getPlayer(playerId);
@@ -61,7 +67,16 @@ Meteor.methods({
   "unFreeze.player"(playerId) {
     const p = getPlayer(playerId);
     Players.update({ _id: playerId }, { $set: { frozen: false } });
+  },
+  "loseLife.player"(playerId) {
+    const p = getPlayer(playerId);
+    console.log(p.lives);
+    if (p.lives > 0) {
+      Players.update({ _id: playerId }, { $set: { lives: p.lives - 1 } });
+      console.log(p.lives);
+    }
   }
 });
 
 export const Players = new Mongo.Collection("players");
+1;

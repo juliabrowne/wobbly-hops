@@ -1,6 +1,6 @@
 import React from "react";
 
-export default class Paddle extends React.Component {
+export default class Beer extends React.Component {
   constructor(args) {
     super(args);
     this.wh = args.wh;

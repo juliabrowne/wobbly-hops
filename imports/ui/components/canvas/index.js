@@ -23,6 +23,7 @@ class Canvas extends React.Component {
     this.startGameLoop = this.startGameLoop.bind(this);
     this.players = [];
     this.userId = Meteor.userId();
+    this.lives = 3;
   }
 
   componentDidMount() {
@@ -67,13 +68,9 @@ class Canvas extends React.Component {
     this.beerPaddles.forEach(p => {
       p.generateXandY(this.beerPaddles);
     });
-<<<<<<< HEAD
     this.beer = new Beer({
       wh: this.canvasRef.current.height
     });
-=======
-    this.beer = new Beer({});
->>>>>>> 126f7dfab283620bc45d693c7124b678a46a63dc
   }
 
   move = player => {
@@ -121,7 +118,6 @@ class Canvas extends React.Component {
   }
 
   gameLoop() {
-    
     this.ctx.fillStyle = "rgb(255,222,173)";
     this.ctx.fillRect(
       0,
@@ -130,10 +126,10 @@ class Canvas extends React.Component {
       this.canvasRef.current.height
     );
     this.move(this.props.players[0]);
+    this.renderBeer();
     this.renderPaddles();
     this.renderPlayers(this.ctx);
     this.renderBeerPaddles();
-    this.renderBeer();
   }
   renderPaddles = () => {
     this.paddles.forEach(p => {
@@ -161,18 +157,24 @@ class Canvas extends React.Component {
   render() {
     if (!this.started && !this.props.loading && this.props.players.length)
       this.startGameLoop();
-    return <div className="flex-container">
+    return (
+      <div className="flex-container">
         <ReactAudioPlayer src="../../../music/Racing-Menu.mp3" autoPlay loop />
         <div className="left score">
           <ScoreboardContainer />
           <ScoreboardContainer />
         </div>
-          <canvas ref={this.canvasRef} width={window.innerWidth - 275} height={window.innerHeight} />
+        <canvas
+          ref={this.canvasRef}
+          width={window.innerWidth - 275}
+          height={window.innerHeight}
+        />
         <div className="right score">
           <ScoreboardContainer />
           <ScoreboardContainer />
         </div>
-      </div>;
+      </div>
+    );
   }
 }
 export default withTracker(() => {
