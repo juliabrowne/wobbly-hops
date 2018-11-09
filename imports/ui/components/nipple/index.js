@@ -7,26 +7,18 @@ import ReactNipple from 'react-nipple';
 import 'react-nipple/lib/styles.css';
 
 class Joystick extends React.Component {
-
     constructor() {
         super();
         this.direction = {
-            left: false,
-            right: false
         };
     }
 
     moveJoystick = (player, data) => {
-    const {degree}  = data.angle;
-        // console.log(data.angle)
-        if(player.length > 0){
-            if (degree > 60 && degree < 280) {
-                console.log(degree)
+        if (player.length > 0) {
+            if (data.direction.x === 'left') {
                 Meteor.call('move.left', player[0]._id);
                    }
-            // if (degree > 120 && degree < 230) {
                 else{
-                console.log(degree)
                  Meteor.call('move.right', player[0]._id);
             }
         }
@@ -34,15 +26,14 @@ class Joystick extends React.Component {
 
     render() {
         const {currentPlayer} = this.props
-        console.log(currentPlayer)
         return (
           <div>
             <ReactNipple
               options={{
                 mode: 'static',
-                position: { top: '50%', left: '50%' },
-                color: 'darkOrange',
-                size: 350
+                position: { top: '65%', left: '50%' },
+                color: 'teal',
+                size: 650
               }}
               style={{
                 width: '100vw',
@@ -50,7 +41,7 @@ class Joystick extends React.Component {
                 position: 'relative'
               }}
               onMove={(evt, data) =>
-               currentPlayer &&  this.moveJoystick(currentPlayer, data)
+               currentPlayer && this.moveJoystick(currentPlayer, data)
             }
             />
           </div>
