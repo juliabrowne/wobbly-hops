@@ -3,7 +3,6 @@ import React from "react";
 export default class Beer extends React.Component {
   constructor(args) {
     super(args);
-    this.wh = args.wh;
     this.beerImage = new Image();
     this.imgUrl = "https://i.gifer.com/wmp.gif";
     this.velocityY = 0.07;

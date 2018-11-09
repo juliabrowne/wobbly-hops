@@ -25,7 +25,6 @@ class createCharContainer extends Component {
     event.preventDefault();
     let nameInput = this.nameInput.current;
     let colorInput = this.colorInput.current;
-    console.log(colorInput);
     if (nameInput.value && colorInput.state.hex) {
       Meteor.call(
         "add.player",
@@ -61,7 +60,7 @@ class createCharContainer extends Component {
           <h2 className="name-header">What's ya' favorite color?</h2>
           <h4 className="center">(Click to Change)</h4>
           <div className="center">
-            <CirclePicker className="color-select" ref={this.colorInput} />
+            <CirclePicker className="color-select" ref={this.colorInput}/>
           </div>
           <div className="center">
             <Link to="/controller">

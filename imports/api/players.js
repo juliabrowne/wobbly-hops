@@ -1,7 +1,5 @@
 import { Mongo } from "meteor/mongo";
 import { Meteor } from "meteor/meteor";
-import Player from "../ui/components/player";
-// import SimpleSchema from 'simpl-schema';
 
 if (Meteor.isServer) {
   AccountsGuest.enabled = true;
@@ -17,12 +15,9 @@ if (Meteor.isServer) {
 const getPlayer = playerId => {
   return Players.findOne(playerId);
 };
-const getPlayers = () => {
-  return Players.find().fetch();
-};
 
 Meteor.methods({
-  "add.player"(name, color, playerId, x, y) {
+  "add.player"(name, color, playerId, x, y, frozen) {
     const newPlayer = {
       name,
       color,
