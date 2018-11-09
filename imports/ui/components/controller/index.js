@@ -2,8 +2,11 @@ import React, { Component } from "react";
 import "./styles";
 import { withTracker } from "meteor/react-meteor-data";
 import { Players } from "../../../api/players";
+import { Link } from "react-router-dom";
 import { Meteor } from "meteor/meteor";
-import MetaTags from "react-meta-tags";
+import Player from '../player';
+import Paddle from "../paddle";
+import MetaTags from 'react-meta-tags';
 
 // const MoveRightButton = ({ moveRight }) => {
 //   return (
@@ -36,6 +39,7 @@ class Controller extends Component {
   }
 
   componentDidMount() {
+    
     setInterval(() => {
       if (this.direction.left) {
         Meteor.call("move.left", this.props.currentPlayer[0]._id);

@@ -48,11 +48,18 @@ padding-bottom: 1rem;
     position: relative;
 }
 .color-select{
-    width: 50%;
-    height: 5rem;
+    display:flex;
+    justify-content: center;
+    min-width: 90vw;
+    min-height: 5rem;
     padding: 0;
-    margin: 0 auto 3rem;
+    margin: 0 auto;
     outline: 0;
+}
+
+.color-select > span > div {
+    min-width: 10vw;
+    min-height: 6vh;
 }
 .center{
     margin: 0 auto 1rem;
