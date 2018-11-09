@@ -30,18 +30,12 @@ Meteor.methods({
     Players.insert(newPlayer);
   },
   "init.Player"({ playerId, x, y }) {
-<<<<<<< HEAD
-    console.log(x, y)
-    Players.update({ _id: playerId }, { $set: { x, y } });
-    Players.update({ _id: playerId }, { $set: { frozen: false } });
-=======
     const p = getPlayer(playerId);
     Players.update({ _id: playerId }, { $set: { x, y } });
     Players.update({ _id: playerId }, { $set: { frozen: false } });
     Players.update({ _id: playerId }, { $set: { lives: 3 } });
 
     console.log(p.frozen);
->>>>>>> a4f7318ec3e9486bbb342d92db6dc6abf9eb2eb6
   },
   "move.right"(playerId) {
     const p = getPlayer(playerId);
