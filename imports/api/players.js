@@ -1,7 +1,5 @@
 import { Mongo } from "meteor/mongo";
 import { Meteor } from "meteor/meteor";
-import Player from "../ui/components/player";
-// import SimpleSchema from 'simpl-schema';
 
 if (Meteor.isServer) {
   AccountsGuest.enabled = true;
@@ -17,9 +15,6 @@ if (Meteor.isServer) {
 const getPlayer = playerId => {
   return Players.findOne(playerId);
 };
-const getPlayers = () => {
-  return Players.find().fetch();
-};
 
 Meteor.methods({
   "add.player"(name, color, playerId, x, y, frozen) {
@@ -29,12 +24,18 @@ Meteor.methods({
       playerId,
       x,
       y,
-      frozen: false
+      frozen: false,
+      lives: 3
     };
     Players.insert(newPlayer);
   },
   "init.Player"({ playerId, x, y }) {
+    const p = getPlayer(playerId);
     Players.update({ _id: playerId }, { $set: { x, y } });
+    Players.update({ _id: playerId }, { $set: { frozen: false } });
+    Players.update({ _id: playerId }, { $set: { lives: 3 } });
+
+    console.log(p.frozen);
   },
   "move.right"(playerId) {
     const p = getPlayer(playerId);
@@ -61,7 +62,16 @@ Meteor.methods({
   "unFreeze.player"(playerId) {
     const p = getPlayer(playerId);
     Players.update({ _id: playerId }, { $set: { frozen: false } });
+  },
+  "loseLife.player"(playerId) {
+    const p = getPlayer(playerId);
+    console.log(p.lives);
+    if (p.lives > 0) {
+      Players.update({ _id: playerId }, { $set: { lives: p.lives - 1 } });
+      console.log(p.lives);
+    }
   }
 });
 
 export const Players = new Mongo.Collection("players");
+1;

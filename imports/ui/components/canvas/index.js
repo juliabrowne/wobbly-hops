@@ -24,6 +24,7 @@ class Canvas extends React.Component {
     this.startGameLoop = this.startGameLoop.bind(this);
     this.players = [];
     this.userId = Meteor.userId();
+    this.lives = 3;
   }
 
   componentDidMount() {
@@ -122,7 +123,11 @@ class Canvas extends React.Component {
   }
 
   gameLoop() {
+<<<<<<< HEAD
     this.ctx.fillStyle = "black";
+=======
+    this.ctx.fillStyle = "rgb(255,222,173)";
+>>>>>>> 2b162ff135f6f0808d9e0a9ac74d59948df699be
     this.ctx.fillRect(
       0,
       0,
@@ -131,10 +136,10 @@ class Canvas extends React.Component {
     );
     this.renderBackground();
     this.move(this.props.players[0]);
+    this.renderBeer();
     this.renderPaddles();
     this.renderPlayers(this.ctx);
     this.renderBeerPaddles();
-    this.renderBeer();
   }
   renderPaddles = () => {
     this.paddles.forEach(p => {
@@ -164,24 +169,38 @@ class Canvas extends React.Component {
   };
 
   render() {
+    const { players } = this.props;
     if (!this.started && !this.props.loading && this.props.players.length)
       this.startGameLoop();
     return (
       <div className="flex-container">
         <ReactAudioPlayer src="../../../music/Racing-Menu.mp3" autoPlay loop />
-        <div className="left score">
-          <ScoreboardContainer />
-          <ScoreboardContainer />
+        <div className="score">
+          <ul className="list">
+            {players.length &&
+              players.map(player => {
+                const style = {
+                  color: player.color,
+                  textAlign: "center",
+                  fontSize: 25
+                };
+                return <li style={style}>{player.name}</li>;
+              })}
+          </ul>
         </div>
         <canvas
           ref={this.canvasRef}
           width={window.innerWidth - 275}
           height={window.innerHeight}
         />
+<<<<<<< HEAD
         <div className="right score">
           <ScoreboardContainer />
           <ScoreboardContainer />
         </div>
+=======
+        <div className="score" />
+>>>>>>> 2b162ff135f6f0808d9e0a9ac74d59948df699be
       </div>
     );
   }
