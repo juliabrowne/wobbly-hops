@@ -8,6 +8,7 @@ import Beer from "../beer";
 import BeerPaddle from "../beerPaddle";
 import { withTracker } from "meteor/react-meteor-data";
 import { Players } from "../../../api/players";
+import BackgroundImg from "../backgroundImg";
 
 class Canvas extends React.Component {
   constructor(props) {
@@ -70,6 +71,10 @@ class Canvas extends React.Component {
     this.beer = new Beer({
       wh: this.canvasRef.current.height
     });
+    this.BackgroundImg = new BackgroundImg({
+      wh: this.canvasRef.current.height,
+      ww: this.canvasRef.current.width
+    });
   }
 
   move = player => {
@@ -117,14 +122,14 @@ class Canvas extends React.Component {
   }
 
   gameLoop() {
-    
-    this.ctx.fillStyle = "rgb(255,222,173)";
+    this.ctx.fillStyle = "black";
     this.ctx.fillRect(
       0,
       0,
       this.canvasRef.current.width,
       this.canvasRef.current.height
     );
+    this.renderBackground();
     this.move(this.props.players[0]);
     this.renderPaddles();
     this.renderPlayers(this.ctx);
@@ -154,21 +159,31 @@ class Canvas extends React.Component {
     this.beer.render(this.ctx);
   };
 
+  renderBackground = () => {
+    this.BackgroundImg.render(this.ctx);
+  };
+
   render() {
     if (!this.started && !this.props.loading && this.props.players.length)
       this.startGameLoop();
-    return <div className="flex-container">
+    return (
+      <div className="flex-container">
         <ReactAudioPlayer src="../../../music/Racing-Menu.mp3" autoPlay loop />
         <div className="left score">
           <ScoreboardContainer />
           <ScoreboardContainer />
         </div>
-          <canvas ref={this.canvasRef} width={window.innerWidth - 275} height={window.innerHeight} />
+        <canvas
+          ref={this.canvasRef}
+          width={window.innerWidth - 275}
+          height={window.innerHeight}
+        />
         <div className="right score">
           <ScoreboardContainer />
           <ScoreboardContainer />
         </div>
-      </div>;
+      </div>
+    );
   }
 }
 export default withTracker(() => {
