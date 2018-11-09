@@ -6,8 +6,6 @@ import { Meteor } from 'meteor/meteor';
 import ReactNipple from 'react-nipple';
 import 'react-nipple/lib/styles.css';
 
-const count = 0;
-
 class Joystick extends React.Component {
 
     constructor() {
@@ -19,18 +17,24 @@ class Joystick extends React.Component {
     }
 
     moveJoystick = (player, data) => {
-        const { degree } = data.angle;
-
-        if (degree > 60 || degree < 297) {
-            Meteor.call('move.right', player._id);
-                console.log('hey')}
-        else if (degree > 131 && degree < 245) {
-             Meteor.call('move.left', player._id);
+    const {degree}  = data.angle;
+        // console.log(data.angle)
+        if(player.length > 0){
+            if (degree > 60 && degree < 280) {
+                console.log(degree)
+                Meteor.call('move.left', player[0]._id);
+                   }
+            // if (degree > 120 && degree < 230) {
+                else{
+                console.log(degree)
+                 Meteor.call('move.right', player[0]._id);
+            }
         }
-        count++;
     };
 
     render() {
+        const {currentPlayer} = this.props
+        console.log(currentPlayer)
         return (
           <div>
             <ReactNipple
@@ -45,18 +49,19 @@ class Joystick extends React.Component {
                 height: '100vh',
                 position: 'relative'
               }}
-              onMove={this.moveJoystick}
-            //   onMove={(evt, data) => console.log(evt, data)}
+              onMove={(evt, data) =>
+               currentPlayer &&  this.moveJoystick(currentPlayer, data)
+            }
             />
           </div>
         );
       }
 }
 
-export default withTracker(() => {
+export default withTracker( () => {
     const handle = Meteor.subscribe("players");
     const userId = Meteor.userId();
-    const currentPlayer = Players.find({ playerId: userId }).fetch();
+    const currentPlayer =  Players.find({ playerId: userId }).fetch();
     return {
       loading: !handle.ready(),
       currentPlayer
