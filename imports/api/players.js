@@ -39,6 +39,7 @@ Meteor.methods({
   },
   "move.right"(playerId) {
     const p = getPlayer(playerId);
+    console.log(p);
     if (p.x >= 1290) {
       Players.update({ _id: playerId }, { $set: { x: (p.x = 1290) } });
     }

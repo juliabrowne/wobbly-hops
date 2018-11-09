@@ -6,8 +6,7 @@ export default class BackgroundImg extends React.Component {
     super(args);
     this.wh = args.wh;
     this.beerImage = new Image();
-    this.imgUrl =
-      "../../../gifs/beer-cartoon-doodle-seamless-background-vector-20432954.png";
+    this.imgUrl = "../../../gifs/cheers-1024x1024.jpg";
     this.velocityY = 0;
     this.positionY = 0;
     this.wh = args.wh;
@@ -16,15 +15,13 @@ export default class BackgroundImg extends React.Component {
 
   render(ctx) {
     if (this.positionY > 0) this.positionY -= this.velocityY;
-
-    this.beerImage.src = this.imgUrl;
-
+      this.beerImage.src = this.imgUrl;
     ctx.drawImage(
-      this.beerImage,
-      0,
-      0,
-      this.ww, //Find access to these 2 things and pass it in as a prop
-      this.wh
-    );
+          this.beerImage,
+         0,
+         0,
+         this.ww, 
+         this.wh,
+        );
   }
 }
