@@ -61,9 +61,12 @@ class Player extends React.Component {
         }
       });
 
+
     //JULIA, END GAME GO'S HERE!!!!
     if (this.positionY > this.beer.positionY) {
     }
+
+      //JULIA, END GAME GO'S HERE!!!!
 
       if (this.positionY > this.beer.positionY) {
         console.log("DEATH TO YOU SIR");

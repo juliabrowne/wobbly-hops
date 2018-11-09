@@ -70,7 +70,8 @@ class Canvas extends React.Component {
       p.generateXandY(this.beerPaddles);
     });
     this.beer = new Beer({
-      wh: this.canvasRef.current.height
+      wh: this.canvasRef.current.height,
+      ww: this.canvasRef.current.width
     });
     this.BackgroundImg = new BackgroundImg({
       wh: this.canvasRef.current.height,
