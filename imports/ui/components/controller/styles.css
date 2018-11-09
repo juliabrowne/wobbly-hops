@@ -5,7 +5,8 @@ img {
     background-color: transparent;
 }
 
-button {
+.leftButton,
+.rightButton {
     outline: none;
     background: linear-gradient(white 10%, #F09000 90%);
 }
