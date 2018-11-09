@@ -22,7 +22,7 @@ const getPlayers = () => {
 };
 
 Meteor.methods({
-  "add.player"(name, color, playerId, x, y) {
+  "add.player"(name, color, playerId, x, y, frozen) {
     const newPlayer = {
       name,
       color,
