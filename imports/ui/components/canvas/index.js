@@ -34,7 +34,7 @@ class Canvas extends React.Component {
     };
     this.ctx = this.canvasRef.current.getContext("2d");
 
-    for (let i = 0; i < 100 - this.paddles.length; i++) {
+    for (let i = 0; i < 40; i++) {
       this.paddles.push(
         new Paddle({
           position: {
@@ -50,6 +50,7 @@ class Canvas extends React.Component {
     this.paddles.forEach(p => {
       p.generateXandY(this.paddles);
     });
+
     for (let i = 0; i <= 10; i++) {
       this.beerPaddles.push(
         new BeerPaddle({
@@ -57,7 +58,6 @@ class Canvas extends React.Component {
             x: Math.random() * this.canvasRef.current.width + 1,
             y: (Math.random() * this.canvasRef.current.height + 1) * -1
           },
-          // beerPaddle: Math.floor(Math.random() * 5 + 1),
           wh: this.canvasRef.current.height,
           ww: this.canvasRef.current.width,
           paddles: this.paddles
@@ -67,6 +67,13 @@ class Canvas extends React.Component {
     this.beerPaddles.forEach(p => {
       p.generateXandY(this.beerPaddles);
     });
+<<<<<<< HEAD
+    this.beer = new Beer({
+      wh: this.canvasRef.current.height
+    });
+=======
+    this.beer = new Beer({});
+>>>>>>> 126f7dfab283620bc45d693c7124b678a46a63dc
   }
 
   move = player => {
@@ -103,7 +110,8 @@ class Canvas extends React.Component {
               paddles: this.paddles,
               beerPaddles: this.beerPaddles,
               positionX: this.canvasRef.current.width / 2,
-              currentPlayer: Players.find({ playerId: this.userId }).fetch()
+              currentPlayer: Players.find({ playerId: this.userId }).fetch(),
+              beer: this.beer
             })
           );
         }
@@ -121,13 +129,12 @@ class Canvas extends React.Component {
       this.canvasRef.current.width,
       this.canvasRef.current.height
     );
+    this.move(this.props.players[0]);
     this.renderPaddles();
     this.renderPlayers(this.ctx);
     this.renderBeerPaddles();
-    // this.renderBeer();
-    this.move(this.props.players[0]);
+    this.renderBeer();
   }
-
   renderPaddles = () => {
     this.paddles.forEach(p => {
       p.render(this.ctx, this.paddles);

@@ -17,16 +17,19 @@ if (Meteor.isServer) {
 const getPlayer = playerId => {
   return Players.findOne(playerId);
 };
+const getPlayers = () => {
+  return Players.find().fetch();
+};
 
 Meteor.methods({
-  "add.player"(name, color, playerId, x, y) {
+  "add.player"(name, color, playerId, x, y, frozen) {
     const newPlayer = {
       name,
       color,
       playerId,
       x,
       y,
-      frozen
+      frozen: false
     };
     Players.insert(newPlayer);
   },
@@ -35,12 +38,18 @@ Meteor.methods({
   },
   "move.right"(playerId) {
     const p = getPlayer(playerId);
+    if (p.x >= 1290) {
+      Players.update({ _id: playerId }, { $set: { x: (p.x = 1290) } });
+    }
     if (!p.frozen) {
       Players.update({ _id: playerId }, { $set: { x: p.x + 3 } });
     }
   },
   "move.left"(playerId) {
     const p = getPlayer(playerId);
+    if (p.x <= 0) {
+      Players.update({ _id: playerId }, { $set: { x: (p.x = 0) } });
+    }
     if (!p.frozen) {
       Players.update({ _id: playerId }, { $set: { x: p.x - 3 } });
     }
