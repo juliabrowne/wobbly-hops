@@ -15,3 +15,14 @@
     font-family: 'Gloria Hallelujah', cursive;
     font-size: 2rem;
 }
+.list{
+list-style: none;
+display: flex;
+justify-content: space-around;
+padding: 0;
+width: 80%;
+flex-wrap: wrap;
+}
+li{
+    margin: 0 20px;
+}

@@ -3,14 +3,14 @@ import "./styles.css";
 import { Link } from "react-router-dom";
 import { withTracker } from "meteor/react-meteor-data";
 import ReactAudioPlayer from "react-audio-player";
-import { Players} from "../../../api/players"
+import { Players } from "../../../api/players";
 
 class lobbyContainer extends Component {
-  constructor(){
-    super()
-    // this.players = Players.find().fetch();
+  constructor() {
+    super();
   }
   render() {
+    const { players } = this.props;
     return (
       <div className="root">
         {/* Music taken from www.Bensound.com and is Non-Copyrighted*/}
@@ -29,7 +29,17 @@ class lobbyContainer extends Component {
           <button className="setup-button">START GAME</button>
         </Link>
         <h2 className="players-header">Players in Lobby:</h2>
-        <div className="players-list"></div>
+        <div className="players-list">
+          <ul className="list">
+            {players.length &&
+              players.map(player => {
+                const style = {
+                  color: player.color
+                };
+                return <li style={style}>{player.name}</li>;
+              })}
+          </ul>
+        </div>
         <div id="bubbles">
           <div className="bubble x1" />
           <div className="bubble x2" />
@@ -50,7 +60,6 @@ class lobbyContainer extends Component {
 export default withTracker(() => {
   const handle = Meteor.subscribe("players");
   const players = Players.find().fetch();
-  console.log(players)
   return {
     loading: !handle.ready(),
     players: players
