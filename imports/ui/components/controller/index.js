@@ -33,13 +33,14 @@ class Controller extends Component {
   constructor() {
     super();
     this.direction = {
-        left: false,
-        right: false
+      left: false,
+      right: false
     };
   }
 
   componentDidMount() {
     setInterval(() => {
+<<<<<<< HEAD
         // console.log(this.props.currentPlayer)
        if(this.direction.left) {
         Meteor.call('move.left', this.props.currentPlayer[0]._id);
@@ -48,34 +49,58 @@ class Controller extends Component {
         Meteor.call('move.right', this.props.currentPlayer[0]._id);
        }
     }, 60)
+=======
+      if (this.direction.left) {
+        Meteor.call("move.left", this.props.currentPlayer[0]._id);
+      }
+      if (this.direction.right) {
+        Meteor.call("move.right", this.props.currentPlayer[0]._id);
+      }
+    }, 60);
+>>>>>>> bcbc14142c49378d62c8a1d5a8ad294700d819bf
   }
 
-  go = (direction) => {
+  go = direction => {
     this.direction[direction] = true;
-  }
+  };
 
-  stopGoing = (direction) => {
+  stopGoing = direction => {
     this.direction[direction] = false;
-  }
+  };
 
-  render() { 
-    return (<div className="root">
-    <MetaTags>
-        <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0'/>
-    </MetaTags>
+  render() {
+    return (
+      <div className="root">
+        <MetaTags>
+          <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"
+          />
+        </MetaTags>
         <div className="buttonRow" style={rowStyle}>
+          <button
+            className="leftButton"
+            onMouseDown={event => {
+              this.go("left");
+            }}
+            onMouseUp={event => {
+              this.stopGoing("left");
+            }}
+          >
+            <img src="./../../../controllerImages/leftArrow.png" />
+          </button>
 
-    <button className='leftButton' 
-        onMouseDown={(event) => {this.go('left')}} 
-        onMouseUp={(event) => {this.stopGoing('left')}} >
-      <img src='./../../../controllerImages/leftArrow.png' />
-    </button>
-
-    <button className='rightButton'  
-        onMouseDown={(event) => {this.go('right')}} 
-        onMouseUp={(event) => {this.stopGoing('right')}} >
-      <img src='./../../../controllerImages/rightArrow.png' />
-    </button>
+          <button
+            className="rightButton"
+            onMouseDown={event => {
+              this.go("right");
+            }}
+            onMouseUp={event => {
+              this.stopGoing("right");
+            }}
+          >
+            <img src="./../../../controllerImages/rightArrow.png" />
+          </button>
         </div>
       </div>
     );

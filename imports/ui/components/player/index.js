@@ -31,7 +31,6 @@ class Player extends React.Component {
   }
 
   render(ctx, paddles, pX) {
-    console.log("render");
     this.positionX = pX;
     this.jumpLength++;
     this.arr.forEach(paddle => {
