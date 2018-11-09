@@ -4,7 +4,7 @@ export default class Beer extends React.Component {
   constructor(args) {
     super(args);
     this.beerImage = new Image();
-      this.imgUrl = "../../../gifs/beer-bubbles.gif" ;
+      this.imgUrl = "../../../gifs/beer-bubbles1.png" ;
       this.velocityY = 0.07;
       this.positionY = args.wh + 100;
       this.wh = args.wh;
