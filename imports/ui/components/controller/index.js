@@ -2,7 +2,10 @@ import React, { Component } from "react";
 import "./styles";
 import { withTracker } from "meteor/react-meteor-data";
 import { Players } from "../../../api/players";
+import { Link } from "react-router-dom";
 import { Meteor } from "meteor/meteor";
+import Player from '../player';
+import Paddle from "../paddle";
 import MetaTags from 'react-meta-tags';
 
 // const MoveRightButton = ({ moveRight }) => {
@@ -36,14 +39,16 @@ class Controller extends Component {
   }
 
   componentDidMount() {
+    
     setInterval(() => {
+        // console.log(this.props.currentPlayer)
        if(this.direction.left) {
-        Meteor.call('move.left', this.props.currentPlayer[0]._id);
+        Meteor.call("move.left", this.props.currentPlayer._id);
        }
        if(this.direction.right){
-        Meteor.call('move.right', this.props.currentPlayer[0]._id);
+        Meteor.call("move.right", this.props.currentPlayer._id);
        }
-    }, 60)
+    }, 500)
   }
 
   go = (direction) => {
@@ -55,11 +60,11 @@ class Controller extends Component {
   }
 
   render() { 
-    return (<div className='root'>
+    return (<div className="root">
     <MetaTags>
         <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0'/>
     </MetaTags>
-        <div className='buttonRow' style={rowStyle}>
+        <div className="buttonRow" style={rowStyle}>
 
     <button className='leftButton' 
         onMouseDown={(event) => {this.go('left')}} 
