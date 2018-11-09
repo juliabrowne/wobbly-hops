@@ -20,6 +20,7 @@ class Joystick extends React.Component {
 
     moveJoystick = (player, data) => {
         const { degree } = data.angle;
+
         if (degree > 60 || degree < 297) {
             Meteor.call('move.right', player._id);
                 console.log('hey')}

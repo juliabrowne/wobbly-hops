@@ -39,16 +39,15 @@ class Controller extends Component {
   }
 
   componentDidMount() {
-    
     setInterval(() => {
         // console.log(this.props.currentPlayer)
        if(this.direction.left) {
-        Meteor.call("move.left", this.props.currentPlayer._id);
+        Meteor.call('move.left', this.props.currentPlayer[0]._id);
        }
        if(this.direction.right){
-        Meteor.call("move.right", this.props.currentPlayer._id);
+        Meteor.call('move.right', this.props.currentPlayer[0]._id);
        }
-    }, 500)
+    }, 60)
   }
 
   go = (direction) => {
