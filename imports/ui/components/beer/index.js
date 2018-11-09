@@ -4,12 +4,13 @@ export default class Beer extends React.Component {
   constructor(args) {
     super(args);
     this.beerImage = new Image();
-    this.imgUrl = "https://i.gifer.com/wmp.gif";
-    this.velocityY = 0.07;
-    this.positionY = args.wh + 100;
-    this.wh = args.wh;
-  }
-
+      this.imgUrl = "../../../gifs/beer-bubbles.gif" ;
+      this.velocityY = 0.07;
+      this.positionY = args.wh + 100;
+      this.wh = args.wh;
+    }
+  
+  
   render(ctx) {
     if (this.positionY > 0) this.positionY -= this.velocityY;
 

@@ -8,6 +8,7 @@ import Beer from "../beer";
 import BeerPaddle from "../beerPaddle";
 import { withTracker } from "meteor/react-meteor-data";
 import { Players } from "../../../api/players";
+import BackgroundImg from "../backgroundImg";
 
 class Canvas extends React.Component {
   constructor(props) {
@@ -71,6 +72,10 @@ class Canvas extends React.Component {
     this.beer = new Beer({
       wh: this.canvasRef.current.height
     });
+    this.BackgroundImg = new BackgroundImg({
+      wh: this.canvasRef.current.height,
+      ww: this.canvasRef.current.width
+    });
   }
 
   move = player => {
@@ -118,13 +123,14 @@ class Canvas extends React.Component {
   }
 
   gameLoop() {
-    this.ctx.fillStyle = "rgb(255,222,173)";
+    this.ctx.fillStyle = "black";
     this.ctx.fillRect(
       0,
       0,
       this.canvasRef.current.width,
       this.canvasRef.current.height
     );
+    this.renderBackground();
     this.move(this.props.players[0]);
     this.renderPaddles();
     this.renderPlayers(this.ctx);
@@ -154,6 +160,10 @@ class Canvas extends React.Component {
     this.beer.render(this.ctx);
   };
 
+  renderBackground = () => {
+    this.BackgroundImg.render(this.ctx);
+  };
+
   render() {
     const { players } = this.props;
     if (!this.started && !this.props.loading && this.props.players.length)
@@ -179,7 +189,10 @@ class Canvas extends React.Component {
           width={window.innerWidth - 275}
           height={window.innerHeight}
         />
-        <div className="score" />
+        <div className="right score">
+          <ScoreboardContainer />
+          <ScoreboardContainer />
+        </div>
       </div>
     );
   }
