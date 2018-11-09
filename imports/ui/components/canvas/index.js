@@ -126,10 +126,10 @@ class Canvas extends React.Component {
       this.canvasRef.current.height
     );
     this.move(this.props.players[0]);
-    this.renderBeer();
     this.renderPaddles();
     this.renderPlayers(this.ctx);
     this.renderBeerPaddles();
+    this.renderBeer();
   }
   renderPaddles = () => {
     this.paddles.forEach(p => {
