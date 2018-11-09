@@ -6,8 +6,7 @@ export default class BackgroundImg extends React.Component {
     super(args);
     this.wh = args.wh;
     this.beerImage = new Image();
-    this.imgUrl =
-    "../../../gifs/beer-cartoon-doodle-seamless-background-vector-20432954.png";
+    this.imgUrl = "../../../gifs/cheers-1024x1024.jpg";
     this.velocityY = 0;
     this.positionY = 0;
     this.wh = args.wh;
@@ -23,7 +22,7 @@ export default class BackgroundImg extends React.Component {
     ctx.drawImage(
           this.beerImage,
          0,
-         20,
+         0,
          this.ww, 
          this.wh,
         );
