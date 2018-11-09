@@ -4,9 +4,9 @@ import { withTracker } from "meteor/react-meteor-data";
 import { Players } from "../../../api/players";
 import { Link } from "react-router-dom";
 import { Meteor } from "meteor/meteor";
-import Player from '../player';
+import Player from "../player";
 import Paddle from "../paddle";
-import MetaTags from 'react-meta-tags';
+import MetaTags from "react-meta-tags";
 
 // const MoveRightButton = ({ moveRight }) => {
 //   return (
@@ -40,16 +40,6 @@ class Controller extends Component {
 
   componentDidMount() {
     setInterval(() => {
-<<<<<<< HEAD
-        // console.log(this.props.currentPlayer)
-       if(this.direction.left) {
-        Meteor.call('move.left', this.props.currentPlayer[0]._id);
-       }
-       if(this.direction.right){
-        Meteor.call('move.right', this.props.currentPlayer[0]._id);
-       }
-    }, 60)
-=======
       if (this.direction.left) {
         Meteor.call("move.left", this.props.currentPlayer[0]._id);
       }
@@ -57,7 +47,6 @@ class Controller extends Component {
         Meteor.call("move.right", this.props.currentPlayer[0]._id);
       }
     }, 60);
->>>>>>> bcbc14142c49378d62c8a1d5a8ad294700d819bf
   }
 
   go = direction => {
