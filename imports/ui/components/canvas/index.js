@@ -67,7 +67,9 @@ class Canvas extends React.Component {
     this.beerPaddles.forEach(p => {
       p.generateXandY(this.beerPaddles);
     });
-    this.beer = new Beer({});
+    this.beer = new Beer({
+      wh: this.canvasRef.current.height
+    });
   }
 
   move = player => {
