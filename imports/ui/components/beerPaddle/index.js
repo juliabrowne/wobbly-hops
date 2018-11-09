@@ -42,7 +42,7 @@ export default class BeerPaddle extends React.Component {
     this.position.y = this.position.y + this.velocity;
     ctx.fillRect(this.position.x, this.position.y, 100, 25);
 
-    ctx.fillStyle = "darkorange";
+    ctx.fillStyle = "skyblue";
 
     if (this.position.y > this.wh) {
       this.generateXandY(paddles);

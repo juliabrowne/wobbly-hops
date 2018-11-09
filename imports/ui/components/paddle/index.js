@@ -48,7 +48,7 @@ export default class Paddle extends React.Component {
     this.position.y = this.position.y + this.velocity;
     ctx.fillRect(this.position.x, this.position.y, 100, 25);
 
-    ctx.fillStyle = "yellow";
+    ctx.fillStyle = "black";
 
     if (this.position.y > this.wh) {
       this.generateXandY(paddles);
