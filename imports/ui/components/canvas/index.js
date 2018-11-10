@@ -200,9 +200,9 @@ class Canvas extends React.Component {
 
   render() {
     const { players } = this.props;
-    if (!this.gameOn) {
-      return <Redirect to="/endGame" />;
-    }
+    // if (!this.gameOn) {
+    //   return <Redirect to="/endGame" />;
+    // }
     if (!this.started && !this.props.loading && this.props.players.length)
       this.startGameLoop();
     return (
