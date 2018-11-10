@@ -8,6 +8,7 @@ import BeerPaddle from "../beerPaddle";
 import { withTracker } from "meteor/react-meteor-data";
 import { Players } from "../../../api/players";
 import { Redirect, Switch } from "react-router";
+import BackgroundImg from "../backgroundImg";
 
 class Canvas extends React.Component {
   constructor(props) {
@@ -70,7 +71,12 @@ class Canvas extends React.Component {
       p.generateXandY(this.beerPaddles);
     });
     this.beer = new Beer({
-      wh: this.canvasRef.current.height
+      wh: this.canvasRef.current.height,
+      ww: this.canvasRef.current.width
+    });
+    this.BackgroundImg = new BackgroundImg({
+      wh: this.canvasRef.current.height,
+      ww: this.canvasRef.current.width
     });
   }
 
@@ -137,19 +143,19 @@ class Canvas extends React.Component {
   }
 
   gameLoop() {
-    // console
-    this.ctx.fillStyle = "rgb(255,222,173)";
+    this.ctx.fillStyle = "black";
     this.ctx.fillRect(
       0,
       0,
       this.canvasRef.current.width,
       this.canvasRef.current.height
     );
+    this.renderBackground();
     this.move(this.props.players[0]);
-    this.renderBeer();
     this.renderPaddles();
     this.renderPlayers(this.ctx);
     this.renderBeerPaddles();
+    this.renderBeer();
   }
 
   renderPaddles = () => {
@@ -187,6 +193,9 @@ class Canvas extends React.Component {
       );
     }
     return images;
+  }
+  renderBackground = () => {
+    this.BackgroundImg.render(this.ctx);
   };
 
   render() {

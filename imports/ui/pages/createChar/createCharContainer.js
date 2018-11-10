@@ -63,7 +63,7 @@ class createCharContainer extends Component {
             <CirclePicker className="color-select" ref={this.colorInput}/>
           </div>
           <div className="center">
-            <Link to="/controller">
+            <Link to="/joystick">
               <SubmitButton addPlayer={() => this.addPlayer()} />
             </Link>
           </div>
