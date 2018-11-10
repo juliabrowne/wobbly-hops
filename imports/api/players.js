@@ -25,11 +25,9 @@ if (Meteor.isServer) {
     return Players.find({ player: Meteor.userId() });
   });
 }
-
 const getPlayer = playerId => {
   return Players.findOne(playerId);
 };
-
 Meteor.methods({
   "add.player"(name, color, playerId, x, y, maxX) {
     const newPlayer = {

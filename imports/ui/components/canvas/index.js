@@ -148,12 +148,12 @@ class Canvas extends React.Component {
       this.canvasRef.current.width,
       this.canvasRef.current.height
     );
-    // this.renderBackground();
+    this.renderBackground();
     this.move(this.props.players[0]);
     this.renderPaddles();
     this.renderBeerPaddles();
     this.renderPlayers(this.ctx);
-    // this.renderBeer();
+    this.renderBeer();
   }
 
   renderPaddles = () => {

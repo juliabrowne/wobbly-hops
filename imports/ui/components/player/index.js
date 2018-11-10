@@ -64,36 +64,35 @@ class Player extends React.Component {
           this.positionY = 0;
           this.lives -= 1;
         }
-
-        if (!this.freeze) {
-          if (this.rising && this.jumpLength > 25) {
-            this.rising = false;
-            this.jumpLength = 0;
-          }
-          if (this.positionY >= this.wh - this.height || this.collision) {
-            if (this.collision) this.jumpLength = 0;
-            this.rising = true;
-            this.collision = false;
-          }
-          if (this.positionY <= 0) {
-            this.rising = false;
-          }
-        }
-        switch (true) {
-          case this.rising:
-            this.positionY -= this.velocityY;
-            break;
-          case this.freeze:
-            this.positionY += 1;
-            break;
-          default:
-            this.positionY += this.velocityY;
-        }
-        ctx.fillStyle = this.color;
-        ctx.fillRect(this.positionX, this.positionY, this.height, this.width);
-      } else {
-        Meteor.call("freeze.player", this.player);
       }
+      if (!this.freeze) {
+        if (this.rising && this.jumpLength > 25) {
+          this.rising = false;
+          this.jumpLength = 0;
+        }
+        if (this.positionY >= this.wh - this.height || this.collision) {
+          if (this.collision) this.jumpLength = 0;
+          this.rising = true;
+          this.collision = false;
+        }
+        if (this.positionY <= 0) {
+          this.rising = false;
+        }
+      }
+      switch (true) {
+        case this.rising:
+          this.positionY -= this.velocityY;
+          break;
+        case this.freeze:
+          this.positionY += 1;
+          break;
+        default:
+          this.positionY += this.velocityY;
+      }
+      ctx.fillStyle = this.color;
+      ctx.fillRect(this.positionX, this.positionY, this.height, this.width);
+    } else {
+      Meteor.call("freeze.player", this.player);
     }
   }
 }

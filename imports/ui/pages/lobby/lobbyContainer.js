@@ -36,7 +36,11 @@ class lobbyContainer extends Component {
                 const name = {
                   color: player.color
                 };
-                return <li style={name}>{player.name}</li>;
+                return (
+                  <li key={player._id} style={name}>
+                    {player.name}
+                  </li>
+                );
               })}
           </ul>
         </div>
