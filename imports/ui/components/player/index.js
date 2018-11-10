@@ -1,7 +1,5 @@
 import React from "react";
-import { Players } from "../../../api/players";
 import { Meteor } from "meteor/meteor";
-import { withTracker } from "meteor/react-meteor-data";
 
 class Player extends React.Component {
   constructor(args) {
@@ -81,7 +79,6 @@ class Player extends React.Component {
             this.rising = false;
           }
         }
-
         switch (true) {
           case this.rising:
             this.positionY -= this.velocityY;
@@ -95,7 +92,7 @@ class Player extends React.Component {
         ctx.fillStyle = this.color;
         ctx.fillRect(this.positionX, this.positionY, this.height, this.width);
       } else {
-        // Meteor.call("freeze.player", this.player);
+        Meteor.call("freeze.player", this.player);
       }
     }
   }

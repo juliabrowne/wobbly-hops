@@ -7,7 +7,6 @@ import Beer from "../beer";
 import BeerPaddle from "../beerPaddle";
 import { withTracker } from "meteor/react-meteor-data";
 import { Players } from "../../../api/players";
-import { Redirect, Switch } from "react-router";
 import BackgroundImg from "../backgroundImg";
 
 class Canvas extends React.Component {
@@ -25,7 +24,7 @@ class Canvas extends React.Component {
     this.players = [];
     this.userId = Meteor.userId();
     this.lives = 3;
-    this.gameOn = true;
+    // this.gameOn = true;
   }
 
   componentDidMount() {
@@ -92,24 +91,23 @@ class Canvas extends React.Component {
   getRandomInt(max) {
     return Math.floor(Math.random() * Math.floor(max));
   }
-  gameStatus() {
-    let count = 0;
-    this.props.players.map(player => {
-      if (player.lives > 0) {
-        count++;
-      }
-      if (count > 1) {
-        this.gameOn = true;
-      } else {
-        this.gameOn = false;
-      }
-    });
-  }
+  // gameStatus() {
+  //   let count = 0;
+  //   this.props.players.map(player => {
+  //     if (player.lives > 0) {
+  //       count++;
+  //     }
+  //     if (count > 1) {
+  //       this.gameOn = true;
+  //     } else {
+  //       this.gameOn = false;
+  //     }
+  //   });
+  // }
 
-  componentDidUpdate() {
-    this.gameStatus();
-  }
-
+  // componentDidUpdate() {
+  //   this.gameStatus();
+  // }
   startGameLoop() {
     this.started = true;
     this.props.players.forEach(async p => {
@@ -150,12 +148,12 @@ class Canvas extends React.Component {
       this.canvasRef.current.width,
       this.canvasRef.current.height
     );
-    this.renderBackground();
+    // this.renderBackground();
     this.move(this.props.players[0]);
     this.renderPaddles();
-    this.renderPlayers(this.ctx);
     this.renderBeerPaddles();
-    this.renderBeer();
+    this.renderPlayers(this.ctx);
+    // this.renderBeer();
   }
 
   renderPaddles = () => {
@@ -193,17 +191,15 @@ class Canvas extends React.Component {
       );
     }
     return images;
-  }
+  };
+
   renderBackground = () => {
     this.BackgroundImg.render(this.ctx);
   };
 
   render() {
     const { players } = this.props;
-    // if (!this.gameOn) {
-    //   return <Redirect to="/endGame" />;
-    // }
-    if (!this.started && !this.props.loading && this.props.players.length)
+    if (!this.started && !this.props.loading && players.length)
       this.startGameLoop();
     return (
       <div className="flex-container">
