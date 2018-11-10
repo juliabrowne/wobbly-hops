@@ -33,7 +33,6 @@ class Player extends React.Component {
 
   render(ctx, paddles, pX) {
     if (this.lives !== 0) {
-      console.log("render");
       this.positionX = pX;
       this.jumpLength++;
       this.arr.forEach(paddle => {
@@ -61,8 +60,22 @@ class Player extends React.Component {
         }
       });
 
+<<<<<<< HEAD
 if (this.positionY > this.beer.positionY) {
         console.log("DEATH TO YOU SIR");
+=======
+<<<<<<< HEAD
+=======
+
+    //JULIA, END GAME GO'S HERE!!!!
+    if (this.positionY > this.beer.positionY) {
+    }
+
+      //JULIA, END GAME GO'S HERE!!!!
+
+>>>>>>> 0faa49798a6d90609365edcd922030b22f59f36e
+      if (this.positionY > this.beer.positionY) {
+>>>>>>> 7d337165b020d043904210681ae2837c363bd6e5
         Meteor.call("loseLife.player", this.player);
         this.positionY = 0;
         this.lives -= 1;

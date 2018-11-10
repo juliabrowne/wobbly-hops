@@ -1,0 +1,67 @@
+@import url("https://fonts.googleapis.com/css?family=Press+Start+2P");
+@import url("https://fonts.googleapis.com/css?family=Gloria+Hallelujah");
+
+.winner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  flex-direction: column;
+  background-image: url("../../../pictures/confetti.jpg");
+  background-size: cover;
+}
+.winner {
+  padding: 0;
+  margin: 0;
+  font-family: "Press Start 2P", cursive;
+  font-size: 8rem;
+  animation: rainbow 5s infinite;
+}
+.player {
+  /* padding: 0; */
+  margin: 0;
+  font-family: "Gloria Hallelujah", cursive;
+  font-size: 10rem;
+}
+.button-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+.endGame-button {
+  border-radius: 40px;
+  background: #d87800;
+  color: white;
+  width: 30vw;
+  height: 10vh;
+  display: flex;
+  font-family: "Gloria Hallelujah", cursive;
+  justify-content: center;
+  margin: 0 auto;
+  font-size: 2rem;
+  font-weight: 600;
+  margin-top: 4.5rem;
+  outline: 0;
+  box-shadow: 10px 10px 8px rgba(0, 0, 0, 0.678);
+  cursor: pointer;
+}
+@keyframes rainbow {
+  0% {
+    color: orange;
+  }
+  20% {
+    color: purple;
+  }
+  40% {
+    color: red;
+  }
+  60% {
+    color: yellow;
+  }
+  80% {
+    color: green;
+  }
+  100% {
+    color: blue;
+  }
+}

@@ -1,22 +1,25 @@
 .flex-container {
-  background-color: black;
   display: flex;
-  justify-content: center;
   height: 100%;
   background: gray;
 }
-canvas{
+canvas {
   border-style: hidden solid hidden solid;
   border-width: 1px;
 }
-.list{
+.list {
   list-style: none;
   display: flex;
   flex-direction: column;
   margin: 0 auto;
   justify-content: space-around;
   padding: 0;
-  }
-  .score{
-    width: 100%;
-  }
+  flex-wrap: wrap;
+}
+.score {
+  width: 100%;
+}
+.heart-image {
+  height: 1.5rem;
+  width: 1.5rem;
+}
