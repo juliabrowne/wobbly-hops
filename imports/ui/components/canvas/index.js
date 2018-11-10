@@ -2,12 +2,12 @@ import React from "react";
 import "./styles.css";
 import Paddle from "../paddle";
 import Player from "../player";
-import ScoreboardContainer from "../scoreboard";
 import ReactAudioPlayer from "react-audio-player";
 import Beer from "../beer";
 import BeerPaddle from "../beerPaddle";
 import { withTracker } from "meteor/react-meteor-data";
 import { Players } from "../../../api/players";
+import { Redirect, Switch } from "react-router";
 
 class Canvas extends React.Component {
   constructor(props) {
@@ -24,6 +24,7 @@ class Canvas extends React.Component {
     this.players = [];
     this.userId = Meteor.userId();
     this.lives = 3;
+    this.gameOn = true;
   }
 
   componentDidMount() {
@@ -85,6 +86,23 @@ class Canvas extends React.Component {
   getRandomInt(max) {
     return Math.floor(Math.random() * Math.floor(max));
   }
+  gameStatus() {
+    let count = 0;
+    this.props.players.map(player => {
+      if (player.lives > 0) {
+        count++;
+      }
+      if (count > 1) {
+        this.gameOn = true;
+      } else {
+        this.gameOn = false;
+      }
+    });
+  }
+
+  componentDidUpdate() {
+    this.gameStatus();
+  }
 
   startGameLoop() {
     this.started = true;
@@ -92,9 +110,10 @@ class Canvas extends React.Component {
       await Meteor.call(
         "init.Player",
         {
-          x: this.getRandomInt(1500),
+          x: this.getRandomInt(this.canvasRef.current.width),
           y: this.canvasRef.current.height / 2,
-          playerId: p._id
+          playerId: p._id,
+          maxX: this.canvasRef.current.width
         },
         () => {
           this.players.push(
@@ -118,6 +137,7 @@ class Canvas extends React.Component {
   }
 
   gameLoop() {
+    // console
     this.ctx.fillStyle = "rgb(255,222,173)";
     this.ctx.fillRect(
       0,
@@ -131,6 +151,7 @@ class Canvas extends React.Component {
     this.renderPlayers(this.ctx);
     this.renderBeerPaddles();
   }
+
   renderPaddles = () => {
     this.paddles.forEach(p => {
       p.render(this.ctx, this.paddles);
@@ -154,8 +175,25 @@ class Canvas extends React.Component {
     this.beer.render(this.ctx);
   };
 
+  renderHeart = lives => {
+    let images = [];
+    for (let i = 0; i < lives; i++) {
+      images.push(
+        <img
+          key={i}
+          className="heart-image"
+          src="../../../pictures/heart.png"
+        />
+      );
+    }
+    return images;
+  };
+
   render() {
     const { players } = this.props;
+    if (!this.gameOn) {
+      return <Redirect to="/endGame" />;
+    }
     if (!this.started && !this.props.loading && this.props.players.length)
       this.startGameLoop();
     return (
@@ -165,21 +203,25 @@ class Canvas extends React.Component {
           <ul className="list">
             {players.length &&
               players.map(player => {
-                const style = {
+                const name = {
                   color: player.color,
                   textAlign: "center",
-                  fontSize: 25
+                  fontSize: 25,
+                  margin: 0
                 };
-                return <li style={style}>{player.name}</li>;
+                return (
+                  <li key={player._id} style={name}>
+                    {player.name} {this.renderHeart(player.lives)}
+                  </li>
+                );
               })}
           </ul>
         </div>
         <canvas
           ref={this.canvasRef}
-          width={window.innerWidth - 275}
+          width={window.innerWidth - 200}
           height={window.innerHeight}
         />
-        <div className="score" />
       </div>
     );
   }

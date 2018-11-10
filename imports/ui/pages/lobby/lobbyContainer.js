@@ -30,13 +30,13 @@ class lobbyContainer extends Component {
         </Link>
         <h2 className="players-header">Players in Lobby:</h2>
         <div className="players-list">
-          <ul className="list">
+          <ul className="lobby-list">
             {players.length &&
               players.map(player => {
-                const style = {
+                const name = {
                   color: player.color
                 };
-                return <li style={style}>{player.name}</li>;
+                return <li style={name}>{player.name}</li>;
               })}
           </ul>
         </div>

@@ -15,7 +15,7 @@
     font-family: 'Gloria Hallelujah', cursive;
     font-size: 2rem;
 }
-.list{
+.lobby-list{
 list-style: none;
 display: flex;
 justify-content: space-around;

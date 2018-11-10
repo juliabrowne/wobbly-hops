@@ -17,7 +17,7 @@ const getPlayer = playerId => {
 };
 
 Meteor.methods({
-  "add.player"(name, color, playerId, x, y, frozen) {
+  "add.player"(name, color, playerId, x, y, maxX) {
     const newPlayer = {
       name,
       color,
@@ -25,22 +25,22 @@ Meteor.methods({
       x,
       y,
       frozen: false,
-      lives: 3
+      lives: 3,
+      maxX
     };
     Players.insert(newPlayer);
   },
-  "init.Player"({ playerId, x, y }) {
+  "init.Player"({ playerId, x, y, maxX }) {
     const p = getPlayer(playerId);
     Players.update({ _id: playerId }, { $set: { x, y } });
     Players.update({ _id: playerId }, { $set: { frozen: false } });
     Players.update({ _id: playerId }, { $set: { lives: 3 } });
-
-    console.log(p.frozen);
+    Players.update({ _id: playerId }, { $set: { maxX } });
   },
   "move.right"(playerId) {
     const p = getPlayer(playerId);
-    if (p.x >= 1290) {
-      Players.update({ _id: playerId }, { $set: { x: (p.x = 1290) } });
+    if (p.x >= p.maxX - 25) {
+      Players.update({ _id: playerId }, { $set: { x: (p.x = p.maxX - 25) } });
     }
     if (!p.frozen) {
       Players.update({ _id: playerId }, { $set: { x: p.x + 3 } });
@@ -65,10 +65,8 @@ Meteor.methods({
   },
   "loseLife.player"(playerId) {
     const p = getPlayer(playerId);
-    console.log(p.lives);
     if (p.lives > 0) {
       Players.update({ _id: playerId }, { $set: { lives: p.lives - 1 } });
-      console.log(p.lives);
     }
   }
 });
