@@ -6,7 +6,7 @@ export default class BackgroundImg extends React.Component {
     super(args);
     this.wh = args.wh;
     this.beerImage = new Image();
-    this.imgUrl = "../../../gifs/cheers-1024x1024.jpg";
+      this.imgUrl = "../../../gifs/depositphotos_120691392-stock-illustration-mugs-of-beer-lager-ale.jpg";
     this.velocityY = 0;
     this.positionY = 0;
     this.wh = args.wh;
