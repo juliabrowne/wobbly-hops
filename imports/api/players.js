@@ -1,5 +1,19 @@
 import { Mongo } from "meteor/mongo";
 import { Meteor } from "meteor/meteor";
+import SimpleSchema from "simpl-schema";
+
+export const Players = new Mongo.Collection("players");
+
+Players.schema = new SimpleSchema ({
+  _id: String,
+  name: String,
+  color: String,
+  playerId: String,
+  x: Number,
+  y: Number,
+  frozen: Boolean,
+  lives: Number,
+})
 
 if (Meteor.isServer) {
   AccountsGuest.enabled = true;
@@ -28,6 +42,7 @@ Meteor.methods({
       lives: 3,
       maxX
     };
+    // Players.schema.validate(newPlayer);
     Players.insert(newPlayer);
   },
   "init.Player"({ playerId, x, y, maxX }) {
@@ -71,5 +86,4 @@ Meteor.methods({
   }
 });
 
-export const Players = new Mongo.Collection("players");
 1;
