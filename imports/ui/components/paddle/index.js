@@ -10,6 +10,7 @@ export default class Paddle extends React.Component {
     this.height = 25;
     this.velocity = 1;
     this.beerPaddles = args.beerPaddles;
+    this.randomPaddles = args.randomPaddles;
     this.name = "paddle";
     this.paddleImage = new Image();
     this.imgUrl = "../../../pictures/blackPaddle-min.jpg";
@@ -33,9 +34,9 @@ export default class Paddle extends React.Component {
   }
 
   generateXandY(paddles) {
-    let allPaddles = paddles.concat(this.beerPaddles);
+    let allPaddles = paddles.concat(this.beerPaddles, this.randomPaddles);
     this.position.x = Math.random() * this.ww + 1;
-    this.position.y = (Math.random() * this.wh + .5) * -1;
+    this.position.y = (Math.random() * this.wh + 1) * -1;
     this.checkDistance(allPaddles);
   }
 

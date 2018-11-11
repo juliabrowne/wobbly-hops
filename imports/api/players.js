@@ -1,19 +1,20 @@
 import { Mongo } from "meteor/mongo";
 import { Meteor } from "meteor/meteor";
-import SimpleSchema from "simpl-schema";
+// import SimpleSchema from "simpl-schema";
 
 export const Players = new Mongo.Collection("players");
 
-Players.schema = new SimpleSchema({
-  _id: String,
-  name: String,
-  color: String,
-  playerId: String,
-  x: Number,
-  y: Number,
-  frozen: Boolean,
-  lives: Number
-});
+
+// Players.schema = new SimpleSchema({
+//   _id: String,
+//   name: String,
+//   color: String,
+// playerId: String,
+// x: Number,
+// y: Number,
+// frozen: Boolean,
+// lives: Number
+// });
 
 if (Meteor.isServer) {
   AccountsGuest.enabled = true;
@@ -28,6 +29,9 @@ if (Meteor.isServer) {
 const getPlayer = playerId => {
   return Players.findOne(playerId);
 };
+const getRandomInt = max => {
+  return Math.floor(Math.random() * Math.floor(max));
+};
 Meteor.methods({
   "add.player"(name, color, playerId, x, y, maxX) {
     const newPlayer = {
@@ -40,7 +44,7 @@ Meteor.methods({
       lives: 3,
       maxX
     };
-    Players.schema.validate(newPlayer);
+    // Players.schema.validate(newPlayer);
     Players.insert(newPlayer);
   },
   "init.Player"({ playerId, x, y, maxX }) {
@@ -68,12 +72,15 @@ Meteor.methods({
     }
   },
   "freeze.player"(playerId) {
-    const p = getPlayer(playerId);
     Players.update({ _id: playerId }, { $set: { frozen: true } });
   },
   "unFreeze.player"(playerId) {
-    const p = getPlayer(playerId);
     Players.update({ _id: playerId }, { $set: { frozen: false } });
+  },
+  "randomize.player"(playerId, ww) {
+    const p = getPlayer(playerId);
+    const randomX = getRandomInt(ww)
+    Players.update({ _id: playerId }, { $set: { x: (p.x = randomX) } });
   },
   "loseLife.player"(playerId) {
     const p = getPlayer(playerId);

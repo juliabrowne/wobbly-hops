@@ -11,13 +11,15 @@ class Player extends React.Component {
     this.height = 25;
     this.width = 25;
     this.paddles = args.paddles;
-    this.beerPaddles = args.beerPaddles || [];
+    this.beerPaddles = args.beerPaddles;
+    this.randomPaddles = args.randomPaddles;
     this.wh = args.wh;
+    this.ww = args.ww;
     this.jumpLength = 0;
     this.rising = false;
     this.freeze = false;
     this.collision = false;
-    this.arr = this.paddles.concat(this.beerPaddles);
+    this.arr = this.paddles.concat(this.randomPaddles, this.beerPaddles);
     this.controls = false;
     this.color = args.color;
     this.player = args.playerId;
@@ -30,6 +32,7 @@ class Player extends React.Component {
   }
 
   render(ctx, paddles, pX) {
+
     if (this.lives !== 0) {
       this.positionX = pX;
       this.jumpLength++;
@@ -54,6 +57,10 @@ class Player extends React.Component {
               Meteor.call("unFreeze.player", this.player);
               this.rising = true;
             }, 3000);
+          }
+          if (paddle.name === "randomPaddle") {
+            this.positionY = paddle.position.y - this.height - 1;
+            Meteor.call("randomize.player", this.player, this.ww);
           }
         }
       });

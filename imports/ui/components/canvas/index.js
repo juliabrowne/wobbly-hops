@@ -5,6 +5,7 @@ import Player from "../player";
 import ReactAudioPlayer from "react-audio-player";
 import Beer from "../beer";
 import BeerPaddle from "../beerPaddle";
+import RandomPaddle from "../randomPaddle";
 import { withTracker } from "meteor/react-meteor-data";
 import { Players } from "../../../api/players";
 import BackgroundImg from "../backgroundImg";
@@ -15,6 +16,7 @@ class Canvas extends React.Component {
     this.canvasRef = React.createRef();
     this.paddles = [];
     this.beerPaddles = [];
+    this.randomPaddles = [];
     this.direction = {};
     this.collision = false;
     this.jumping = false;
@@ -36,7 +38,7 @@ class Canvas extends React.Component {
     };
     this.ctx = this.canvasRef.current.getContext("2d");
 
-    for (let i = 0; i < 40; i++) {
+    for (let i = 0; i < 35; i++) {
       this.paddles.push(
         new Paddle({
           position: {
@@ -45,7 +47,8 @@ class Canvas extends React.Component {
           },
           wh: this.canvasRef.current.height,
           ww: this.canvasRef.current.width,
-          beerPaddles: this.beerPaddles
+          beerPaddles: this.beerPaddles,
+          randomPaddles: this.randomPaddles
         })
       );
     }
@@ -53,7 +56,7 @@ class Canvas extends React.Component {
       p.generateXandY(this.paddles);
     });
 
-    for (let i = 0; i <= 10; i++) {
+    for (let i = 0; i <= 5; i++) {
       this.beerPaddles.push(
         new BeerPaddle({
           position: {
@@ -62,12 +65,30 @@ class Canvas extends React.Component {
           },
           wh: this.canvasRef.current.height,
           ww: this.canvasRef.current.width,
-          paddles: this.paddles
+          paddles: this.paddles,
+          randomPaddles: this.randomPaddles
         })
       );
     }
     this.beerPaddles.forEach(p => {
       p.generateXandY(this.beerPaddles);
+    });
+    for (let i = 0; i <= 5; i++) {
+      this.randomPaddles.push(
+        new RandomPaddle({
+          position: {
+            x: Math.random() * this.canvasRef.current.width + 1,
+            y: (Math.random() * this.canvasRef.current.height + 1) * -1
+          },
+          wh: this.canvasRef.current.height,
+          ww: this.canvasRef.current.width,
+          paddles: this.paddles,
+          beerPaddles: this.beerPaddles
+        })
+      );
+    }
+    this.randomPaddles.forEach(p => {
+      p.generateXandY(this.randomPaddles);
     });
     this.beer = new Beer({
       wh: this.canvasRef.current.height,
@@ -124,16 +145,19 @@ class Canvas extends React.Component {
             new Player({
               playerId: p._id,
               wh: window.innerHeight,
+              ww: window.innerWidth,
               position: p.position,
               moveDirection: "",
               color: p.color,
               paddles: this.paddles,
               beerPaddles: this.beerPaddles,
+              randomPaddles: this.randomPaddles,
               positionX: this.canvasRef.current.width / 2,
               currentPlayer: Players.find({ playerId: this.userId }).fetch(),
               beer: this.beer
             })
           );
+          console.log(this.randomPaddles)
         }
       );
     });
@@ -152,6 +176,7 @@ class Canvas extends React.Component {
     this.move(this.props.players[0]);
     this.renderPaddles();
     this.renderBeerPaddles();
+    this.renderRandomPaddles();
     this.renderPlayers(this.ctx);
     this.renderBeer();
   }
@@ -166,6 +191,11 @@ class Canvas extends React.Component {
       p.render(this.ctx, this.beerPaddles);
     });
   };
+  renderRandomPaddles = () => {
+    this.randomPaddles.forEach(p => {
+      p.render(this.ctx, this.randomPaddles);
+    });
+  };
   renderPlayers = () => {
     this.players.forEach(p => {
       const update = this.props.players.find(
@@ -174,11 +204,9 @@ class Canvas extends React.Component {
       p.render(this.ctx, this.paddles, update.x);
     });
   };
-
   renderBeer = () => {
     this.beer.render(this.ctx);
   };
-
   renderHeart = lives => {
     let images = [];
     for (let i = 0; i < lives; i++) {
@@ -192,11 +220,9 @@ class Canvas extends React.Component {
     }
     return images;
   };
-
   renderBackground = () => {
     this.BackgroundImg.render(this.ctx);
   };
-
   render() {
     const { players } = this.props;
     if (!this.started && !this.props.loading && players.length)
