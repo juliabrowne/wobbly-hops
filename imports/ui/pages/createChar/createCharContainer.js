@@ -46,7 +46,7 @@ class createCharContainer extends Component {
         <Link to="/intro">
           <h1 className="header">
             W<span className="span">🤪</span>
-            BBLY-H<span className="span">🤮</span>PS🍻
+            BBLY H<span className="span">🤮</span>PS🍻
           </h1>
         </Link>
         <form onSubmit={this.addPlayer} className="inputDiv">

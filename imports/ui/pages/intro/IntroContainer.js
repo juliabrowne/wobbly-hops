@@ -15,18 +15,18 @@ class IntroContainer extends Component {
         />
         <h1 className="header">
           W<span className="span">🤪</span>
-          BBLY-H<span className="span">🤮</span>PS🍻
+          BBLY H<span className="span">🤮</span>PS🍻
         </h1>
         <Link to="/createCharacter">
           <button className="start-button">Start</button>
-        </Link>
-        <Link to="/lobby">
-          <button className="setup-button">Lobby</button>
         </Link>
         <Link to="/instructions">
           <button className="instruction-button" to="/instructions">
             The Rules
           </button>
+        </Link>
+        <Link to="/lobby">
+          <button className="lobby-button">Lobby</button>
         </Link>
         <div id="bubbles">
           <div className="bubble x1" />

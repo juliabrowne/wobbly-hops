@@ -209,8 +209,12 @@ class Canvas extends React.Component {
             {players.length &&
               players.map(player => {
                 const name = {
-                  color: player.color,
-                  textAlign: "center",
+                  // color: player.color,
+                  textShadow: `0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px ${
+                    player.color
+                  }, 0 0 70px ${player.color}, 0 0 80px ${
+                    player.color
+                  }, 0 0 100px ${player.color}, 0 0 150px ${player.color}`,
                   fontSize: 25,
                   margin: 0
                 };

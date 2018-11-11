@@ -9,9 +9,10 @@ export default class BeerPaddle extends React.Component {
     this.width = 100;
     this.height = 25;
     this.velocity = 1;
-    // this.beerPaddles = args.beerPaddles;
     this.paddles = args.paddles;
     this.name = "beerPaddle";
+    this.paddleImage = new Image();
+    this.imgUrl = "../../../pictures/icePaddle-min.jpg";
   }
 
   checkDistance(paddles) {
@@ -40,10 +41,8 @@ export default class BeerPaddle extends React.Component {
 
   render(ctx, paddles) {
     this.position.y = this.position.y + this.velocity;
-    ctx.fillRect(this.position.x, this.position.y, 100, 25);
-
-    ctx.fillStyle = "skyblue";
-
+    ctx.drawImage(this.paddleImage, this.position.x, this.position.y, 100, 25);
+    this.paddleImage.src = this.imgUrl;
     if (this.position.y > this.wh) {
       this.generateXandY(paddles);
     }

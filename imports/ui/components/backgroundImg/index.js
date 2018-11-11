@@ -1,12 +1,11 @@
 import React from "react";
-// import background from "../../../../gifs/beer-cartoon-doodle-seamless-background-vector-20432954";
 
 export default class BackgroundImg extends React.Component {
   constructor(args) {
     super(args);
     this.wh = args.wh;
-    this.beerImage = new Image();
-      this.imgUrl = "../../../gifs/depositphotos_120691392-stock-illustration-mugs-of-beer-lager-ale.jpg";
+    this.backgroundImage = new Image();
+      this.imgUrl = "../../../pictures/greyBackground-min.jpg";
     this.velocityY = 0;
     this.positionY = 0;
     this.wh = args.wh;
@@ -15,9 +14,9 @@ export default class BackgroundImg extends React.Component {
 
   render(ctx) {
     if (this.positionY > 0) this.positionY -= this.velocityY;
-      this.beerImage.src = this.imgUrl;
+      this.backgroundImage.src = this.imgUrl;
     ctx.drawImage(
-          this.beerImage,
+          this.backgroundImage,
          0,
          0,
          this.ww, 

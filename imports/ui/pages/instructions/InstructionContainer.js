@@ -16,7 +16,7 @@ class InstructionContainer extends Component {
         <Link to="/intro">
           <h1 className="header">
             W<span className="span">🤪</span>
-            BBLY-H<span className="span">🤮</span>PS🍻
+            BBLY H<span className="span">🤮</span>PS🍻
           </h1>
         </Link>
         <div id="bubbles">

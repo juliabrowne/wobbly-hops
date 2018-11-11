@@ -1,7 +1,8 @@
+@import url('https://fonts.googleapis.com/css?family=Gloria+Hallelujah');
+
 .flex-container {
   display: flex;
   height: 100%;
-  background: gray;
 }
 canvas {
   border-style: hidden solid hidden solid;
@@ -14,10 +15,15 @@ canvas {
   margin: 0 auto;
   justify-content: space-around;
   padding: 0;
+  padding-left: .5rem;
   flex-wrap: wrap;
+  color: white;
+  font-family: "Gloria Hallelujah", cursive;
 }
 .score {
   width: 100%;
+  background-image: url("../../../pictures/darkBrickWall.jpg")
+ 
 }
 .heart-image {
   height: 1.5rem;

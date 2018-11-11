@@ -22,11 +22,11 @@ class lobbyContainer extends Component {
         <Link to="/intro">
           <h1 className="header">
             W<span className="span">🤪</span>
-            BBLY-H<span className="span">🤮</span>PS🍻
+            BBLY H<span className="span">🤮</span>PS🍻
           </h1>
         </Link>
         <Link to="/game">
-          <button className="setup-button">START GAME</button>
+          <button className="start-button">START GAME</button>
         </Link>
         <h2 className="players-header">Players in Lobby:</h2>
         <div className="players-list">
@@ -69,5 +69,3 @@ export default withTracker(() => {
     players: players
   };
 })(lobbyContainer);
-
-// export default lobbyContainer;
