@@ -4,7 +4,6 @@ import { Meteor } from "meteor/meteor";
 
 export const Players = new Mongo.Collection("players");
 
-
 // Players.schema = new SimpleSchema({
 //   _id: String,
 //   name: String,
@@ -33,7 +32,7 @@ const getRandomInt = max => {
   return Math.floor(Math.random() * Math.floor(max));
 };
 Meteor.methods({
-  "add.player"(name, color, playerId, x, y, maxX) {
+  "add.player"(name, color, playerId, x, y, maxX, winner) {
     const newPlayer = {
       name,
       color,
@@ -42,16 +41,18 @@ Meteor.methods({
       y,
       frozen: false,
       lives: 3,
-      maxX
+      maxX,
+      winner
     };
     // Players.schema.validate(newPlayer);
     Players.insert(newPlayer);
   },
-  "init.Player"({ playerId, x, y, maxX }) {
+  "init.Player"({ playerId, x, y, maxX, winner }) {
     Players.update({ _id: playerId }, { $set: { x, y } });
     Players.update({ _id: playerId }, { $set: { frozen: false } });
     Players.update({ _id: playerId }, { $set: { lives: 3 } });
     Players.update({ _id: playerId }, { $set: { maxX } });
+    Players.update({ _id: playerId }, { $set: { winner } });
   },
   "move.right"(playerId) {
     const p = getPlayer(playerId);
@@ -79,7 +80,7 @@ Meteor.methods({
   },
   "randomize.player"(playerId, ww) {
     const p = getPlayer(playerId);
-    const randomX = getRandomInt(ww)
+    const randomX = getRandomInt(ww - 200);
     Players.update({ _id: playerId }, { $set: { x: (p.x = randomX) } });
   },
   "loseLife.player"(playerId) {
@@ -87,5 +88,15 @@ Meteor.methods({
     if (p.lives > 0) {
       Players.update({ _id: playerId }, { $set: { lives: p.lives - 1 } });
     }
+  },
+  "addLife.player"(playerId) {
+    const p = getPlayer(playerId);
+    if (p.lives > 0) {
+      Players.update({ _id: playerId }, { $set: { lives: p.lives + 1 } });
+    }
+  },
+  "winner.player"(playerId) {
+    const p = getPlayer(playerId);
+    Players.update({ _id: playerId }, { $set: { winner: true } });
   }
 });

@@ -1,6 +1,6 @@
 import React from "react";
 
-export default class Paddle extends React.Component {
+export default class ExtraLife extends React.Component {
   constructor(args) {
     super(args);
     this.position = args.position;
@@ -9,12 +9,12 @@ export default class Paddle extends React.Component {
     this.width = 100;
     this.height = 25;
     this.velocity = 1;
+    this.paddles = args.paddles;
     this.beerPaddles = args.beerPaddles;
     this.randomPaddles = args.randomPaddles;
-    this.extraLife = args.extraLife;
-    this.name = "paddle";
+    this.name = "extraLife";
     this.paddleImage = new Image();
-    this.imgUrl = "../../../pictures/blackPaddle-min.jpg";
+    this.imgUrl = "../../../pictures/heart.png";
   }
 
   checkDistance(paddles) {
@@ -35,7 +35,7 @@ export default class Paddle extends React.Component {
   }
 
   generateXandY(paddles) {
-    let allPaddles = paddles.concat(this.beerPaddles, this.randomPaddles, this.extraLife);
+    let allPaddles = paddles.concat(this.paddles, this.beerPaddles, this.randomPaddles);
     this.position.x = Math.random() * this.ww + 1;
     this.position.y = (Math.random() * this.wh + 1) * -1;
     this.checkDistance(allPaddles);
@@ -43,7 +43,7 @@ export default class Paddle extends React.Component {
 
   render(ctx, paddles) {
     this.position.y = this.position.y + this.velocity;
-    ctx.drawImage(this.paddleImage, this.position.x, this.position.y, 100, 25);
+    ctx.drawImage(this.paddleImage, this.position.x, this.position.y, 50, 50);
     this.paddleImage.src = this.imgUrl;
     if (this.position.y > this.wh) {
       this.generateXandY(paddles);

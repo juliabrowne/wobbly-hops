@@ -9,7 +9,8 @@ Meteor.startup(() => {
       x: 100,
       y: 0,
       frozen: false,
-      lives: 3
+      lives: 3,
+      winner: false
     });
   }
 });

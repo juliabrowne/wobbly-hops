@@ -11,6 +11,7 @@ export default class BeerPaddle extends React.Component {
     this.velocity = 1;
     this.paddles = args.paddles;
     this.beerPaddles = args.beerPaddles;
+    this.extraLife = args.extraLife;
     this.name = "randomPaddle";
     this.paddleImage = new Image();
     this.imgUrl = "../../../pictures/zigzag-min.jpg";
@@ -34,14 +35,13 @@ export default class BeerPaddle extends React.Component {
   }
 
   generateXandY(paddles) {
-    let allPaddles = paddles.concat(this.paddles, this.beerPaddles);
+    let allPaddles = paddles.concat(this.paddles, this.beerPaddles, this.extraLife);
     this.position.x = Math.random() * this.ww + 1;
     this.position.y = (Math.random() * this.wh + 1) * -1;
     this.checkDistance(allPaddles);
   }
 
   render(ctx, paddles) {
-    console.log(paddles)
     this.position.y = this.position.y + this.velocity;
     ctx.drawImage(this.paddleImage, this.position.x, this.position.y, 100, 25);
     this.paddleImage.src = this.imgUrl;
