@@ -1,6 +1,6 @@
-import React from "react";
+import React, { Component } from "react";
 
-export default class BeerPaddle extends React.Component {
+export default class RandomPaddle extends Component{
   constructor(args) {
     super(args);
     this.position = args.position;
@@ -10,7 +10,7 @@ export default class BeerPaddle extends React.Component {
     this.height = 25;
     this.velocity = 1;
     this.paddles = args.paddles;
-    this.beerPaddles = args.beerPaddles;
+    this.freezePaddles = args.freezePaddles;
     this.extraLife = args.extraLife;
     this.name = "randomPaddle";
     this.paddleImage = new Image();
@@ -35,7 +35,7 @@ export default class BeerPaddle extends React.Component {
   }
 
   generateXandY(paddles) {
-    let allPaddles = paddles.concat(this.paddles, this.beerPaddles, this.extraLife);
+    let allPaddles = paddles.concat(this.paddles, this.freezePaddles, this.extraLife);
     this.position.x = Math.random() * this.ww + 1;
     this.position.y = (Math.random() * this.wh + 1) * -2;
     this.checkDistance(allPaddles);

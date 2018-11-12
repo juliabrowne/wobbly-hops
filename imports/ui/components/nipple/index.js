@@ -6,7 +6,7 @@ import { Meteor } from "meteor/meteor";
 import ReactNipple from "react-nipple";
 import "react-nipple/lib/styles.css";
 
-class Joystick extends React.Component {
+class Joystick extends Component {
   constructor() {
     super();
     this.direction = {};

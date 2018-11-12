@@ -22,7 +22,7 @@ class endGame extends Component {
           }
         })}
         <div className="button-container">
-          <Link to="/game">
+          <Link to="/lobby">
             <button className="endGame-button">Replay</button>
           </Link>
           <Link to="/intro">
