@@ -37,7 +37,7 @@ export default class BeerPaddle extends React.Component {
   generateXandY(paddles) {
     let allPaddles = paddles.concat(this.paddles, this.beerPaddles, this.extraLife);
     this.position.x = Math.random() * this.ww + 1;
-    this.position.y = (Math.random() * this.wh + 1) * -1;
+    this.position.y = (Math.random() * this.wh + 1) * -2;
     this.checkDistance(allPaddles);
   }
 

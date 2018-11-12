@@ -8,7 +8,7 @@ export default class ExtraLife extends React.Component {
     this.ww = args.ww;
     this.width = 100;
     this.height = 25;
-    this.velocity = 1;
+    this.velocity = 5;
     this.paddles = args.paddles;
     this.beerPaddles = args.beerPaddles;
     this.randomPaddles = args.randomPaddles;
@@ -37,7 +37,7 @@ export default class ExtraLife extends React.Component {
   generateXandY(paddles) {
     let allPaddles = paddles.concat(this.paddles, this.beerPaddles, this.randomPaddles);
     this.position.x = Math.random() * this.ww + 1;
-    this.position.y = (Math.random() * this.wh + 1) * -1;
+    this.position.y = (Math.random() * this.wh + 1) * -5;
     this.checkDistance(allPaddles);
   }
 

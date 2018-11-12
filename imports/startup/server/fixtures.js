@@ -10,7 +10,7 @@ Meteor.startup(() => {
       y: 0,
       frozen: false,
       lives: 3,
-      winner: false
+      alive: true
     });
   }
 });

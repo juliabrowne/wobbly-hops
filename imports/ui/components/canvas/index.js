@@ -29,6 +29,7 @@ class Canvas extends React.Component {
     this.players = [];
     this.userId = Meteor.userId();
     this.lives = 3;
+    this.playersAlive = 0;
     this.gameOn = true;
   }
 
@@ -41,7 +42,7 @@ class Canvas extends React.Component {
     };
     this.ctx = this.canvasRef.current.getContext("2d");
 
-    for (let i = 0; i < 30; i++) {
+    for (let i = 0; i < 50; i++) {
       this.paddles.push(
         new Paddle({
           position: {
@@ -60,7 +61,7 @@ class Canvas extends React.Component {
       p.generateXandY(this.paddles);
     });
 
-    for (let i = 0; i <= 3; i++) {
+    for (let i = 0; i <= 8; i++) {
       this.beerPaddles.push(
         new BeerPaddle({
           position: {
@@ -78,7 +79,7 @@ class Canvas extends React.Component {
     this.beerPaddles.forEach(p => {
       p.generateXandY(this.beerPaddles);
     });
-    for (let i = 0; i <= 3; i++) {
+    for (let i = 0; i <= 8; i++) {
       this.randomPaddles.push(
         new RandomPaddle({
           position: {
@@ -96,20 +97,20 @@ class Canvas extends React.Component {
     this.randomPaddles.forEach(p => {
       p.generateXandY(this.randomPaddles);
     });
-      this.extraLife.push(
-        new ExtraLife({
-          position: {
-            x: Math.random() * this.canvasRef.current.width + 1,
-            y: (Math.random() * this.canvasRef.current.height + 1) * -1
-          },
-          wh: this.canvasRef.current.height,
-          ww: this.canvasRef.current.width,
-          paddles: this.paddles,
-          beerPaddles: this.beerPaddles,
-          randomPaddles: this.randomPaddles
-        })
-      );
-    
+    this.extraLife.push(
+      new ExtraLife({
+        position: {
+          x: Math.random() * this.canvasRef.current.width + 1,
+          y: (Math.random() * this.canvasRef.current.height + 1) * -1
+        },
+        wh: this.canvasRef.current.height,
+        ww: this.canvasRef.current.width,
+        paddles: this.paddles,
+        beerPaddles: this.beerPaddles,
+        randomPaddles: this.randomPaddles
+      })
+    );
+
     this.extraLife.forEach(p => {
       p.generateXandY(this.extraLife);
     });
@@ -136,23 +137,10 @@ class Canvas extends React.Component {
   getRandomInt(max) {
     return Math.floor(Math.random() * Math.floor(max));
   }
-  gameStatus() {
-    let count = 0;
-    this.props.players.map(player => {
-      if (player.lives > 0) {
-        count++;
-      }
-      if (count < 1) {
-        Meteor.call("winner.player", this.player);
-      }
-    });
-  }
 
-  componentDidUpdate() {
-    this.gameStatus();
-  }
   startGameLoop() {
     this.started = true;
+    this.gameOn = true;
     this.props.players.forEach(async p => {
       await Meteor.call(
         "init.Player",
@@ -160,8 +148,7 @@ class Canvas extends React.Component {
           x: this.getRandomInt(this.canvasRef.current.width - 200),
           y: this.canvasRef.current.height / 2,
           playerId: p._id,
-          maxX: this.canvasRef.current.width,
-          winner: false
+          maxX: this.canvasRef.current.width
         },
         () => {
           this.players.push(
@@ -188,7 +175,7 @@ class Canvas extends React.Component {
   }
 
   gameLoop() {
-    this.ctx.fillStyle = "black";
+    this.ctx.fillStyle = "transparent";
     this.ctx.fillRect(
       0,
       0,
@@ -203,8 +190,8 @@ class Canvas extends React.Component {
     this.renderExtraLife();
     this.renderPlayers(this.ctx);
     this.renderBeer();
+    this.gameStatus();
   }
-
   renderPaddles = () => {
     this.paddles.forEach(p => {
       p.render(this.ctx, this.paddles);
@@ -252,44 +239,62 @@ class Canvas extends React.Component {
   renderBackground = () => {
     this.BackgroundImg.render(this.ctx);
   };
+  gameStatus() {
+    let count = 0;
+    this.props.players.map(player => {
+      if (player.alive) {
+        return count++;
+      }
+    });
+    if (count > 1) {
+      this.gameOn = true;
+    } else {
+      this.gameOn = false;
+    }
+  }
   render() {
     const { players } = this.props;
-    if (players.winner === true) {
-      return <Redirect to="/endGame" />;
-    }
     if (!this.started && !this.props.loading && players.length)
       this.startGameLoop();
-    return (
-      <div className="flex-container">
-        <ReactAudioPlayer src="../../../music/Racing-Menu.mp3" autoPlay loop />
-        <div className="score">
-          <ul className="list">
-            {players.length &&
-              players.map(player => {
-                const name = {
-                  textShadow: `0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px ${
-                    player.color
-                  }, 0 0 70px ${player.color}, 0 0 80px ${
-                    player.color
-                  }, 0 0 100px ${player.color}, 0 0 150px ${player.color}`,
-                  fontSize: 25,
-                  margin: 0
-                };
-                return (
-                  <li key={player._id} style={name}>
-                    {player.name} {this.renderHeart(player.lives)}
-                  </li>
-                );
-              })}
-          </ul>
+    if (this.gameOn) {
+      return (
+        <div className="flex-container">
+          <ReactAudioPlayer
+            src="../../../music/Racing-Menu.mp3"
+            autoPlay
+            loop
+          />
+          <div className="score">
+            <ul className="list">
+              {players.length &&
+                players.map(player => {
+                  const name = {
+                    textShadow: `0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px ${
+                      player.color
+                    }, 0 0 70px ${player.color}, 0 0 80px ${
+                      player.color
+                    }, 0 0 100px ${player.color}, 0 0 150px ${player.color}`,
+                    fontSize: 25,
+                    margin: 0
+                  };
+                  return (
+                    <li key={player._id} style={name}>
+                      {player.name} {this.renderHeart(player.lives)}
+                    </li>
+                  );
+                })}
+            </ul>
+          </div>
+          <canvas
+            ref={this.canvasRef}
+            width={window.innerWidth - 200}
+            height={window.innerHeight}
+          />
         </div>
-        <canvas
-          ref={this.canvasRef}
-          width={window.innerWidth - 200}
-          height={window.innerHeight}
-        />
-      </div>
-    );
+      );
+    } else {
+      return <Redirect to="/endGame" />;
+    }
   }
 }
 export default withTracker(() => {
