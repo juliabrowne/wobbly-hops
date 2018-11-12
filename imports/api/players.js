@@ -1,19 +1,21 @@
 import { Mongo } from "meteor/mongo";
 import { Meteor } from "meteor/meteor";
-// import SimpleSchema from "simpl-schema";
+import SimpleSchema from "simpl-schema";
 
 export const Players = new Mongo.Collection("players");
 
-// Players.schema = new SimpleSchema({
-//   _id: String,
-//   name: String,
-//   color: String,
-// playerId: String,
-// x: Number,
-// y: Number,
-// frozen: Boolean,
-// lives: Number
-// });
+Players.schema = new SimpleSchema({
+  _id: String,
+  name: String,
+  color: String,
+  playerId: String,
+  x: Number,
+  y: Number,
+  frozen: Boolean,
+  lives: Number,
+  maxX: Number,
+  alive: Boolean
+});
 
 if (Meteor.isServer) {
   AccountsGuest.enabled = true;
