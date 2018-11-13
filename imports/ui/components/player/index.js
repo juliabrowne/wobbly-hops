@@ -1,7 +1,7 @@
-import React from "react";
+import React, { Component } from "react";
 import { Meteor } from "meteor/meteor";
 
-class Player extends React.Component {
+class Player extends Component {
   constructor(args) {
     super(args);
     this.velocityY = 6;
@@ -11,7 +11,7 @@ class Player extends React.Component {
     this.height = 25;
     this.width = 25;
     this.paddles = args.paddles;
-    this.beerPaddles = args.beerPaddles;
+    this.freezePaddles = args.freezePaddles;
     this.randomPaddles = args.randomPaddles;
     this.extraLife = args.extraLife;
     this.wh = args.wh;
@@ -22,10 +22,9 @@ class Player extends React.Component {
     this.collision = false;
     this.arr = this.paddles.concat(
       this.randomPaddles,
-      this.beerPaddles,
+      this.freezePaddles,
       this.extraLife
     );
-    this.controls = false;
     this.color = args.color;
     this.player = args.playerId;
     this.beer = args.beer;
@@ -50,7 +49,7 @@ class Player extends React.Component {
           if (!this.collision && !this.rising) {
             this.collision = true;
           }
-          if (paddle.name === "beerPaddle") {
+          if (paddle.name === "freezePaddle") {
             this.positionY = paddle.position.y - this.height - 1;
             this.freeze = true;
             Meteor.call("freeze.player", this.player);

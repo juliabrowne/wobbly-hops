@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css?family=Gloria+Hallelujah');
+
+.nipple-container {
+  height: 100vh;
+  width: 100vw;
+}
+.nipple-name {
+  font-family: 'Gloria Hallelujah', cursive;
+  font-size: 10rem;
+  text-align: center;
+  background: #FFDAB9;
+}
+.nipple{
+  position: relative;
+}

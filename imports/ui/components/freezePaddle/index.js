@@ -1,6 +1,6 @@
-import React from "react";
+import React, { Component } from "react";
 
-export default class BeerPaddle extends React.Component {
+export default class FreezePaddle extends Component {
   constructor(args) {
     super(args);
     this.position = args.position;
@@ -12,7 +12,7 @@ export default class BeerPaddle extends React.Component {
     this.paddles = args.paddles;
     this.randomPaddles = args.randomPaddles;
     this.extraLife = args.extraLife;
-    this.name = "beerPaddle";
+    this.name = "freezePaddle";
     this.paddleImage = new Image();
     this.imgUrl = "../../../pictures/icePaddle-min.jpg";
   }

@@ -1,6 +1,6 @@
-import React from "react";
+import React, { Component } from "react";
 
-export default class Beer extends React.Component {
+export default class Beer extends Component{
   constructor(args) {
     super(args);
     this.beerImage = new Image();
