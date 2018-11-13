@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Meteor } from "meteor/meteor";
 
-class Player extends Component{
+class Player extends Component {
   constructor(args) {
     super(args);
     this.velocityY = 6;

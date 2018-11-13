@@ -169,7 +169,7 @@ class Game extends Component {
         }
       );
     });
-    setInterval(() => requestAnimationFrame(() => this.gameLoop()), 16);
+    setInterval(() => requestAnimationFrame(() => this.gameLoop()), 15);
   }
 
   gameLoop() {
