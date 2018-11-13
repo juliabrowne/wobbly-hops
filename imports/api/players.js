@@ -5,16 +5,34 @@ import SimpleSchema from "simpl-schema";
 export const Players = new Mongo.Collection("players");
 
 Players.schema = new SimpleSchema({
-  _id: String,
   name: String,
   color: String,
-  playerId: String,
-  x: Number,
-  y: Number,
   frozen: Boolean,
   lives: Number,
-  maxX: Number,
-  alive: Boolean
+  _id: {
+    type: String,
+    optional: true
+  },
+  playerId: {
+    type: String,
+    optional: true
+  },
+  x: {
+    type: Number,
+    optional: true
+  },
+  y: {
+    type: Number,
+    optional: true
+  },
+  maxX: {
+    type: Number,
+    optional: true
+  },
+  alive: {
+    type: Boolean,
+    optional: true
+  },
 });
 
 if (Meteor.isServer) {
@@ -46,7 +64,7 @@ Meteor.methods({
       maxX,
       alive
     };
-    // Players.schema.validate(newPlayer);
+    Players.schema.validate(newPlayer);
     Players.insert(newPlayer);
   },
   "init.Player"({ playerId, x, y, maxX }) {
