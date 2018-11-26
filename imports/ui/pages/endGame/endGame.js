@@ -3,6 +3,7 @@ import { Players } from "../../../api/players";
 import { withTracker } from "meteor/react-meteor-data";
 import "./styles.css";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
 class endGame extends Component {
   render() {
@@ -41,3 +42,9 @@ export default withTracker(() => {
     players: players
   };
 })(endGame);
+
+endGame.propTypes = {
+  color: PropTypes.string,
+  name: PropTypes.string,
+  id: PropTypes.string
+};

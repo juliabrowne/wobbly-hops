@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { withTracker } from "meteor/react-meteor-data";
 import ReactAudioPlayer from "react-audio-player";
 import { Players } from "../../../api/players";
+import PropTypes from "prop-types";
 
 class lobbyContainer extends Component {
   constructor() {
@@ -69,3 +70,9 @@ export default withTracker(() => {
     players: players
   };
 })(lobbyContainer);
+
+lobbyContainer.propTypes = {
+  length: PropTypes.number,
+  name: PropTypes.string,
+  id: PropTypes.string
+};

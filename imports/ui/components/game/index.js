@@ -11,6 +11,7 @@ import { withTracker } from "meteor/react-meteor-data";
 import { Players } from "../../../api/players";
 import BackgroundImg from "../backgroundImg";
 import { Redirect } from "react-router";
+import PropTypes from "prop-types";
 
 class Game extends Component {
   constructor(props) {
@@ -301,3 +302,9 @@ export default withTracker(() => {
     players: players
   };
 })(Game);
+
+Game.propTypes = {
+  playerId: PropTypes.string,
+  alive: PropTypes.bool,
+  players: PropTypes.array
+};

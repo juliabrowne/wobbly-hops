@@ -4,6 +4,7 @@ import { Players } from "../../../api/players";
 import { Meteor } from "meteor/meteor";
 import ReactNipple from "react-nipple";
 import "./style.css";
+import PropTypes from "prop-types";
 
 class Nipple extends Component {
   constructor() {
@@ -70,3 +71,9 @@ export default withTracker(() => {
     currentPlayer
   };
 })(Nipple);
+
+Nipple.propTypes = {
+  color: PropTypes.string,
+  name: PropTypes.string,
+  id: PropTypes.string
+};
